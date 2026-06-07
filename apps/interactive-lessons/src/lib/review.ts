@@ -1,4 +1,4 @@
-import { conceptLabels, reviewAdvice, type Attempt, type ConceptId, type CurrentAttempt, type LessonQuestion } from "../data/day01";
+﻿import { conceptLabels, reviewAdvice, type Attempt, type ConceptId, type CurrentAttempt, type LessonQuestion } from "../data/lessons";
 
 export type ScoreResult = {
   score: number;

@@ -1,6 +1,6 @@
-import { describe, expect, it } from "vitest";
+﻿import { describe, expect, it } from "vitest";
 import { buildReview, scoreAnswers } from "./review";
-import type { LessonQuestion } from "../data/day01";
+import type { LessonQuestion } from "../data/lessons";
 
 const questions: LessonQuestion[] = [
   {

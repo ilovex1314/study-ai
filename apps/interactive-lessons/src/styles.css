@@ -44,7 +44,7 @@ button:disabled {
 .app-shell {
   width: min(1440px, 100%);
   margin: 0 auto;
-  padding: 32px;
+  padding: 32px 32px 112px;
 }
 
 .section-anchor {
@@ -52,10 +52,8 @@ button:disabled {
 }
 
 .hero {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) 320px;
-  gap: 32px;
-  min-height: 420px;
+  display: block;
+  min-height: 320px;
   align-items: center;
   padding: 56px;
   border: 1px solid rgba(255, 255, 255, 0.12);
@@ -154,6 +152,10 @@ button:disabled {
   backdrop-filter: blur(10px);
 }
 
+.route-toggle {
+  display: none;
+}
+
 .route-step {
   display: grid;
   place-items: center;
@@ -205,7 +207,7 @@ button:disabled {
 .series-card {
   display: grid;
   width: 100%;
-  min-height: 190px;
+  min-height: 150px;
   gap: 10px;
   padding: 18px;
   text-align: left;
@@ -237,13 +239,56 @@ button:disabled {
 
 .series-card strong {
   color: #ffffff;
-  font-size: 20px;
+  font-size: 18px;
 }
 
 .series-card p {
   margin: 0;
   color: #c1ccdc;
   line-height: 1.6;
+}
+
+.series-dock {
+  position: fixed;
+  left: 50%;
+  bottom: 18px;
+  z-index: 20;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  width: min(760px, calc(100vw - 28px));
+  transform: translateX(-50%);
+  padding: 8px;
+  gap: 8px;
+  border-radius: 8px;
+  background: rgba(7, 10, 16, 0.9);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  backdrop-filter: blur(14px);
+  box-shadow: 0 16px 42px rgba(0, 0, 0, 0.35);
+}
+
+.series-dock button {
+  display: grid;
+  gap: 2px;
+  min-height: 48px;
+  padding: 8px;
+  color: #dbe5f2;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid transparent;
+}
+
+.series-dock button.active {
+  color: #10131a;
+  background: #92e6a7;
+}
+
+.series-dock span {
+  font-weight: 900;
+}
+
+.series-dock small {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .section-title-row {
@@ -508,112 +553,134 @@ button:disabled {
   font-weight: 900;
 }
 
-.architecture-canvas {
-  position: relative;
-  display: grid;
-  grid-template-columns: 1fr 1.15fr 1.15fr 1fr;
-  grid-template-areas:
-    "entry orchestration context model"
-    "safety safety tools tools"
-    "evals evals evals evals";
-  gap: 16px;
-}
-
-.arch-node {
-  display: grid;
-  gap: 8px;
-  min-height: 148px;
-  padding: 16px;
+.architecture-svg {
+  width: 100%;
+  min-height: 340px;
   border-radius: 8px;
-  background: rgba(16, 19, 26, 0.78);
-  border: 1px solid rgba(255, 255, 255, 0.12);
+  background:
+    radial-gradient(circle at 18% 20%, rgba(146, 230, 167, 0.13), transparent 28%),
+    radial-gradient(circle at 82% 72%, rgba(255, 191, 105, 0.1), transparent 30%),
+    rgba(7, 10, 16, 0.72);
 }
 
-.arch-node strong {
-  color: #ffbf69;
+.architecture-svg text {
+  font-family:
+    Inter, "Microsoft YaHei", "PingFang SC", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
 }
 
-.arch-node span {
-  color: #92e6a7;
-  font-weight: 800;
-  line-height: 1.45;
+.plane {
+  fill: rgba(255, 255, 255, 0.035);
+  stroke: rgba(255, 255, 255, 0.14);
 }
 
-.arch-node small {
-  color: #c6d2e1;
-  line-height: 1.5;
+.model-plane {
+  stroke: rgba(77, 171, 247, 0.44);
 }
 
-.arch-node.entry {
-  grid-area: entry;
+.system-plane {
+  stroke: rgba(146, 230, 167, 0.44);
 }
 
-.arch-node.orchestration {
-  grid-area: orchestration;
-}
-
-.arch-node.context {
-  grid-area: context;
-}
-
-.arch-node.model {
-  grid-area: model;
-}
-
-.arch-node.tools {
-  grid-area: tools;
-}
-
-.arch-node.safety {
-  grid-area: safety;
-  border-color: rgba(255, 191, 105, 0.28);
-}
-
-.arch-node.evals {
-  grid-area: evals;
-  min-height: 112px;
-  background: rgba(146, 230, 167, 0.1);
-  border-color: rgba(146, 230, 167, 0.26);
-}
-
-.arch-arrow {
-  position: absolute;
-  z-index: 2;
-  color: #92e6a7;
-  font-size: 26px;
+.plane-title,
+.lane-title {
+  fill: #92e6a7;
+  font-size: 20px;
   font-weight: 900;
 }
 
-.arrow-a {
-  left: 23.5%;
-  top: 56px;
+.lane-line {
+  stroke: rgba(255, 255, 255, 0.12);
+  stroke-width: 2;
 }
 
-.arrow-b {
-  left: 49%;
-  top: 56px;
+.arch-card rect,
+.service-box rect {
+  fill: rgba(16, 19, 26, 0.95);
+  stroke: rgba(255, 255, 255, 0.2);
+  stroke-width: 2;
 }
 
-.arrow-c {
-  left: 74%;
-  top: 56px;
+.arch-card.accent rect {
+  fill: rgba(146, 230, 167, 0.14);
+  stroke: rgba(146, 230, 167, 0.48);
 }
 
-.arrow-d {
-  left: 58%;
-  top: 212px;
+.arch-card.system rect {
+  fill: rgba(77, 171, 247, 0.13);
+  stroke: rgba(77, 171, 247, 0.46);
 }
 
-.arrow-e {
-  left: 38%;
-  top: 175px;
-  color: #ffbf69;
+.arch-card text,
+.service-box text,
+.ops-bar text {
+  fill: #ffffff;
+  font-size: 18px;
+  font-weight: 900;
 }
 
-.arrow-f {
-  right: 28px;
-  bottom: 102px;
-  color: #ffbf69;
+.card-sub,
+.service-box text:nth-of-type(2) {
+  fill: #c6d2e1;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.arch-flow {
+  fill: none;
+  stroke: rgba(146, 230, 167, 0.68);
+  stroke-width: 4;
+  stroke-linecap: round;
+  marker-end: url("#arch-arrow");
+}
+
+.arch-flow.strong {
+  stroke: rgba(255, 191, 105, 0.78);
+  stroke-width: 5;
+}
+
+.arch-flow.feedback {
+  stroke: rgba(77, 171, 247, 0.68);
+  stroke-dasharray: 10 12;
+}
+
+.edge-label {
+  fill: #ffbf69;
+  font-size: 14px;
+  font-weight: 800;
+}
+
+.loop-ring {
+  fill: none;
+  stroke: rgba(255, 191, 105, 0.3);
+  stroke-width: 18;
+  stroke-dasharray: 24 18;
+}
+
+.approval-gate path {
+  fill: rgba(255, 191, 105, 0.16);
+  stroke: rgba(255, 191, 105, 0.72);
+  stroke-width: 2;
+}
+
+.approval-gate text {
+  fill: #ffffff;
+  font-size: 15px;
+  font-weight: 900;
+  text-anchor: middle;
+}
+
+.service-box rect {
+  fill: rgba(255, 255, 255, 0.055);
+}
+
+.service-box text {
+  text-anchor: middle;
+}
+
+.ops-bar rect {
+  fill: rgba(146, 230, 167, 0.11);
+  stroke: rgba(146, 230, 167, 0.36);
+  stroke-width: 2;
 }
 
 .field-example {
@@ -879,34 +946,21 @@ button:disabled {
 }
 
 @media (max-width: 1080px) {
-  .hero,
   .learning-workbench {
     grid-template-columns: 1fr;
   }
 
   .series-grid,
   .section-grid,
-  .layer-grid {
+  .layer-grid,
+  .architecture-node-list {
     grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-
-  .architecture-canvas {
-    grid-template-columns: 1fr 1fr;
-    grid-template-areas:
-      "entry orchestration"
-      "context model"
-      "tools safety"
-      "evals evals";
-  }
-
-  .arch-arrow {
-    display: none;
   }
 }
 
 @media (max-width: 720px) {
   .app-shell {
-    padding: 14px;
+    padding: 14px 14px 106px;
   }
 
   .hero,
@@ -918,25 +972,38 @@ button:disabled {
   }
 
   .route-strip {
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr;
+    gap: 8px;
+    padding: 8px;
+    border-radius: 8px;
+  }
+
+  .route-toggle {
+    display: block;
+    min-height: 42px;
+    color: #10131a;
+    background: #92e6a7;
+    font-weight: 900;
+  }
+
+  .route-step {
+    display: none;
+    min-height: 44px;
+  }
+
+  .route-strip.open .route-step {
+    display: grid;
   }
 
   .series-grid,
   .section-grid,
-  .layer-grid {
+  .layer-grid,
+  .architecture-node-list {
     grid-template-columns: 1fr;
   }
 
-  .architecture-canvas {
-    grid-template-columns: 1fr;
-    grid-template-areas:
-      "entry"
-      "orchestration"
-      "context"
-      "model"
-      "tools"
-      "safety"
-      "evals";
+  .architecture-map svg {
+    min-height: 250px;
   }
 
   .hero h1 {
@@ -949,5 +1016,22 @@ button:disabled {
 
   .learning-workbench {
     grid-template-columns: 1fr;
+  }
+
+  .series-dock {
+    bottom: 10px;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    width: calc(100vw - 20px);
+    gap: 4px;
+    padding: 6px;
+  }
+
+  .series-dock button {
+    min-height: 44px;
+    padding: 6px 4px;
+  }
+
+  .series-dock small {
+    display: none;
   }
 }

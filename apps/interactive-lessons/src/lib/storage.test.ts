@@ -1,4 +1,4 @@
-import { beforeEach, describe, expect, it } from "vitest";
+﻿import { beforeEach, describe, expect, it } from "vitest";
 import {
   clearAttemptHistory,
   completeCurrentAttempt,
@@ -9,7 +9,7 @@ import {
   resetCurrentAttempt,
   saveCurrentAttempt
 } from "./storage";
-import type { Attempt, CurrentAttempt } from "../data/day01";
+import type { Attempt, CurrentAttempt } from "../data/lessons";
 
 const current: CurrentAttempt = {
   id: "current-1",

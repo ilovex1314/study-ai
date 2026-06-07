@@ -1,4 +1,4 @@
-import type { Attempt, CurrentAttempt } from "../data/day01";
+﻿import type { Attempt, CurrentAttempt } from "../data/lessons";
 
 export const storageKeys = {
   currentAttempt: "study-ai.day01.currentAttempt",
