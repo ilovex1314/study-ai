@@ -5,137 +5,145 @@ const day03Modules: ConceptModule[] = [
   {
     id: "d3-m1",
     eyebrow: "Concept 01",
-    title: "Agent 是执行实体，不是聊天入口",
-    summary: "Agent 围绕目标选择步骤、工具、澄清、handoff 或停止；聊天只是入口之一。",
-    visual: "tools",
+    title: "Agent 是围绕目标选择步骤的执行体",
+    summary: "Agent 根据目标、上下文和工具反馈决定下一步行动。",
+    visual: "machine",
     concept: "agent",
-    whyItMatters: "把 Agent 当 UI 会忽略状态、权限、工具、trace 和失败恢复。",
-    coreIdeas: ["Agent 需要目标、工具、状态和停止条件。", "自主性是旋钮，不是开关。", "高风险动作必须系统控制。"],
-    engineerLens: "先画执行循环，再决定模型在哪些节点有决策权。",
-    pitfalls: ["所有逻辑都塞进 prompt", "没有停止条件", "没有工具权限边界"],
-    practicePrompt: "为需求评审 Agent 画执行循环：读输入、查资料、调用工具、人工确认、输出。",
-    fieldExample: "PR review agent 可以分析 diff 和生成建议，但不能自动 merge。"
+    whyItMatters: "它能处理不完全确定的任务，但必须被系统边界约束。",
+    coreIdeas: ["Agent 有目标、工具、状态和停止条件。","每一步都应可记录和可回放。","自主性越高，guardrails 越重要。"],
+    engineerLens: "把 Agent 当成执行循环，不要当成“更聪明的聊天”。",
+    pitfalls: ["聊天框加按钮就叫 Agent","没有停止条件","失败后无法复盘"],
+    practicePrompt: "为“读取 PRD 并生成任务”画出 Agent loop。",
+    fieldExample: "在 Agent 是围绕目标选择步骤的执行体 相关工作中，先把边界和验收写出来，再让模型或平台参与生成。",
+    source: { label: "OpenAI Agents SDK", url: "https://platform.openai.com/docs/guides/agents-sdk/" }
   },
   {
     id: "d3-m2",
     eyebrow: "Concept 02",
-    title: "Workflow 控制确定性，Agent 处理不确定性",
-    summary: "流程明确、风险高、需要审计时优先 Workflow；路径不可预设时才提高 Agent 自主性。",
+    title: "Workflow 用确定性流程包住模型节点",
+    summary: "流程明确、风险高、审计强时，应优先用 workflow 控制。",
     visual: "schema",
     concept: "workflow",
-    whyItMatters: "生产系统要把审批、计费、状态变更和重试放进确定性流程。",
-    coreIdeas: ["Workflow 适合固定步骤和 SLA。", "Agent 适合动态分解和工具选择。", "常见架构是 Workflow + Agent 节点。"],
-    engineerLens: "用状态机控制关键节点，把语义判断作为流程中的能力节点。",
-    pitfalls: ["用 Agent 替代状态机", "流程已知仍让模型自由规划", "没有失败恢复路径"],
-    practicePrompt: "把一个工单处理流程拆成确定性节点和模型节点。",
-    fieldExample: "报销审批应由 workflow 控制流程，模型只做票据理解和风险提示。"
+    whyItMatters: "不是所有自动化都需要 Agent；确定性流程更便宜、更稳、更可审计。",
+    coreIdeas: ["Workflow 定义节点和边。","模型节点只处理不确定部分。","分支条件由系统可解释地控制。"],
+    engineerLens: "先画状态机，再决定哪些节点引入模型。",
+    pitfalls: ["让模型决定所有流程跳转","把状态藏在 prompt","没有重试和补偿"],
+    practicePrompt: "把报销审核画成 workflow，并标注哪些节点可以用模型。",
+    fieldExample: "在 Workflow 用确定性流程包住模型节点 相关工作中，先把边界和验收写出来，再让模型或平台参与生成。",
+    source: { label: "OpenAI Agents SDK", url: "https://platform.openai.com/docs/guides/agents-sdk/" }
   },
   {
     id: "d3-m3",
     eyebrow: "Concept 03",
-    title: "状态与记忆要分层",
-    summary: "Run state 记录当前执行，短期上下文服务本轮推理，长期 memory 保存可复用事实和偏好。",
+    title: "状态、上下文和长期记忆要分层",
+    summary: "Agent run state、短期上下文、长期偏好和知识库不是一回事。",
     visual: "workbench",
     concept: "memory",
-    whyItMatters: "把临时状态写进长期记忆会污染用户画像；丢失 run state 会让长任务无法恢复。",
-    coreIdeas: ["状态用于恢复和审计。", "记忆用于跨任务复用。", "人工确认点需要持久化上下文。"],
-    engineerLens: "为 Agent 设计 state schema、memory schema 和 trace schema，不要混成一张表。",
-    pitfalls: ["把每轮对话全当记忆", "任务重试丢状态", "人工审批看不到上下文"],
-    practicePrompt: "为长任务 Agent 设计 run state、memory 和 trace 三张表的核心字段。",
-    fieldExample: "LangGraph interrupt 需要 checkpointer 保存状态，恢复时用 Command 继续执行。"
+    whyItMatters: "混在一起会造成不可恢复、不可解释和隐私风险。",
+    coreIdeas: ["run state 保存步骤和 checkpoint。","短期上下文服务当前任务。","长期记忆要有来源、权限和更新策略。"],
+    engineerLens: "为 Agent 设计 state schema，而不是把所有内容塞进 messages。",
+    pitfalls: ["没有 runId","长期偏好无法删除","工具结果不入日志"],
+    practicePrompt: "设计一个 AgentRun 表：runId、status、steps、toolEvents、checkpoint。",
+    fieldExample: "在 状态、上下文和长期记忆要分层 相关工作中，先把边界和验收写出来，再让模型或平台参与生成。",
+    source: { label: "OpenAI Agents SDK", url: "https://platform.openai.com/docs/guides/agents-sdk/" }
   },
   {
     id: "d3-m4",
     eyebrow: "Concept 04",
-    title: "Guardrails 是分层防护，不是一句安全提示",
-    summary: "输入、输出、工具、权限、人工确认和审计都需要防护；不同风险用不同层控制。",
+    title: "Guardrails 是输入、工具和输出的分层防护",
+    summary: "Guardrails 不只过滤脏话，还包括权限、副作用、合规和人工确认。",
     visual: "tools",
     concept: "guardrails",
-    whyItMatters: "工具调用可能触发财务、删除、通知和外部 API，不能只靠模型自觉。",
-    coreIdeas: ["工具参数要 schema 校验。", "权限和风险在应用层判断。", "高风险动作要 human-in-the-loop。"],
-    engineerLens: "把 guardrail 放在工具执行前后：调用前鉴权，执行后校验结果和记录 trace。",
-    pitfalls: ["只写系统提示不做鉴权", "工具权限过大", "审批界面不展示 payload 和风险"],
-    practicePrompt: "为三个工具标注权限、风险等级、确认条件和日志字段。",
-    fieldExample: "发邮件工具应展示收件人、主题、正文和风险提示，用户确认后才发送。"
+    whyItMatters: "Agent 能调用工具后，安全问题就从文本质量变成系统风险。",
+    coreIdeas: ["输入 guardrail 拦截非法目标。","工具 guardrail 控制权限和副作用。","输出 guardrail 校验格式、敏感信息和风险。"],
+    engineerLens: "高风险工具执行前必须系统检查，不要只靠模型自觉。",
+    pitfalls: ["只在 prompt 写“不要做坏事”","工具没有权限模型","输出不校验就展示"],
+    practicePrompt: "列出一个文件操作 Agent 的危险动作和确认规则。",
+    fieldExample: "在 Guardrails 是输入、工具和输出的分层防护 相关工作中，先把边界和验收写出来，再让模型或平台参与生成。",
+    source: { label: "OpenAI Agents SDK", url: "https://platform.openai.com/docs/guides/agents-sdk/" }
   }
 ];
 
 const day03Architecture: DecisionLayer[] = [
   {
-    id: "loop",
-    name: "Agent Loop",
-    question: "一次执行如何推进？",
+    id: "layer-1",
+    name: "自主边界",
+    question: "哪里让模型决定？",
     choices: [
-      { name: "Model Step", description: "模型选择下一步：回答、工具、澄清、handoff。", example: "需求不清时先问问题。" },
-      { name: "System Step", description: "系统验证、授权、执行和记录。", example: "工具参数通过 schema 和权限检查。" }
+      { name: "Agent step", description: "步骤不完全确定，可让模型选择工具。", example: "研究资料并决定下一步查什么。" },
+      { name: "Workflow node", description: "流程明确，由系统控制跳转。", example: "审批状态流转。" }
     ]
   },
   {
-    id: "state",
-    name: "状态与恢复",
-    question: "长任务如何不中断？",
+    id: "layer-2",
+    name: "工具执行",
+    question: "工具如何安全调用？",
     choices: [
-      { name: "Run State", description: "保存当前步骤、工具结果、等待确认状态。", example: "审批前保存 proposedAction。" },
-      { name: "Durable Resume", description: "中断后可恢复执行。", example: "LangGraph interrupt + Command resume。" }
+      { name: "Schema", description: "参数少、含义明确、可验证。", example: "create_task(title, owner, dueDate)。" },
+      { name: "Policy", description: "执行前检查权限、副作用和确认。", example: "删除文件前要求确认。" }
     ]
   },
   {
-    id: "safety",
-    name: "安全边界",
-    question: "哪些动作需要防护？",
+    id: "layer-3",
+    name: "恢复机制",
+    question: "失败后如何继续？",
     choices: [
-      { name: "Guardrails", description: "输入、输出和工具调用分层校验。", example: "敏感信息输出前检查。" },
-      { name: "Human Review", description: "高风险动作展示 payload 和风险后确认。", example: "发邮件、删数据、花钱前确认。" }
+      { name: "Checkpoint", description: "每步状态可持久化。", example: "工具失败后从上一步恢复。" },
+      { name: "Trace", description: "记录模型、工具、guardrail 和 handoff。", example: "按 runId 排查失败。" }
     ]
   }
 ];
 
 export const day03Lesson: LessonPage = {
-    id: "day03",
-    path: "/day03",
-    title: "Day 03 Agent 架构",
-    phase: "Day03",
-    status: "available",
-    summary: "区分 Agent 和 Workflow，理解工具、状态、记忆、guardrails、trace 和人工确认。",
-    hero: "把 Agent 做成可控执行系统",
-    conceptIntro: "Agent 不是“更聪明的聊天框”，而是一条带状态、工具、权限、trace 和恢复路径的执行链。",
-    decisionTitle: "Agent Loop 与 Workflow 控制",
-    decisionIntro: "先用 Workflow 控制确定性流程，再把不确定的语义判断和工具选择交给 Agent 节点。",
-    decisionExample: "PR review agent 可以读 diff、调用静态分析、生成建议，但发评论和 merge 必须由用户确认。",
-    modules: day03Modules,
-    decisionLayers: day03Architecture,
-    questions: [
+  id: "day03",
+  path: "/day03",
+  title: "Day 03 Agent 编排",
+  phase: "Day03",
+  status: "available",
+  summary: "区分 Agent 与 Workflow，设计工具调用、状态、guardrails、human-in-the-loop 和恢复机制。",
+  hero: "让模型会做事，但不乱做事",
+  conceptIntro: "理解 Agent 为什么不是“聊天框加工具”，并能设计一个可审计、可恢复、可暂停确认的执行链路。",
+  decisionTitle: "Agent loop 与 workflow control 架构判断",
+  decisionIntro: "User goal -> Planner/LLM -> tool selection -> policy check -> tool execution -> observation -> state update -> next step/finish。 Human confirmation 和 guardrails 插在高风险工具、输出返回和 handoff 前。",
+  decisionExample: "PRD 评审 Agent 读取文档、检索历史 issue、生成风险清单；创建任务前暂停给人确认，确认后才调用项目管理 API。",
+  modules: day03Modules,
+  decisionLayers: day03Architecture,
+  questions: [
       {
         id: "d3-q1",
         type: "single",
         concept: "agent",
-        prompt: "Agent 最准确的定义是什么？",
-        options: [option("a", "围绕目标选择步骤和工具的执行实体", true), option("b", "一个聊天输入框"), option("c", "一个向量库"), option("d", "一个 CSS 动画")],
-        explanation: "Agent 是执行实体，可能调用工具、澄清、handoff 或停止。"
+        prompt: "Agent 相比普通 Chat 的关键差异是什么？",
+        scenario: "把这个问题放到真实产品或团队工程流程里判断。",
+        options: [option("a", "只会输出更长文本", false), option("b", "能基于目标、工具反馈和状态选择下一步", true), option("c", "完全不需要系统控制", false)],
+        explanation: "Agent 围绕目标选择步骤和工具，并维护执行状态。"
       },
       {
         id: "d3-q2",
         type: "single",
         concept: "workflow",
-        prompt: "什么场景更适合 Workflow？",
-        options: [option("a", "流程明确、风险高、需要审计", true), option("b", "完全开放的创意发散"), option("c", "只改按钮颜色"), option("d", "没有任何状态")],
-        explanation: "Workflow 适合确定性流程和关键控制点。"
+        prompt: "什么时候优先 workflow 而不是 Agent？",
+        scenario: "把这个问题放到真实产品或团队工程流程里判断。",
+        options: [option("a", "流程明确且风险高", true), option("b", "任务完全开放且无法预定义步骤", false), option("c", "只想换按钮颜色", false)],
+        explanation: "流程明确、风险高、审计强时。"
       },
       {
         id: "d3-q3",
         type: "single",
         concept: "memory",
-        prompt: "run state 和长期 memory 的关系是什么？",
-        options: [option("a", "run state 管当前执行，memory 管跨任务复用事实", true), option("b", "完全一样"), option("c", "memory 不需要权限"), option("d", "state 只能在前端")],
-        explanation: "二者生命周期和风险不同，必须分层。"
+        prompt: "为什么 Agent run state 要持久化？",
+        scenario: "把这个问题放到真实产品或团队工程流程里判断。",
+        options: [option("a", "为了让 UI 更圆润", false), option("b", "为了恢复、审计和复盘", true), option("c", "为了减少所有数据库", false)],
+        explanation: "为了恢复、审计、复盘和 human-in-the-loop resume。"
       },
       {
         id: "d3-q4",
         type: "single",
         concept: "guardrails",
-        prompt: "工具调用前应用层必须做什么？",
-        options: [option("a", "鉴权、schema 校验和风险判断", true), option("b", "直接执行模型参数"), option("c", "隐藏日志"), option("d", "提高 temperature")],
-        explanation: "模型只提出调用意图，真实执行要由系统验证和授权。"
+        prompt: "工具调用前最关键的系统职责是什么？",
+        scenario: "把这个问题放到真实产品或团队工程流程里判断。",
+        options: [option("a", "相信模型不会乱调", false), option("b", "鉴权、校验、副作用控制和确认", true), option("c", "把工具名写得更长", false)],
+        explanation: "鉴权、参数校验、副作用评估和必要的人工确认。"
       }
-    ]
-  };
+  ]
+};

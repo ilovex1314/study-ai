@@ -137,10 +137,23 @@ describe("App navigation", () => {
     expect(screen.getByRole("heading", { name: /Day 01/ })).toBeInTheDocument();
   });
 
-  it("keeps Day01-Day04 continuous and renders architectural learning aids", () => {
+  it("keeps Day01-Day12 continuous and renders architectural learning aids", () => {
     renderApp("/day01/decision");
 
-    expect(seriesLessons.map((lesson) => lesson.phase)).toEqual(["Day01", "Day02", "Day03", "Day04"]);
+    expect(seriesLessons.map((lesson) => lesson.phase)).toEqual([
+      "Day01",
+      "Day02",
+      "Day03",
+      "Day04",
+      "Day05",
+      "Day06",
+      "Day07",
+      "Day08",
+      "Day09",
+      "Day10",
+      "Day11",
+      "Day12"
+    ]);
     expect(screen.getByLabelText(/AI/)).toBeInTheDocument();
     expect(screen.getAllByText(/例子|案例|Production/i).length).toBeGreaterThan(0);
   });
