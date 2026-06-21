@@ -97,7 +97,7 @@ const day06Architecture: DecisionLayer[] = [
 export const day06Lesson: LessonPage = {
   id: "day06",
   path: "/day06",
-  title: "Day 06 TypeScript AI 应用栈",
+  title: "TypeScript AI 应用栈",
   phase: "Day06",
   status: "available",
   summary: "设计流式 UI 与服务端模型调用边界。",

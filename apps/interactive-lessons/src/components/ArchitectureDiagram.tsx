@@ -13,7 +13,36 @@ export function ArchitectureDiagram({ lesson }: { lesson: LessonPage }) {
     return <ProductArchitecture />;
   }
 
+  if (lesson.id === "day13") {
+    return <UiUxProMaxArchitecture />;
+  }
+
   return <BoundaryArchitecture />;
+}
+
+function UiUxProMaxArchitecture() {
+  return (
+    <div className="architecture-diagram" aria-label="UI/UX Pro Max 设计系统架构图">
+      <div className="diagram-heading">
+        <span>UI/UX Pro Max 设计系统生成与验收闭环</span>
+        <small>结构化设计数据经多域检索与规则排序，产出可落地、可验证的设计系统。</small>
+      </div>
+      <svg className="architecture-svg uiux-architecture" viewBox="0 0 980 440" role="img" aria-label="UI/UX Pro Max 设计系统生成与验收闭环">
+        <ArrowMarker />
+        <title>UI/UX Pro Max 设计系统生成与验收闭环</title>
+        <g className="arch-card accent" transform="translate(54 96)"><rect width="180" height="86" rx="12" /><text x="18" y="32">需求描述</text><text className="card-sub" x="18" y="56">产品 / 用户 / 场景</text><text className="card-sub" x="18" y="74">风格 / 约束 / stack</text></g>
+        <g className="arch-card" transform="translate(292 96)"><rect width="180" height="86" rx="12" /><text x="18" y="32">五域设计数据</text><text className="card-sub" x="18" y="56">product / style / color</text><text className="card-sub" x="18" y="74">landing / typography</text></g>
+        <g className="arch-card system" transform="translate(530 96)"><rect width="180" height="86" rx="12" /><text x="18" y="32">检索与规则层</text><text className="card-sub" x="18" y="56">BM25 候选排序</text><text className="card-sub" x="18" y="74">industry anti-patterns</text></g>
+        <g className="arch-card accent" transform="translate(768 96)"><rect width="160" height="86" rx="12" /><text x="18" y="32">设计系统</text><text className="card-sub" x="18" y="56">pattern / tokens</text><text className="card-sub" x="18" y="74">type / effects</text></g>
+        <g className="arch-card" transform="translate(232 276)"><rect width="210" height="78" rx="12" /><text x="18" y="32">组件与页面落地</text><text className="card-sub" x="18" y="56">CSS tokens / states / layout</text></g>
+        <g className="arch-card system" transform="translate(582 276)"><rect width="210" height="78" rx="12" /><text x="18" y="32">UX 验收</text><text className="card-sub" x="18" y="56">focus / responsive / motion</text></g>
+        <path className="arch-flow" d="M234 139 H292" /><path className="arch-flow" d="M472 139 H530" /><path className="arch-flow" d="M710 139 H768" />
+        <path className="arch-flow strong" d="M848 182 C848 244 530 246 442 304" /><path className="arch-flow" d="M442 315 H582" />
+        <path className="arch-flow feedback" d="M687 354 C664 412 272 412 212 182" />
+        <text className="edge-label" x="326" y="404">验收发现回写为约束，再生成下一版系统</text>
+      </svg>
+    </div>
+  );
 }
 
 function ArrowMarker() {

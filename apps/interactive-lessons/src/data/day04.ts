@@ -97,7 +97,7 @@ const day04Architecture: DecisionLayer[] = [
 export const day04Lesson: LessonPage = {
   id: "day04",
   path: "/day04",
-  title: "Day 04 产品化交付",
+  title: "产品化交付",
   phase: "Day04",
   status: "available",
   summary: "建立 AI 产品交付闭环：模型网关、流式 UX、eval、可观测、成本和部署。",

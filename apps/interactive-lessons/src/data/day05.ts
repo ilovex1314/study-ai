@@ -97,7 +97,7 @@ const day05Architecture: DecisionLayer[] = [
 export const day05Lesson: LessonPage = {
   id: "day05",
   path: "/day05",
-  title: "Day 05 平台选型",
+  title: "平台选型",
   phase: "Day05",
   status: "available",
   summary: "建立代码框架、可视化平台和云厂商的选型判断。",

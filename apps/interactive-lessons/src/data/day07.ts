@@ -97,7 +97,7 @@ const day07Architecture: DecisionLayer[] = [
 export const day07Lesson: LessonPage = {
   id: "day07",
   path: "/day07",
-  title: "Day 07 复杂编排与可恢复执行",
+  title: "复杂编排与可恢复执行",
   phase: "Day07",
   status: "available",
   summary: "设计可恢复的多步骤 Agent/Workflow。",

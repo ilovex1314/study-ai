@@ -46,7 +46,11 @@ export type ConceptId =
   | "capstone-scope"
   | "delivery-plan"
   | "deployment-plan"
-  | "postmortem";
+  | "postmortem"
+  | "design-data"
+  | "multi-domain-search"
+  | "design-system"
+  | "ui-validation";
 
 export type LessonStatus = "available" | "planned";
 
@@ -146,7 +150,11 @@ export const conceptLabels: Record<ConceptId, string> = {
   "capstone-scope": "毕业项目范围",
   "delivery-plan": "交付计划",
   "deployment-plan": "部署方案",
-  "postmortem": "项目复盘"
+  "postmortem": "项目复盘",
+  "design-data": "设计数据",
+  "multi-domain-search": "多域检索",
+  "design-system": "设计系统",
+  "ui-validation": "UI 验收"
 };
 
 export const reviewAdvice: Record<ConceptId, string> = {
@@ -197,5 +205,9 @@ export const reviewAdvice: Record<ConceptId, string> = {
   "capstone-scope": "复习“毕业项目范围”：回到对应概念卡，重新写一遍它解决的问题、系统边界、常见误区和一个生产验收方法。",
   "delivery-plan": "复习“交付计划”：回到对应概念卡，重新写一遍它解决的问题、系统边界、常见误区和一个生产验收方法。",
   "deployment-plan": "复习“部署方案”：回到对应概念卡，重新写一遍它解决的问题、系统边界、常见误区和一个生产验收方法。",
-  "postmortem": "复习“项目复盘”：回到对应概念卡，重新写一遍它解决的问题、系统边界、常见误区和一个生产验收方法。"
+  "postmortem": "复习“项目复盘”：回到对应概念卡，重新写一遍它解决的问题、系统边界、常见误区和一个生产验收方法。",
+  "design-data": "复习设计数据：重新画出输入数据域及其约束。",
+  "multi-domain-search": "复习多域检索：写出一个包含产品、行业和体验约束的查询。",
+  "design-system": "复习设计系统：将结果映射为语义 token 和组件状态。",
+  "ui-validation": "复习 UI 验收：逐项检查焦点、断点和减弱动效。"
 };

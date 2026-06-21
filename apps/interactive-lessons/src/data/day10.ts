@@ -97,7 +97,7 @@ const day10Architecture: DecisionLayer[] = [
 export const day10Lesson: LessonPage = {
   id: "day10",
   path: "/day10",
-  title: "Day 10 AI 质量工程",
+  title: "AI 质量工程",
   phase: "Day10",
   status: "available",
   summary: "设计 eval dataset 与回归流程。",

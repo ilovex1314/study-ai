@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { conceptLabels, seriesLessons, type Attempt, type ConceptModule, type DecisionLayer, type LessonPage, type LessonQuestion } from "../data/lessons";
 import { buildReview, formatConcepts } from "../lib/review";
 import { ArchitectureDiagram } from "./ArchitectureDiagram";
@@ -17,14 +18,22 @@ export function Hero({ lesson }: { lesson: LessonPage }) {
 }
 
 export function SeriesPanel({ currentLesson, onRoute }: { currentLesson: LessonPage; onRoute: (path: string) => void }) {
+  const [open, setOpen] = useState(false);
   return (
-    <section id="series" className="series-panel section-anchor">
-      <div className="section-heading">
-        <p>Learning Series</p>
-        <h2>统一入口：每个阶段是独立学习页面</h2>
+    <section id="series" className={open ? "series-panel section-anchor open" : "series-panel section-anchor"}>
+      <div className="section-heading directory-heading">
+        <div>
+          <p>Course Directory</p>
+          <h2>课程目录</h2>
+        </div>
+        <button type="button" className="directory-toggle" onClick={() => setOpen((value) => !value)} aria-expanded={open}>
+          {open ? "收起目录" : "展开目录"}
+        </button>
       </div>
-      <div className="series-grid">
-        {seriesLessons.map((lesson) => (
+      <div className={open ? "series-grid" : "series-grid collapsed"}>
+        {seriesLessons.map((lesson, index) => {
+          const dayLabel = `Day${String(index + 1).padStart(2, "0")}`;
+          return (
           <button
             key={lesson.id}
             type="button"
@@ -32,33 +41,55 @@ export function SeriesPanel({ currentLesson, onRoute }: { currentLesson: LessonP
             onClick={() => onRoute(lesson.path)}
             aria-current={lesson.id === currentLesson.id ? "page" : undefined}
           >
-            <span>{lesson.phase}</span>
+            <span>{dayLabel}</span>
             <strong>{lesson.title}</strong>
             <p>{lesson.summary}</p>
             <small>{lesson.id === currentLesson.id ? "当前页面" : "进入页面"}</small>
           </button>
-        ))}
+          );
+        })}
       </div>
     </section>
   );
 }
 
 export function SeriesDock({ currentLesson, onRoute }: { currentLesson: LessonPage; onRoute: (path: string) => void }) {
+  const [open, setOpen] = useState(() => window.innerWidth >= 1025);
   return (
-    <nav className="series-dock" aria-label="阶段切换">
-      {seriesLessons.map((lesson) => (
+    <nav className={open ? "series-dock open" : "series-dock"} aria-label="课程目录">
+      <div className="series-dock-head">
+        <div className="series-dock-title">
+          <span>课程目录</span>
+          <small>Study AI</small>
+        </div>
+        <button type="button" className="series-dock-toggle" onClick={() => setOpen((value) => !value)} aria-expanded={open} aria-label={open ? "收起课程目录" : "展开课程目录"}>
+          <svg className="series-dock-menu-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+            <path d="M4 7h16M4 12h16M4 17h16" />
+          </svg>
+          <svg className="series-dock-chevron" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+            <path d={open ? "m15 18-6-6 6-6" : "m9 18 6-6-6-6"} />
+          </svg>
+        </button>
+      </div>
+      <div className="series-dock-list">
+        {seriesLessons.map((lesson, index) => {
+        const dayLabel = `Day${String(index + 1).padStart(2, "0")}`;
+        return (
         <button
           key={lesson.id}
           type="button"
           className={lesson.id === currentLesson.id ? "active" : ""}
           onClick={() => onRoute(lesson.path)}
           aria-current={lesson.id === currentLesson.id ? "page" : undefined}
-          aria-label={`切换到 ${lesson.phase}`}
+          aria-label={`切换到 ${dayLabel}`}
+          data-depth="0"
         >
-          <span>{lesson.phase}</span>
-          <small>{lesson.title.replace(/^Day \\d\\d\\s*/, "")}</small>
+          <span>{dayLabel}</span>
+          <small>{lesson.title}</small>
         </button>
-      ))}
+        );
+        })}
+      </div>
     </nav>
   );
 }

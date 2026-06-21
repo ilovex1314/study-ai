@@ -97,7 +97,7 @@ const day01Architecture: DecisionLayer[] = [
 export const day01Lesson: LessonPage = {
   id: "day01",
   path: "/day01",
-  title: "Day 01 模型认知",
+  title: "模型认知",
   phase: "Day01",
   status: "available",
   summary: "理解 LLM 的概率本质、上下文、token、temperature 和工程边界。",
