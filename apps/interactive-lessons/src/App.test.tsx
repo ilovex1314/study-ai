@@ -64,6 +64,29 @@ describe("App navigation", () => {
     expect(toggle).toHaveAttribute("aria-expanded", "true");
   });
 
+  it("toggles the desktop course navigation with a stable SVG control", () => {
+    Object.defineProperty(window, "innerWidth", { configurable: true, value: 1280 });
+    renderApp("/day01/series");
+
+    const toggle = screen.getByRole("button", { name: "收起课程目录" });
+    expect(toggle).toHaveAttribute("aria-expanded", "true");
+    expect(toggle.querySelector("svg")).toBeInTheDocument();
+
+    fireEvent.click(toggle);
+
+    expect(screen.getByRole("button", { name: "展开课程目录" })).toHaveAttribute("aria-expanded", "false");
+    expect(screen.getByRole("button", { name: "展开课程目录" }).querySelector(".series-dock-menu-icon")).toBeInTheDocument();
+  });
+
+  it("uses document order for the menu day label and keeps the title free of a duplicated day prefix", () => {
+    renderApp("/day01/series");
+
+    const dayOne = screen.getByRole("button", { name: "切换到 Day01" });
+    expect(dayOne).toHaveTextContent("Day01");
+    expect(dayOne).toHaveTextContent("模型认知");
+    expect(seriesLessons[0].title).toBe("模型认知");
+  });
+
   it("keeps active module navigation synced with the scrolled viewport", async () => {
     renderApp();
 
@@ -125,16 +148,16 @@ describe("App navigation", () => {
   it("routes series cards to independent lesson pages", async () => {
     renderApp();
 
-    fireEvent.click(screen.getByRole("button", { name: /Day 02 Prompt/ }));
+    fireEvent.click(screen.getByRole("button", { name: /Day02 Prompt/ }));
 
-    await waitFor(() => expect(screen.getByRole("heading", { name: /Day 02 Prompt/ })).toBeInTheDocument());
+    await waitFor(() => expect(screen.getByRole("heading", { name: /Prompt \/ RAG/ })).toBeInTheDocument());
     expect(screen.getAllByText(/RAG/).length).toBeGreaterThan(0);
   });
 
   it("normalizes invalid routes back to the first lesson", () => {
     renderApp("/planned");
 
-    expect(screen.getByRole("heading", { name: /Day 01/ })).toBeInTheDocument();
+    expect(screen.getByRole("heading", { level: 1, name: /模型认知/ })).toBeInTheDocument();
   });
 
   it("keeps Day01-Day12 continuous and renders architectural learning aids", () => {
@@ -153,6 +176,7 @@ describe("App navigation", () => {
       "Day10",
       "Day11",
       "Day12"
+      ,"Day13"
     ]);
     expect(screen.getByLabelText(/AI/)).toBeInTheDocument();
     expect(screen.getAllByText(/例子|案例|Production/i).length).toBeGreaterThan(0);
@@ -173,12 +197,18 @@ describe("App navigation", () => {
     const day03 = renderApp("/day03/decision");
     expect(screen.getByRole("img", { name: "Agent loop 与工具执行控制" })).toBeInTheDocument();
     expect(screen.getByText("Planner / LLM")).toBeInTheDocument();
-    day03.unmount();
+    day01.unmount();
 
     renderApp("/day04/decision");
     expect(screen.getByRole("img", { name: "AI 产品化交付分层架构" })).toBeInTheDocument();
     expect(screen.getAllByText("模型网关").length).toBeGreaterThan(0);
     expect(screen.getByText("质量与运维闭环")).toBeInTheDocument();
+    day03.unmount();
+
+    renderApp("/day13/decision");
+    expect(screen.getByRole("img", { name: "UI/UX Pro Max 设计系统生成与验收闭环" })).toBeInTheDocument();
+    expect(screen.getByText("五域设计数据")).toBeInTheDocument();
+    expect(screen.queryByRole("img", { name: "模型能力与系统控制边界" })).not.toBeInTheDocument();
   });
 
   it("keeps every quiz concept covered by its lesson modules", () => {

@@ -97,7 +97,7 @@ const day02Architecture: DecisionLayer[] = [
 export const day02Lesson: LessonPage = {
   id: "day02",
   path: "/day02",
-  title: "Day 02 Prompt / RAG / Grounding",
+  title: "Prompt / RAG / Grounding",
   phase: "Day02",
   status: "available",
   summary: "把“问模型”升级成 prompt 合约、检索、引用、评估和反馈闭环。",

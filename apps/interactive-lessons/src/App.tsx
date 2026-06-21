@@ -77,11 +77,14 @@ function getSectionFromRoute(sectionId?: string) {
 
 export default function App() {
   return (
-    <Routes>
+    <>
+      <a className="skip-link" href="#main-content">跳到课程内容</a>
+      <Routes>
       <Route path="/" element={<Navigate to="/day01/series" replace />} />
       <Route path="/:dayId/:sectionId?" element={<LessonRoute />} />
       <Route path="*" element={<Navigate to="/day01/series" replace />} />
-    </Routes>
+      </Routes>
+    </>
   );
 }
 
@@ -232,7 +235,7 @@ function LessonPageView({ lesson, routeSection }: { lesson: LessonPage; routeSec
   }
 
   return (
-    <main className="app-shell">
+    <main id="main-content" className="app-shell" tabIndex={-1}>
       <Hero lesson={lesson} />
       <nav className={moduleNavOpen ? "route-strip open" : "route-strip"} aria-label="当前页面模块导航">
         <button
@@ -257,14 +260,13 @@ function LessonPageView({ lesson, routeSection }: { lesson: LessonPage; routeSec
         ))}
       </nav>
 
-      <SeriesPanel currentLesson={lesson} onRoute={(path) => navigate(`${path}/series`)} />
-      <SeriesDock currentLesson={lesson} onRoute={(path) => navigate(`${path}/series`)} />
-
-      <ConceptsPanel lesson={lesson} onPractice={() => scrollToSection("practice")} />
-
-      <DecisionPanel lesson={lesson} />
-
-      <section id="practice" className="learning-workbench section-anchor">
+      <div className="lesson-layout">
+        <SeriesDock currentLesson={lesson} onRoute={(path) => navigate(`${path}/series`)} />
+        <div className="lesson-content">
+          <SeriesPanel currentLesson={lesson} onRoute={(path) => navigate(`${path}/series`)} />
+          <ConceptsPanel lesson={lesson} onPractice={() => scrollToSection("practice")} />
+          <DecisionPanel lesson={lesson} />
+          <section id="practice" className="learning-workbench section-anchor">
         <QuizPanel
           lesson={lesson}
           activeQuestion={activeQuestion}
@@ -285,7 +287,9 @@ function LessonPageView({ lesson, routeSection }: { lesson: LessonPage; routeSec
           onClearHistory={clearHistory}
           onExport={exportHistory}
         />
-      </section>
+          </section>
+        </div>
+      </div>
     </main>
   );
 }

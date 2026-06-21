@@ -97,7 +97,7 @@ const day12Architecture: DecisionLayer[] = [
 export const day12Lesson: LessonPage = {
   id: "day12",
   path: "/day12",
-  title: "Day 12 毕业项目设计",
+  title: "毕业项目设计",
   phase: "Day12",
   status: "available",
   summary: "完成 capstone 架构和验收计划。",

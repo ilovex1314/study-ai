@@ -97,7 +97,7 @@ const day11Architecture: DecisionLayer[] = [
 export const day11Lesson: LessonPage = {
   id: "day11",
   path: "/day11",
-  title: "Day 11 Vibe Coding 工程化",
+  title: "Vibe Coding 工程化",
   phase: "Day11",
   status: "available",
   summary: "建立提示资产、验收命令和复盘机制。",

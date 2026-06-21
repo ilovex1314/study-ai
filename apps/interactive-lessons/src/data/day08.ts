@@ -97,7 +97,7 @@ const day08Architecture: DecisionLayer[] = [
 export const day08Lesson: LessonPage = {
   id: "day08",
   path: "/day08",
-  title: "Day 08 可视化平台与低代码工作流",
+  title: "可视化平台与低代码工作流",
   phase: "Day08",
   status: "available",
   summary: "设计平台到自研服务的串联方式。",

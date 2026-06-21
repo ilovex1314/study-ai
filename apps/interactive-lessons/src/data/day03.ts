@@ -97,7 +97,7 @@ const day03Architecture: DecisionLayer[] = [
 export const day03Lesson: LessonPage = {
   id: "day03",
   path: "/day03",
-  title: "Day 03 Agent 编排",
+  title: "Agent 编排",
   phase: "Day03",
   status: "available",
   summary: "区分 Agent 与 Workflow，设计工具调用、状态、guardrails、human-in-the-loop 和恢复机制。",

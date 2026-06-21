@@ -97,7 +97,7 @@ const day09Architecture: DecisionLayer[] = [
 export const day09Lesson: LessonPage = {
   id: "day09",
   path: "/day09",
-  title: "Day 09 RAG 深水区",
+  title: "RAG 深水区",
   phase: "Day09",
   status: "available",
   summary: "设计带权限和评估的 RAG 服务。",
