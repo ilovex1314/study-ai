@@ -53,6 +53,11 @@ describe("App navigation", () => {
     expect(screen.queryByText("跳转")).not.toBeInTheDocument();
   });
 
+  it("renders the module navigation as a fixed section rail", () => {
+    renderApp("/day01/concepts");
+    expect(screen.getByLabelText("当前页面模块导航")).toHaveClass("section-rail");
+  });
+
   it("initializes active module navigation from direct section routes", async () => {
     renderApp("/day01/decision");
 

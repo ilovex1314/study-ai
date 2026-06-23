@@ -237,7 +237,7 @@ function LessonPageView({ lesson, routeSection }: { lesson: LessonPage; routeSec
   return (
     <main id="main-content" className="app-shell" tabIndex={-1}>
       <Hero lesson={lesson} />
-      <nav className={moduleNavOpen ? "route-strip open" : "route-strip"} aria-label="当前页面模块导航">
+      <nav className={moduleNavOpen ? "section-rail open" : "section-rail"} aria-label="当前页面模块导航">
         <button
           className="route-toggle"
           type="button"
