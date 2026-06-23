@@ -1,0 +1,45 @@
+name: Deploy study-ai to Cloudflare Pages
+
+on:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: read
+  deployments: write
+
+concurrency:
+  group: deploy-pages-main
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    name: Test, build, and deploy
+    runs-on: ubuntu-latest
+    environment: CLOUDFLARE_API_TOKEN
+    steps:
+      - name: Check out source
+        uses: actions/checkout@v6
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Install lesson dependencies
+        run: npm install --prefix apps/interactive-lessons
+
+      - name: Test lessons
+        run: npm run lesson:test
+
+      - name: Build static site
+        run: npm run lesson:dist
+
+      - name: Deploy to Cloudflare Pages
+        uses: cloudflare/wrangler-action@v3
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          command: pages deploy apps/interactive-lessons/dist --project-name=study-ai-abd --branch=main
+          gitHubToken: ${{ secrets.GITHUB_TOKEN }}
