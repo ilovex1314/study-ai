@@ -993,6 +993,10 @@ button:disabled {
   font-weight: 800;
 }
 
+.question-nav { display: flex; flex-wrap: wrap; gap: 8px; margin: 16px 0; }
+.question-nav button { width: 34px; height: 34px; border: 1px solid var(--line); border-radius: 8px; background: var(--surface); color: var(--text-primary); font-weight: 800; }
+.question-nav button.active { border-color: var(--accent-primary); background: var(--accent-primary); color: #fff; }
+
 .scenario {
   margin: 18px 0;
   padding: 16px;
@@ -1188,29 +1192,12 @@ button:disabled {
     padding: 20px;
   }
 
-  .route-strip {
-    grid-template-columns: 1fr;
-    gap: 8px;
-    padding: 8px;
-    border-radius: 8px;
-  }
+  .section-rail { position: sticky; top: 0; display: flex; gap: 18px; overflow-x: auto; margin: 12px 0; padding: 10px 0; background: rgba(243, 240, 232, .96); white-space: nowrap; }
 
-  .route-toggle {
-    display: block;
-    min-height: 42px;
-    color: #10131a;
-    background: #92e6a7;
-    font-weight: 900;
-  }
+  .section-rail .route-toggle { display: none; }
 
-  .route-step {
-    display: none;
-    min-height: 44px;
-  }
-
-  .route-strip.open .route-step {
-    display: grid;
-  }
+  .section-rail .route-step { display: block; min-height: 0; padding: 0 0 8px; border: 0; background: transparent; color: var(--text-muted); }
+  .section-rail .route-step.active { border-bottom: 3px solid var(--accent-primary); color: var(--accent-primary); }
 
   .series-grid,
   .section-grid,
@@ -1223,9 +1210,7 @@ button:disabled {
     min-height: 250px;
   }
 
-  .hero h1 {
-    font-size: 38px;
-  }
+  .hero h1 { font-size: 38px; line-height: 1.34; }
 
   .section-title-row {
     display: grid;
