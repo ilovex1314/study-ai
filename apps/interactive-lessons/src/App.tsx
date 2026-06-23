@@ -272,6 +272,7 @@ function LessonPageView({ lesson, routeSection }: { lesson: LessonPage; routeSec
           activeQuestion={activeQuestion}
           answers={current.answers}
           onAnswer={answerQuestion}
+          onSelect={setActiveQuestion}
           onNext={() => setActiveQuestion((value) => Math.min(value + 1, lesson.questions.length - 1))}
           onPrev={() => setActiveQuestion((value) => Math.max(value - 1, 0))}
         />

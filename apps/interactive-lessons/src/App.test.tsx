@@ -35,6 +35,13 @@ beforeEach(() => {
 });
 
 describe("App navigation", () => {
+  it("uses numbered question selection and shows the current question weight in content", () => {
+    renderApp("/day01/practice");
+
+    expect(screen.getByRole("button", { name: "第 1 题" })).toBeInTheDocument();
+    expect(screen.getByText("本题 30 分")).toBeInTheDocument();
+  });
+
   it("updates active module navigation and routes to the current page section", async () => {
     renderApp("/day01/concepts");
 
@@ -160,7 +167,7 @@ describe("App navigation", () => {
     expect(screen.getByRole("heading", { level: 1, name: /模型认知/ })).toBeInTheDocument();
   });
 
-  it("keeps Day01-Day12 continuous and renders architectural learning aids", () => {
+  it("keeps Day01-Day20 continuous and renders architectural learning aids", () => {
     renderApp("/day01/decision");
 
     expect(seriesLessons.map((lesson) => lesson.phase)).toEqual([
@@ -175,8 +182,15 @@ describe("App navigation", () => {
       "Day09",
       "Day10",
       "Day11",
-      "Day12"
-      ,"Day13"
+      "Day12",
+      "Day13",
+      "Day14",
+      "Day15",
+      "Day16",
+      "Day17",
+      "Day18",
+      "Day19",
+      "Day20"
     ]);
     expect(screen.getByLabelText(/AI/)).toBeInTheDocument();
     expect(screen.getAllByText(/例子|案例|Production/i).length).toBeGreaterThan(0);

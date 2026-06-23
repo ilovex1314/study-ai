@@ -280,6 +280,7 @@ export function QuizPanel({
   activeQuestion,
   answers,
   onAnswer,
+  onSelect,
   onNext,
   onPrev
 }: {
@@ -287,6 +288,7 @@ export function QuizPanel({
   activeQuestion: number;
   answers: Record<string, string>;
   onAnswer: (question: LessonQuestion, optionId: string) => void;
+  onSelect: (index: number) => void;
   onNext: () => void;
   onPrev: () => void;
 }) {
@@ -301,10 +303,13 @@ export function QuizPanel({
         <h2>通过做题完成学习</h2>
       </div>
       <div className="question-meta">
-        <span>
-          {activeQuestion + 1} / {lesson.questions.length}
-        </span>
+        <span>本题 {question.weight ?? 0} 分</span>
         <span>{conceptLabels[question.concept]}</span>
+      </div>
+      <div className="question-nav" aria-label="题目导航">
+        {lesson.questions.map((item, index) => (
+          <button key={item.id} type="button" className={index === activeQuestion ? "active" : ""} onClick={() => onSelect(index)} aria-label={`第 ${index + 1} 题`} aria-current={index === activeQuestion ? "true" : undefined}>{index + 1}</button>
+        ))}
       </div>
       {question.scenario ? <p className="scenario">{question.scenario}</p> : null}
       <h3>{question.prompt}</h3>
