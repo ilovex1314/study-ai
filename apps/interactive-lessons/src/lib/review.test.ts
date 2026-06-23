@@ -13,6 +13,7 @@ const questions: LessonQuestion[] = [
       { id: "b", label: "LLM 永远更稳定", correct: false }
     ],
     explanation: "LLM 更像概率决策器。"
+    ,weight: 30
   },
   {
     id: "q2",
@@ -24,15 +25,16 @@ const questions: LessonQuestion[] = [
       { id: "b", label: "Fine-tuning", correct: false }
     ],
     explanation: "动态私有知识优先检索增强。"
+    ,weight: 70
   }
 ];
 
 describe("scoreAnswers", () => {
-  it("counts correct answers and returns missed question ids", () => {
+  it("awards configured points and returns missed question ids", () => {
     const result = scoreAnswers(questions, { q1: "a", q2: "b" });
 
-    expect(result.score).toBe(1);
-    expect(result.total).toBe(2);
+    expect(result.score).toBe(30);
+    expect(result.total).toBe(100);
     expect(result.missedQuestionIds).toEqual(["q2"]);
   });
 });
@@ -41,7 +43,7 @@ describe("buildReview", () => {
   it("extracts weak concepts and gives targeted recommendations", () => {
     const result = buildReview(questions, { q1: "a", q2: "b" });
 
-    expect(result.score).toBe(1);
+    expect(result.score).toBe(30);
     expect(result.weakConcepts).toEqual(["rag"]);
     expect(result.recommendations[0]).toContain("RAG");
   });

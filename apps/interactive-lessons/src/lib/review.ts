@@ -11,7 +11,7 @@ export function scoreAnswers(questions: LessonQuestion[], answers: Record<string
   const score = questions.reduce((count, question) => {
     const selected = question.options.find((option) => option.id === answers[question.id]);
     if (selected?.correct) {
-      return count + 1;
+      return count + (question.weight ?? 0);
     }
 
     missedQuestionIds.push(question.id);
@@ -20,7 +20,7 @@ export function scoreAnswers(questions: LessonQuestion[], answers: Record<string
 
   return {
     score,
-    total: questions.length,
+    total: questions.reduce((total, question) => total + (question.weight ?? 0), 0),
     missedQuestionIds
   };
 }
