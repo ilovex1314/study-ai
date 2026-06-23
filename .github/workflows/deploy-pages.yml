@@ -27,6 +27,11 @@ jobs:
         with:
           node-version: 22
 
+      - name: Set up pnpm for Wrangler
+        uses: pnpm/action-setup@v4
+        with:
+          version: 10
+
       - name: Install lesson dependencies
         run: npm install --prefix apps/interactive-lessons
 
