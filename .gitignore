@@ -4,5 +4,6 @@ dist/
 !apps/interactive-lessons/dist/**
 *.tsbuildinfo
 *.log
+.superpowers/
 vite.config.js
 vite.config.d.ts
