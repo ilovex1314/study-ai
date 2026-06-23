@@ -94,6 +94,7 @@ export type LessonQuestion = {
   scenario?: string;
   options: Array<{ id: string; label: string; correct: boolean; }>;
   explanation: string;
+  weight?: number;
 };
 
 export type CurrentAttempt = { id: string; startedAt: string; answers: Record<string, string>; };
