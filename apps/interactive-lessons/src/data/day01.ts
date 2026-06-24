@@ -3,6 +3,20 @@ import { option } from "./helpers";
 
 const day01Modules: ConceptModule[] = [
   {
+    id: "d1-m0",
+    eyebrow: "Starting Point",
+    title: "先定义用户结果，再决定要不要用 AI",
+    summary: "“接入 AI”不是任务。任务必须同时说明用户结果、可用证据、错误代价和成功指标。",
+    visual: "schema",
+    concept: "product-delivery",
+    whyItMatters: "没有可测任务，团队会把聊天界面、模型调用次数或主观好评误当成产品结果。",
+    coreIdeas: ["结果描述用户完成什么，而不是模型做什么。", "成功指标要能在真实运行中观测。", "错误代价决定是否必须审批、拒答或转人工。"],
+    engineerLens: "先写任务边界卡：用户结果、证据、系统控制、失败兜底和验收指标。",
+    pitfalls: ["以“做个 AI 助手”代替任务定义", "只量模型回复长度", "高风险任务没有人工接管路径"],
+    practicePrompt: "为一个熟悉场景写出用户结果、成功指标、错误代价和不能交给模型的动作。",
+    fieldExample: "退款助手的结果是“用户理解资格并获得正确下一步”，不是“模型生成一段退款文字”。"
+  },
+  {
     id: "d1-m1",
     eyebrow: "Concept 01",
     title: "LLM 不是函数，是概率决策器",
@@ -14,7 +28,7 @@ const day01Modules: ConceptModule[] = [
     engineerLens: "把 LLM 当语义判断和生成组件，把状态机、权限、审计、重试、人工确认留给后端。",
     pitfalls: ["把模型回答当数据库事实","让模型直接决定高风险动作","只看 demo 不看失败模式"],
     practicePrompt: "选一个熟悉业务，标出哪些环节可交给 LLM，哪些必须由确定性系统控制。",
-    fieldExample: "在 LLM 不是函数，是概率决策器 相关工作中，先把边界和验收写出来，再让模型或平台参与生成。",
+    fieldExample: "模型可以识别退款意图并生成解释草稿；资格、金额、状态变更和审计必须由后端规则完成。",
     source: { label: "OpenAI Agents SDK", url: "https://platform.openai.com/docs/guides/agents-sdk/" }
   },
   {
@@ -29,7 +43,7 @@ const day01Modules: ConceptModule[] = [
     engineerLens: "先用搜索定位资料，再读取必要片段；不要把整仓库或整份文档塞进上下文。",
     pitfalls: ["整篇文档直接进 prompt","每轮重复粘贴稳定约定","不区分输入和输出 token 成本"],
     practicePrompt: "把一个长需求压缩成目标、约束、事实、验收四段。",
-    fieldExample: "在 Token 是成本、延迟和注意力预算 相关工作中，先把边界和验收写出来，再让模型或平台参与生成。",
+    fieldExample: "制度问答先按权限、生效日期和问题召回少量证据，不把整套制度库直接塞进 Prompt。",
     source: { label: "OpenAI Agents SDK", url: "https://platform.openai.com/docs/guides/agents-sdk/" }
   },
   {
@@ -44,7 +58,7 @@ const day01Modules: ConceptModule[] = [
     engineerLens: "设计 memory schema：什么进本轮上下文，什么存长期，什么由工具实时查。",
     pitfalls: ["把长上下文当记忆系统","不记录来源","让用户以为模型记住了全部历史"],
     practicePrompt: "为项目助手设计 memory schema：项目约定、用户偏好、临时任务状态分别怎么存。",
-    fieldExample: "在 上下文不是长期记忆 相关工作中，先把边界和验收写出来，再让模型或平台参与生成。",
+    fieldExample: "订单状态由工具实时查询，团队规范和用户偏好写入可版本化存储，再按任务取回。",
     source: { label: "OpenAI Agents SDK", url: "https://platform.openai.com/docs/guides/agents-sdk/" }
   },
   {
@@ -59,7 +73,7 @@ const day01Modules: ConceptModule[] = [
     engineerLens: "把 temperature 当采样参数，不要当可靠性开关。",
     pitfalls: ["以为 temperature=0 就一定正确","用高温做结构化抽取","用调参代替事实校验"],
     practicePrompt: "为分类、客服回复、方案 brainstorm、JSON 抽取分别选择 temperature 范围。",
-    fieldExample: "在 Temperature 控制发散，不控制事实正确 相关工作中，先把边界和验收写出来，再让模型或平台参与生成。",
+    fieldExample: "即便使用低 temperature，制度问答仍要提供来源引用并在证据不足时拒答。",
     source: { label: "OpenAI Agents SDK", url: "https://platform.openai.com/docs/guides/agents-sdk/" }
   }
 ];
