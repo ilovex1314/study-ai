@@ -45,9 +45,9 @@
 
 /* Day01 workbench polish: source of truth for the approved warm editorial layout. */
 .app-shell { width: min(1180px, 100%); padding: 28px 44px 120px; }
-.hero { min-height: auto; padding: 48px 52px 42px; border-radius: 14px; background: linear-gradient(120deg, #fffdfa 0 70%, #e9e3d8 70%); }
-.hero h1 { max-width: 800px; font-size: clamp(34px, 4.2vw, 58px); line-height: 1.32; letter-spacing: -0.045em; }
-.hero-copy > p:last-child { max-width: 680px; margin-top: 16px; font-size: 17px; line-height: 1.75; }
+.hero { min-height: auto; padding: 42px 52px 36px; border-radius: 14px; background: linear-gradient(120deg, #fffdfa 0 70%, #e9e3d8 70%); }
+.hero h1 { max-width: 1040px; font-size: clamp(28px, 2.45vw, 36px); line-height: 1.38; letter-spacing: -0.035em; }
+.hero-copy > p:last-child { max-width: 610px; margin-top: 14px; font-size: 16px; line-height: 1.72; }
 .lesson-layout { display: block; }
 .lesson-content { min-width: 0; }
 .architecture-diagram { margin-top: 20px; padding: 26px; border-radius: 12px; overflow: hidden; }
@@ -58,10 +58,11 @@
 .question-nav { padding-bottom: 14px; border-bottom: 1px solid var(--line); }
 
 @media (min-width: 1025px) {
-  .section-rail { top: 32vh; right: -134px; width: 176px; min-height: 48px; padding: 8px; overflow: visible; border-radius: 12px 0 0 12px; }
-  .section-rail:hover, .section-rail:focus-within { right: 0; }
-  .section-rail .route-toggle { right: 0; width: 42px; height: 46px; border-left: 1px solid var(--line); border-radius: 0; }
-  .section-rail .route-step { width: 126px; opacity: 0; transform: translateX(12px); transition: opacity 160ms ease, transform 160ms ease; }
+  .section-rail { top: 32vh; right: 0; width: 42px; height: 46px; min-height: 0; padding: 0; overflow: hidden; border-radius: 12px 0 0 12px; transition: width 180ms ease, height 180ms ease; }
+  .section-rail:hover, .section-rail:focus-within { width: 176px; height: 246px; }
+  .section-rail .route-toggle { right: 0; width: 42px; height: 46px; border-left: 1px solid var(--line); border-radius: 0; font-size: 0; }
+  .section-rail .route-toggle::after { content: "☰"; display: block; color: #40559a; font-size: 20px; line-height: 1; }
+  .section-rail .route-step { width: 126px; opacity: 0; transform: translateX(-12px); transition: opacity 160ms ease, transform 160ms ease; }
   .section-rail:hover .route-step, .section-rail:focus-within .route-step { opacity: 1; transform: translateX(0); }
   .section-rail:hover .route-toggle, .section-rail:focus-within .route-toggle { border-left-color: transparent; }
 }
@@ -89,7 +90,7 @@
   .section-rail.open .route-step { display: block; flex: 0 0 auto; min-height: 0; padding: 0 0 9px; border: 0; border-radius: 0; background: transparent; color: var(--text-muted); font-size: 13px; }
   .section-rail .route-step.active { border-bottom: 3px solid var(--accent-primary); background: transparent; color: var(--accent-primary); }
   .hero h1 { max-width: 680px; font-size: clamp(32px, 6vw, 46px); line-height: 1.34; }
-  .section-heading h2 { max-width: 720px; font-size: clamp(25px, 4.5vw, 34px); line-height: 1.38; }
+.section-heading h2 { max-width: 720px; font-size: clamp(24px, 3vw, 30px); line-height: 1.42; letter-spacing: -0.025em; }
 }
 
 @media (max-width: 720px) {
