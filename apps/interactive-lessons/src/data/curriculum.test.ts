@@ -17,4 +17,12 @@ describe("curriculum contract", () => {
       expect(lesson.questions.reduce((sum, question) => sum + question.weight, 0)).toBe(100);
     }
   });
+
+  it("ships complete learning material instead of placeholder lessons", () => {
+    for (const lesson of lessons) {
+      expect(lesson.modules.length).toBeGreaterThanOrEqual(4);
+      expect(lesson.decisionLayers.length).toBeGreaterThanOrEqual(3);
+      expect(lesson.questions.length).toBeGreaterThanOrEqual(4);
+    }
+  });
 });
