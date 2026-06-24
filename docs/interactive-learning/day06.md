@@ -1,5 +1,9 @@
 # Day 06 TypeScript AI 应用栈
 
+<!-- architecture
+{"title":"TypeScript AI 应用分层","summary":"UI 状态、服务端边界、Provider 适配与业务能力各守自己的接口。","type":"layered","nodes":[{"label":"React / Next UI","tone":"accent"},{"label":"流式状态"},{"label":"服务端 API","tone":"system"},{"label":"AI SDK"},{"label":"Provider Adapter","tone":"system"},{"label":"业务数据"}]}
+-->
+
 ## Today Goal
 
 围绕“Vercel AI SDK、Next.js 与前后端协作”形成可执行工程判断。完成后，你应该能把相关工具、架构边界、数据流和验收方式讲清楚，并产出一个可以继续实现的小设计。

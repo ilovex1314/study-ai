@@ -29,6 +29,17 @@
 .practice-prompt, .field-example { background: #f8eee0; border-color: #e4c48d; }
 .practice-prompt strong, .source-link, .solution-top span, .choice-card strong { color: var(--accent-primary); }
 .architecture-diagram { background: #edf0f5; border-color: #cbd4e5; }
+.architecture-flow { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; margin-top: 18px; }
+.architecture-diagram[data-type="boundary"] .architecture-flow { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.architecture-diagram[data-type="lifecycle"] .architecture-flow { border-left: 3px solid var(--accent-primary); padding-left: 14px; }
+.architecture-diagram[data-type="layered"] .architecture-flow { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.architecture-diagram[data-type="state"] .architecture-flow { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); max-width: 720px; margin-inline: auto; }
+.architecture-diagram[data-type="feedback"] .architecture-flow { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); border-radius: 18px; outline: 1px dashed #9fafd0; padding: 14px; }
+.architecture-node { display: inline-flex; align-items: center; gap: 10px; padding: 10px 12px; border: 1px solid #cbd4e5; border-radius: 9px; background: #fcfbf7; color: var(--surface-ink); font-size: 13px; font-weight: 800; }
+.architecture-node i { color: var(--accent-primary); font-style: normal; font-weight: 900; }
+.architecture-node[data-tone="accent"] { border-color: #9fafd0; background: #dfe7f6; color: var(--accent-primary); }
+.architecture-node[data-tone="system"] { border-color: #a8c7ae; background: #eaf2ec; color: #356548; }
+.architecture-diagram figcaption { margin-top: 16px; color: var(--accent-progress); font-size: 13px; font-weight: 700; }
 .diagram-heading, .diagram-heading span { color: var(--text-muted); }
 .diagram-heading span, .plane-title, .lane-title { color: var(--accent-primary); fill: var(--accent-primary); }
 .architecture-svg .arch-card rect, .architecture-svg .service-box rect { fill: #fcfbf7; stroke: #8e9ab0; }
@@ -1515,8 +1526,8 @@ button:disabled {
   .section-rail:hover .route-step, .section-rail:focus-within .route-step { opacity: 1 !important; }
   .section-rail .route-step.active { background: var(--accent-primary) !important; color: #fff !important; font-weight: 850 !important; }
   .section-rail { right: 0 !important; width: 42px !important; height: 46px !important; overflow: hidden !important; transition: width .2s ease, height .2s ease !important; }
-  .section-rail:hover, .section-rail:focus-within, .section-rail.open { right: 0 !important; width: 154px !important; height: 262px !important; }
-  .section-rail .route-toggle { left: 0 !important; right: auto !important; border-left: 0 !important; border-right: 1px solid var(--line) !important; }
+  .section-rail:hover, .section-rail:focus-within, .section-rail.open { right: 0 !important; width: 154px !important; height: auto !important; padding: 8px 0 !important; }
+  .section-rail .route-toggle { left: 0 !important; right: auto !important; border-left: 0 !important; border-right: 0 !important; }
   .section-rail .route-toggle::before, .section-rail .route-toggle::after { content: none !important; display: none !important; }
   .section-rail .route-step { margin-left: 42px !important; width: 112px !important; }
   .section-rail.open .route-step { opacity: 1 !important; }

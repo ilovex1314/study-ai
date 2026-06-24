@@ -1,5 +1,9 @@
 # Day16：AI SRE、SLO 与事故响应
 
+<!-- architecture
+{"title":"AI SRE 信号与响应环","summary":"用户体验 SLO、trace、告警和 runbook 连接成可执行的事故响应闭环。","type":"feedback","nodes":[{"label":"用户 SLO","tone":"accent"},{"label":"端到端 Trace","tone":"system"},{"label":"告警触发","tone":"warning"},{"label":"降级开关","tone":"system"},{"label":"事故 Runbook"},{"label":"复盘改进"}],"feedback":"事故复盘更新 SLO、告警和演练方案。"}
+-->
+
 ## 目标
 
 为 AI 功能定义用户 SLO、端到端 trace、降级开关和事故 runbook。

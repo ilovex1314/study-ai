@@ -78,6 +78,14 @@ export type ConceptDiagram = {
   }>;
 };
 
+export type LessonArchitecture = {
+  title: string;
+  summary: string;
+  type: "boundary" | "lifecycle" | "layered" | "state" | "feedback";
+  nodes: Array<{ label: string; tone?: "neutral" | "accent" | "system" | "warning" }>;
+  feedback?: string;
+};
+
 export type ConceptModule = {
   id: string;
   title: string;
@@ -117,7 +125,7 @@ export type CurrentAttempt = { id: string; startedAt: string; answers: Record<st
 
 export type Attempt = CurrentAttempt & { completedAt: string; answers: Record<string, string>; score: number; total: number; weakConcepts: ConceptId[]; recommendations: string[]; };
 
-export type LessonPage = LessonSummary & { hero: string; conceptIntro: string; decisionTitle: string; decisionIntro: string; decisionExample?: string; modules: ConceptModule[]; decisionLayers: DecisionLayer[]; questions: LessonQuestion[]; };
+export type LessonPage = LessonSummary & { hero: string; conceptIntro: string; decisionTitle: string; decisionIntro: string; decisionExample?: string; architecture?: LessonArchitecture; modules: ConceptModule[]; decisionLayers: DecisionLayer[]; questions: LessonQuestion[]; };
 
 export const conceptLabels: Record<ConceptId, string> = {
   "model-cognition": "模型认知",

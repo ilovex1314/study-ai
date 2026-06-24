@@ -43,4 +43,13 @@ describe("curriculum contract", () => {
       expect(diagram.nodes.every((node) => node.label.length > 0)).toBe(true);
     }
   });
+
+  it("gives every lesson its own authored architecture instead of a shared fallback", () => {
+    const architectures = lessons.map((lesson) => (lesson as typeof lesson & {
+      architecture?: { title: string; nodes: Array<{ label: string }> };
+    }).architecture);
+
+    expect(architectures.every((architecture) => architecture && architecture.nodes.length >= 3)).toBe(true);
+    expect(new Set(architectures.map((architecture) => architecture?.title)).size).toBe(20);
+  });
 });

@@ -1,5 +1,9 @@
 # Day20：项目复盘、能力证据与产品飞轮
 
+<!-- architecture
+{"title":"项目复盘与能力飞轮","summary":"运行事实形成复盘和证据档案，再转为下一轮产品与能力练习。","type":"feedback","nodes":[{"label":"运行事实","tone":"system"},{"label":"无责复盘","tone":"accent"},{"label":"项目档案"},{"label":"能力证据","tone":"system"},{"label":"能力缺口","tone":"warning"},{"label":"下一轮练习"}],"feedback":"沉淀的证据决定下一轮优先补齐什么。"}
+-->
+
 ## 目标
 
 用运行事实完成无责复盘，沉淀可复核项目档案，并把能力缺口转为下一轮练习。

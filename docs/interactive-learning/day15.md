@@ -1,5 +1,9 @@
 # Day15：发布治理与变更控制
 
+<!-- architecture
+{"title":"受控发布反馈环","summary":"变更经过分级、灰度和停止阈值控制，线上信号决定继续或回滚。","type":"feedback","nodes":[{"label":"变更包","tone":"accent"},{"label":"风险分级"},{"label":"灰度发布","tone":"system"},{"label":"停止阈值","tone":"warning"},{"label":"线上指标"},{"label":"回滚包","tone":"warning"}],"feedback":"指标越过阈值时回到已验证版本并记录治理证据。"}
+-->
+
 ## 目标
 
 为模型、Prompt、检索和工具变更定义分级门禁、灰度、停止阈值与完整回滚包。

@@ -13,13 +13,14 @@ import { day11Lesson } from "./day11";
 import { day12Lesson } from "./day12";
 import { day13Lesson } from "./day13";
 import { supplementalLessons } from "./supplemental";
+import { architectures } from "./architectures.generated";
 
 export { conceptLabels, reviewAdvice } from "./types";
 export type { Attempt, ConceptId, ConceptModule, CurrentAttempt, DecisionLayer, LessonPage, LessonQuestion, LessonStatus, LessonSummary } from "./types";
 
 const baseLessons = [day01Lesson, day02Lesson, day03Lesson, day04Lesson, day05Lesson, day06Lesson, day07Lesson, day08Lesson, day09Lesson, day10Lesson, day11Lesson, day12Lesson, day13Lesson];
 const defaultWeights = [30, 25, 25, 20];
-export const lessons = [...baseLessons, ...supplementalLessons].map((lesson) => ({ ...lesson, questions: lesson.questions.map((question, index) => ({ ...question, weight: question.weight ?? defaultWeights[index] ?? 0 })) }));
+export const lessons = [...baseLessons, ...supplementalLessons].map((lesson) => ({ ...lesson, architecture: architectures[lesson.id], questions: lesson.questions.map((question, index) => ({ ...question, weight: question.weight ?? defaultWeights[index] ?? 0 })) }));
 
 export const seriesLessons: LessonSummary[] = lessons.map(({ id, path, title, phase, status, summary }) => ({ id, path, title, phase, status, summary }));
 

@@ -1,5 +1,9 @@
 # Day14：持久化工作流与故障恢复
 
+<!-- architecture
+{"title":"长任务恢复状态图","summary":"长任务在关键节点保存 checkpoint，失败后可补偿、暂停或恢复。","type":"state","nodes":[{"label":"任务提交"},{"label":"执行节点","tone":"accent"},{"label":"保存 checkpoint","tone":"system"},{"label":"异常处理","tone":"warning"},{"label":"人工中断","tone":"warning"},{"label":"恢复或补偿","tone":"system"}]}
+-->
+
 ## 目标
 
 为长链路 AI 任务设计可持久化状态、checkpoint、补偿与人工中断，交付一张可恢复状态图。

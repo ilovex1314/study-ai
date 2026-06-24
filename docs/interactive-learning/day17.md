@@ -1,5 +1,9 @@
 # Day17：项目发现、用户与成功指标
 
+<!-- architecture
+{"title":"项目发现验证飞轮","summary":"真实用户任务形成假设和最小切片，验证数据再决定下一轮发现。","type":"feedback","nodes":[{"label":"目标用户","tone":"accent"},{"label":"高频任务"},{"label":"可证伪假设"},{"label":"两周切片","tone":"system"},{"label":"成功指标","tone":"warning"},{"label":"访谈与数据"}],"feedback":"证据不足时收缩问题定义，而非扩张功能。"}
+-->
+
 ## 目标
 
 把模糊 AI 想法缩成一个真实用户、高频任务、可证伪假设和两周验证切片。

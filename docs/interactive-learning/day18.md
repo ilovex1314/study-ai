@@ -1,5 +1,9 @@
 # Day18：项目架构、数据契约与风险
 
+<!-- architecture
+{"title":"项目责任与数据边界","summary":"用户、应用、模型、数据和高风险动作由明确契约与权限矩阵隔离。","type":"boundary","nodes":[{"label":"用户与角色","tone":"accent"},{"label":"应用编排"},{"label":"模型服务"},{"label":"数据契约","tone":"system"},{"label":"权限矩阵","tone":"system"},{"label":"高风险动作","tone":"warning"}]}
+-->
+
 ## 目标
 
 交付一张责任边界图、数据契约、权限矩阵和可跟踪风险清单。

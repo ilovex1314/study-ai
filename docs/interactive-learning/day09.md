@@ -1,5 +1,9 @@
 # Day 09 RAG 深水区
 
+<!-- architecture
+{"title":"受权限约束的 RAG 生命周期","summary":"知识在入库、索引、检索和回答时都保留租户与权限过滤。","type":"lifecycle","nodes":[{"label":"知识源"},{"label":"解析切块"},{"label":"权限标记","tone":"system"},{"label":"混合检索"},{"label":"重排"},{"label":"引用回答","tone":"accent"}]}
+-->
+
 ## Today Goal
 
 围绕“检索、重排、权限、多租户与评估”形成可执行工程判断。完成后，你应该能把相关工具、架构边界、数据流和验收方式讲清楚，并产出一个可以继续实现的小设计。

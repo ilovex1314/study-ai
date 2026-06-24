@@ -1,5 +1,9 @@
 # Day19：项目实现、评估与发布检查
 
+<!-- architecture
+{"title":"实现到发布的质量闭环","summary":"端到端任务切片通过 golden set、发布门禁和线上反馈持续被验证。","type":"feedback","nodes":[{"label":"任务切片","tone":"accent"},{"label":"端到端实现"},{"label":"Golden Set","tone":"system"},{"label":"发布检查","tone":"warning"},{"label":"线上监测"},{"label":"缺陷回流"}],"feedback":"失败样本进入下一轮实现与评估，不被发布后遗忘。"}
+-->
+
 ## 目标
 
 实现一个真实端到端任务切片，并用 golden set、上线门禁和反馈回流证明它可发布。
