@@ -43,6 +43,21 @@
 .score-card, .feedback.correct { background: #eaf2ec; border-color: #a8c7ae; color: var(--surface-ink); }
 .feedback.wrong { background: #f8e7e3; border-color: #db9c93; color: var(--surface-ink); }
 
+/* Approved fixed-navigation mockup: preserve the left course dock, mirror every other spatial rule. */
+@media (min-width: 1025px) {
+  .app-shell { width: min(920px, calc(100% - 36px)); padding: 48px 0 112px; }
+  .hero { padding: 38px; border-radius: 15px; box-shadow: 0 20px 50px rgba(24, 33, 50, .08); }
+  .hero h1 { max-width: 720px; margin: 6px 0 12px; font-size: 36px; line-height: 1.28; letter-spacing: -.04em; }
+  .hero-copy > p:last-child { max-width: 660px; margin: 0; font-size: 16px; line-height: 1.8; }
+  .section-heading h2 { margin: 0 0 12px; font-size: 30px; line-height: 1.38; }
+  .section-rail { position: fixed; z-index: 50; right: -112px; top: 36vh; width: 154px; height: 46px; min-height: 0; overflow: hidden; padding: 0; border: 1px solid var(--line); border-radius: 12px; background: var(--surface); box-shadow: 0 10px 26px rgba(20, 28, 42, .15); transition: right .2s ease, height .2s ease; }
+  .section-rail:hover, .section-rail:focus-within { right: -12px; height: 262px; width: 154px; }
+  .section-rail .route-toggle { position: absolute; top: 0; right: 0; display: grid; place-items: center; width: 42px; height: 44px; min-height: 0; padding: 0; border: 0; border-left: 1px solid var(--line); border-radius: 0; background: var(--surface); color: var(--accent-primary); font-size: 20px; }
+  .section-rail .route-step { display: block; width: 112px; min-height: 0; padding: 9px 8px; border: 0; border-radius: 7px; background: transparent; color: var(--text-muted); font-size: 12px; text-align: left; opacity: 0; transition: opacity .16s ease; }
+  .section-rail:hover .route-step, .section-rail:focus-within .route-step { opacity: 1; }
+  .section-rail .route-step.active { background: var(--accent-primary); color: #fff; font-weight: 850; }
+}
+
 /* Day01 workbench polish: source of truth for the approved warm editorial layout. */
 .app-shell { width: min(1180px, 100%); padding: 28px 44px 120px; }
 .hero { min-height: auto; padding: 42px 52px 36px; border-radius: 14px; background: linear-gradient(120deg, #fffdfa 0 70%, #e9e3d8 70%); }
