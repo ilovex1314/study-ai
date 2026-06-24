@@ -97,14 +97,14 @@ const day01Architecture: DecisionLayer[] = [
 export const day01Lesson: LessonPage = {
   id: "day01",
   path: "/day01",
-  title: "模型认知",
+  title: "AI 产品问题与模型边界",
   phase: "Day01",
   status: "available",
-  summary: "理解 LLM 的概率本质、上下文、token、temperature 和工程边界。",
-  hero: "把 AI 名词变成工程判断力",
-  conceptIntro: "把“模型会回答”拆成可工程化的能力边界。完成后，你应该能判断一个需求适合 Chat、RAG、Agent、Workflow 还是 Fine-tuning，并说清楚成本、延迟和失败模式。",
-  decisionTitle: "模型认知与能力边界 架构判断",
-  decisionIntro: "用户输入 -> 意图识别 -> 上下文预算 -> 模型生成草稿 -> schema 校验 -> 业务系统决策 -> 输出/人工确认 高风险动作要走确定性状态机；模型只能提出建议或生成解释。",
+  summary: "先定义用户结果、证据、风险与系统边界，再决定模型、RAG、Workflow 或 Agent 是否适合进入产品。",
+  hero: "把模型输出变成可控的产品行为",
+  conceptIntro: "从业务问题开始定义 AI 任务：模型负责理解与生成候选，证据、策略、状态和高风险动作必须留在可审计的系统里。",
+  decisionTitle: "模型、证据、策略与业务结果的责任关系",
+  decisionIntro: "模型生成结构化意图；可信证据提供事实；策略层校验权限、金额和状态；受限工具执行后留下审计与可回滚状态。它们相互约束，而不是一条把模型放在中间的流水线。",
   decisionExample: "退款助手中，模型识别用户诉求并生成解释；退款资格、金额、风控和状态变更由后端规则与审计系统控制。",
   modules: day01Modules,
   decisionLayers: day01Architecture,
@@ -116,7 +116,8 @@ export const day01Lesson: LessonPage = {
         prompt: "为什么不能把 LLM 当普通后端函数？",
         scenario: "把这个问题放到真实产品或团队工程流程里判断。",
         options: [option("a", "因为 LLM 无法输出中文", false), option("b", "因为 LLM 基于概率生成，关键控制要系统兜底", true), option("c", "因为 LLM 只能做图片任务", false)],
-        explanation: "因为它基于概率生成，业务状态、权限和审计需要确定性系统控制。"
+        explanation: "因为它基于概率生成，业务状态、权限和审计需要确定性系统控制。",
+        weight: 30
       },
       {
         id: "d1-q2",
@@ -125,7 +126,8 @@ export const day01Lesson: LessonPage = {
         prompt: "token 预算主要影响什么？",
         scenario: "把这个问题放到真实产品或团队工程流程里判断。",
         options: [option("a", "成本、延迟和注意力质量", true), option("b", "只影响 UI 样式", false), option("c", "只影响数据库大小", false)],
-        explanation: "token 同时影响成本、延迟和上下文噪声。"
+        explanation: "token 同时影响成本、延迟和上下文噪声。",
+        weight: 10
       },
       {
         id: "d1-q3",
@@ -134,7 +136,8 @@ export const day01Lesson: LessonPage = {
         prompt: "为什么上下文不等于长期记忆？",
         scenario: "把这个问题放到真实产品或团队工程流程里判断。",
         options: [option("a", "因为上下文只能存图片", false), option("b", "因为上下文是本轮输入范围，不能替代持久化记忆", true), option("c", "因为上下文不会消耗 token", false)],
-        explanation: "上下文是本轮可见信息，长期事实要持久化并按需检索。"
+        explanation: "上下文是本轮可见信息，长期事实要持久化并按需检索。",
+        weight: 25
       },
       {
         id: "d1-q4",
@@ -143,7 +146,18 @@ export const day01Lesson: LessonPage = {
         prompt: "temperature=0 能保证事实正确吗？",
         scenario: "把这个问题放到真实产品或团队工程流程里判断。",
         options: [option("a", "能，所有答案都会正确", false), option("b", "不能，它不是事实校验机制", true), option("c", "能，它会自动调用数据库", false)],
-        explanation: "不能，它只降低采样发散，事实正确要靠证据、工具和校验。"
+        explanation: "不能，它只降低采样发散，事实正确要靠证据、工具和校验。",
+        weight: 20
+      },
+      {
+        id: "d1-q5",
+        type: "single",
+        concept: "model-cognition",
+        prompt: "退款助手准备调用付款工具时，哪个控制点最能降低重复或越权执行风险？",
+        scenario: "把模型生成的工具意图放进真实业务流程判断。",
+        options: [option("a", "只提高 temperature", false), option("b", "schema、权限作用域、幂等键与审批", true), option("c", "把工具名称写得更短", false)],
+        explanation: "工具调用需要系统侧 schema、授权和幂等控制；模型输出只是候选意图。",
+        weight: 15
       }
   ]
 };

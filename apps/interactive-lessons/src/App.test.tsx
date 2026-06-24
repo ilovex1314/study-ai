@@ -95,8 +95,8 @@ describe("App navigation", () => {
 
     const dayOne = screen.getByRole("button", { name: "切换到 Day01" });
     expect(dayOne).toHaveTextContent("Day01");
-    expect(dayOne).toHaveTextContent("模型认知");
-    expect(seriesLessons[0].title).toBe("模型认知");
+    expect(dayOne).toHaveTextContent("AI 产品问题与模型边界");
+    expect(seriesLessons[0].title).toBe("AI 产品问题与模型边界");
   });
 
   it("keeps active module navigation synced with the scrolled viewport", async () => {
@@ -169,7 +169,7 @@ describe("App navigation", () => {
   it("normalizes invalid routes back to the first lesson", () => {
     renderApp("/planned");
 
-    expect(screen.getByRole("heading", { level: 1, name: /模型认知/ })).toBeInTheDocument();
+    expect(screen.getByRole("heading", { level: 1, name: /AI 产品问题与模型边界/ })).toBeInTheDocument();
   });
 
   it("keeps Day01-Day20 continuous and renders architectural learning aids", () => {
