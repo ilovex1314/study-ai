@@ -162,14 +162,14 @@ describe("App navigation", () => {
 
     fireEvent.click(screen.getByRole("button", { name: /Day02 Prompt/ }));
 
-    await waitFor(() => expect(screen.getByRole("heading", { name: /Prompt \/ RAG/ })).toBeInTheDocument());
+    await waitFor(() => expect(screen.getAllByText("Prompt / RAG / Grounding", { exact: false }).length).toBeGreaterThan(0));
     expect(screen.getAllByText(/RAG/).length).toBeGreaterThan(0);
   });
 
   it("normalizes invalid routes back to the first lesson", () => {
     renderApp("/planned");
 
-    expect(screen.getByRole("heading", { level: 1, name: /AI 产品问题与模型边界/ })).toBeInTheDocument();
+    expect(screen.getByRole("heading", { level: 1, name: /把模型输出变成可控的产品行为/ })).toBeInTheDocument();
   });
 
   it("keeps Day01-Day20 continuous and renders architectural learning aids", () => {

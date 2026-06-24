@@ -7,10 +7,8 @@ export function Hero({ lesson }: { lesson: LessonPage }) {
   return (
     <section className="hero">
       <div className="hero-copy">
-        <p className="eyebrow">study-ai / {lesson.phase}</p>
-        <h1>
-          {lesson.title}：{lesson.hero}
-        </h1>
+        <p className="eyebrow">study-ai / {lesson.phase} · {lesson.title}</p>
+        <h1>{lesson.hero}</h1>
         <p>{lesson.summary}</p>
       </div>
     </section>

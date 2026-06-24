@@ -116,7 +116,7 @@ export const day01Lesson: LessonPage = {
   status: "available",
   summary: "先定义用户结果、证据、风险与系统边界，再决定模型、RAG、Workflow 或 Agent 是否适合进入产品。",
   hero: "把模型输出变成可控的产品行为",
-  conceptIntro: "从业务问题开始定义 AI 任务：模型负责理解与生成候选，证据、策略、状态和高风险动作必须留在可审计的系统里。",
+  conceptIntro: "先定义任务，再决定 AI 的责任边界",
   decisionTitle: "模型、证据、策略与业务结果的责任关系",
   decisionIntro: "模型生成结构化意图；可信证据提供事实；策略层校验权限、金额和状态；受限工具执行后留下审计与可回滚状态。它们相互约束，而不是一条把模型放在中间的流水线。",
   decisionExample: "退款助手中，模型识别用户诉求并生成解释；退款资格、金额、风控和状态变更由后端规则与审计系统控制。",
