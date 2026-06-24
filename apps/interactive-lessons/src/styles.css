@@ -1514,7 +1514,7 @@ button:disabled {
 
 /* FINAL: fixed-navigation-behavior.html is the source of truth for lesson reading geometry. */
 @media (min-width: 1025px) {
-  .app-shell { width: min(920px, calc(100% - 36px)) !important; padding: 48px 0 112px !important; }
+  .app-shell { width: min(1440px, calc(100% - 36px)) !important; min-width: 960px !important; padding: 48px 0 112px !important; }
   .hero { min-height: 0 !important; padding: 38px !important; border-radius: 15px !important; }
   .hero h1 { max-width: 720px !important; margin: 6px 0 12px !important; font-size: 36px !important; line-height: 1.28 !important; letter-spacing: -.04em !important; }
   .hero-copy > p:last-child { max-width: 660px !important; margin: 0 !important; font-size: 16px !important; line-height: 1.8 !important; }

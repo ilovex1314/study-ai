@@ -29,3 +29,11 @@ describe("desktop section rail", () => {
     expect(contract).toContain(".section-rail.open .route-step { opacity: 1 !important; }");
   });
 });
+
+describe("desktop reading width", () => {
+  it("keeps the lesson shell between the requested minimum and maximum widths", () => {
+    const contract = stylesheet.slice(stylesheet.indexOf("/* FINAL: fixed-navigation-behavior.html"));
+
+    expect(contract).toContain(".app-shell { width: min(1440px, calc(100% - 36px)) !important; min-width: 960px !important; padding: 48px 0 112px !important; }");
+  });
+});
