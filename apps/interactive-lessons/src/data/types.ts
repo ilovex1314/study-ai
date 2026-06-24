@@ -63,6 +63,21 @@ export type LessonSummary = {
   summary: string;
 };
 
+export type ConceptDiagram = {
+  conclusion: string;
+  nodes: Array<{
+    id: string;
+    label: string;
+    tone?: "neutral" | "accent" | "success" | "warning";
+  }>;
+  edges: Array<{
+    from: string;
+    to: string;
+    label?: string;
+    tone?: "default" | "warning";
+  }>;
+};
+
 export type ConceptModule = {
   id: string;
   title: string;
@@ -75,6 +90,7 @@ export type ConceptModule = {
   engineerLens: string;
   pitfalls: string[];
   practicePrompt: string;
+  diagram?: ConceptDiagram;
   fieldExample?: string;
   source?: { label: string; url: string; };
 };

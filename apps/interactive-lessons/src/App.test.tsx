@@ -245,4 +245,18 @@ describe("App navigation", () => {
 
     expect(day01?.modules.some((module) => module.concept === "temperature")).toBe(true);
   });
+
+  it("renders an authored relationship diagram with its conclusion", () => {
+    renderApp("/day14/concepts");
+
+    expect(screen.getByText("checkpoint 保存的是一致状态，失败进入补偿或人工决策。")).toBeInTheDocument();
+    expect(screen.getByText("状态快照")).toBeInTheDocument();
+  });
+
+  it("does not render a generic visual placeholder for a module without a diagram", () => {
+    renderApp("/day14/concepts");
+
+    expect(document.querySelectorAll(".concept-diagram").length).toBeGreaterThan(0);
+    expect(document.querySelectorAll(".schema-visual, .machine-visual, .tools-visual")).toHaveLength(0);
+  });
 });

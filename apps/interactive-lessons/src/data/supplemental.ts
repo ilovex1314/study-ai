@@ -2,13 +2,13 @@ import { option } from "./helpers";
 import { curriculum } from "./curriculum";
 import type { ConceptId, ConceptModule, DecisionLayer, LessonPage } from "./types";
 
-type ModuleSeed = Pick<ConceptModule, "title" | "summary" | "visual" | "concept" | "whyItMatters" | "coreIdeas" | "engineerLens" | "pitfalls" | "practicePrompt">;
+type ModuleSeed = Pick<ConceptModule, "title" | "summary" | "visual" | "concept" | "whyItMatters" | "coreIdeas" | "engineerLens" | "pitfalls" | "practicePrompt" | "diagram">;
 type LessonSeed = { modules: ModuleSeed[]; layers: DecisionLayer[]; questions: Array<{ concept: ConceptId; prompt: string; correct: string; distractors: string[]; explanation: string }> };
 
 const seeds: LessonSeed[] = [
   {
     modules: [
-      { title: "先界定可持久化的业务状态", summary: "把订单、审批、外部调用和模型草稿拆成可恢复状态，而不是把整段执行留在内存。", visual: "schema", concept: "durable-execution", whyItMatters: "进程重启、超时和重试是常态；状态边界决定系统能否继续。", coreIdeas: ["状态可序列化", "副作用有幂等键", "恢复点可追踪"], engineerLens: "为每个任务写 state schema 与版本号。", pitfalls: ["把 Promise 当恢复机制", "状态里塞秘密", "忽略迁移"], practicePrompt: "画出一个审批流程的状态、事件和恢复点。" },
+      { title: "先界定可持久化的业务状态", summary: "把订单、审批、外部调用和模型草稿拆成可恢复状态，而不是把整段执行留在内存。", visual: "schema", concept: "durable-execution", whyItMatters: "进程重启、超时和重试是常态；状态边界决定系统能否继续。", coreIdeas: ["状态可序列化", "副作用有幂等键", "恢复点可追踪"], engineerLens: "为每个任务写 state schema 与版本号。", pitfalls: ["把 Promise 当恢复机制", "状态里塞秘密", "忽略迁移"], practicePrompt: "画出一个审批流程的状态、事件和恢复点。", diagram: { conclusion: "checkpoint 保存的是一致状态，失败进入补偿或人工决策。", nodes: [{ id: "input", label: "任务输入" }, { id: "state", label: "状态快照", tone: "accent" }, { id: "tool", label: "工具执行" }, { id: "checkpoint", label: "checkpoint", tone: "warning" }, { id: "continue", label: "继续执行", tone: "success" }, { id: "recover", label: "补偿 / 审批", tone: "warning" }], edges: [{ from: "input", to: "state" }, { from: "state", to: "tool" }, { from: "tool", to: "checkpoint" }, { from: "checkpoint", to: "continue" }, { from: "checkpoint", to: "recover", label: "失败", tone: "warning" }] } },
       { title: "Checkpoint 让长任务从中断处继续", summary: "在稳定步骤后写 checkpoint，恢复时读取最近一致快照而不是重新执行所有工具。", visual: "workbench", concept: "checkpointing", whyItMatters: "它降低重试成本，也避免重复发送邮件或重复扣费。", coreIdeas: ["checkpoint 前后定义一致性", "记录输入版本", "恢复可重放"], engineerLens: "把 checkpoint ID 放进 trace 和用户可见进度。", pitfalls: ["每一步都落盘", "只保存最终结果", "无版本兼容"], practicePrompt: "为一个文档处理任务标出三个 checkpoint。" },
       { title: "补偿不是撤销：为副作用写反向动作", summary: "无法原子提交的跨服务操作，需要定义失败后的补偿和人工处理队列。", visual: "tools", concept: "human-interrupt", whyItMatters: "模型和工具调用可能部分成功，静默失败会污染真实业务。", coreIdeas: ["区分 retry 与 compensate", "高风险动作可暂停", "人工决定不可逆操作"], engineerLens: "为每种副作用写幂等键、补偿动作和升级路径。", pitfalls: ["无限重试", "假定外部 API 可回滚", "没有人工入口"], practicePrompt: "列出创建工单失败后的补偿与升级策略。" },
       { title: "状态图比线性流程更接近真实运行", summary: "把 pending、running、waiting approval、failed、compensating 和 done 显式建模。", visual: "machine", concept: "state-graph", whyItMatters: "状态图让并发、暂停、恢复和终态有共同语言。", coreIdeas: ["终态有限", "事件触发转移", "非法转移被拒绝"], engineerLens: "用状态机测试覆盖每条高风险转移。", pitfalls: ["用布尔变量拼状态", "缺少终态", "转移无审计"], practicePrompt: "为退款申请写一个最小状态转移表。" }

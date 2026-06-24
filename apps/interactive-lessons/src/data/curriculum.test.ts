@@ -25,4 +25,22 @@ describe("curriculum contract", () => {
       expect(lesson.questions.length).toBeGreaterThanOrEqual(4);
     }
   });
+
+  it("allows a lesson module to omit a visual diagram", () => {
+    const day14 = lessons.find((lesson) => lesson.id === "day14");
+    expect(day14?.modules.some((module) => !("diagram" in module))).toBe(true);
+  });
+
+  it("requires every authored diagram to contain a conclusion and labeled nodes", () => {
+    const diagrams = lessons.flatMap((lesson) => lesson.modules.map((module) => module as typeof module & {
+      diagram?: { conclusion: string; nodes: Array<{ label: string }> };
+    })).flatMap((module) => module.diagram ? [module.diagram] : []);
+
+    expect(diagrams.length).toBeGreaterThan(0);
+    for (const diagram of diagrams) {
+      expect(diagram.conclusion).not.toHaveLength(0);
+      expect(diagram.nodes.length).toBeGreaterThanOrEqual(2);
+      expect(diagram.nodes.every((node) => node.label.length > 0)).toBe(true);
+    }
+  });
 });
