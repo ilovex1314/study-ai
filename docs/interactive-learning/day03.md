@@ -1,5 +1,9 @@
 # Day 03 Agent 编排
 
+<!-- architecture
+{"title":"可暂停的 Agent 执行状态","summary":"规划、工具调用和人工确认共享可恢复状态，不把执行当成一次性聊天。","type":"state","nodes":[{"label":"任务进入"},{"label":"制定计划","tone":"accent"},{"label":"调用工具"},{"label":"保存 checkpoint","tone":"system"},{"label":"人工确认","tone":"warning"},{"label":"恢复或补偿","tone":"system"}]}
+-->
+
 ## Today Goal
 
 理解 Agent 为什么不是“聊天框加工具”，并能设计一个可审计、可恢复、可暂停确认的执行链路。

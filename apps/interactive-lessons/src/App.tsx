@@ -237,7 +237,7 @@ function LessonPageView({ lesson, routeSection }: { lesson: LessonPage; routeSec
   return (
     <main id="main-content" className="app-shell" tabIndex={-1}>
       <Hero lesson={lesson} />
-      <nav className={moduleNavOpen ? "route-strip open" : "route-strip"} aria-label="当前页面模块导航">
+      <nav className={moduleNavOpen ? "section-rail open" : "section-rail"} aria-label="当前页面模块导航">
         <button
           className="route-toggle"
           type="button"
@@ -245,7 +245,7 @@ function LessonPageView({ lesson, routeSection }: { lesson: LessonPage; routeSec
           aria-expanded={moduleNavOpen}
           aria-label={`模块导航：${sections.find((section) => section.id === activeSection)?.label ?? "页面模块"}`}
         >
-          {sections.find((section) => section.id === activeSection)?.label ?? "页面模块"}
+          <span aria-hidden="true">☰</span>
         </button>
         {sections.map((section) => (
           <button
@@ -272,6 +272,7 @@ function LessonPageView({ lesson, routeSection }: { lesson: LessonPage; routeSec
           activeQuestion={activeQuestion}
           answers={current.answers}
           onAnswer={answerQuestion}
+          onSelect={setActiveQuestion}
           onNext={() => setActiveQuestion((value) => Math.min(value + 1, lesson.questions.length - 1))}
           onPrev={() => setActiveQuestion((value) => Math.max(value - 1, 0))}
         />

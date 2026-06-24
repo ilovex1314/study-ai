@@ -7,10 +7,8 @@ export function Hero({ lesson }: { lesson: LessonPage }) {
   return (
     <section className="hero">
       <div className="hero-copy">
-        <p className="eyebrow">study-ai / {lesson.phase}</p>
-        <h1>
-          {lesson.title}：{lesson.hero}
-        </h1>
+        <p className="eyebrow">study-ai / {lesson.phase} · {lesson.title}</p>
+        <h1>{lesson.hero}</h1>
         <p>{lesson.summary}</p>
       </div>
     </section>
@@ -124,7 +122,7 @@ function ConceptCard({ module }: { module: ConceptModule }) {
         <span>{conceptLabels[module.concept]}</span>
         <p>{module.summary}</p>
       </div>
-      <ConceptVisual kind={module.visual} />
+      <ConceptVisual diagram={module.diagram} />
       <div className="concept-detail">
         <h3>为什么重要</h3>
         <p>{module.whyItMatters}</p>
@@ -162,70 +160,28 @@ function ConceptCard({ module }: { module: ConceptModule }) {
   );
 }
 
-function ConceptVisual({ kind }: { kind: ConceptModule["visual"] }) {
-  if (kind === "machine") {
-    return (
-      <div className="visual machine-visual">
-        <div>Input</div>
-        <span>确定逻辑</span>
-        <div>Output</div>
-        <strong>vs</strong>
-        <div>Context</div>
-        <span>概率分布</span>
-        <div>Sampled Output</div>
-      </div>
-    );
-  }
-
-  if (kind === "budget") {
-    return (
-      <div className="visual budget-visual">
-        <span style={{ height: "38%" }} />
-        <span style={{ height: "64%" }} />
-        <span style={{ height: "82%" }} />
-        <b>成本 / 延迟 / 注意力</b>
-      </div>
-    );
-  }
-
-  if (kind === "workbench") {
-    return (
-      <div className="visual workbench-visual">
-        <span>本次任务</span>
-        <span>相关资料</span>
-        <span>输出约束</span>
-        <i>窗口外的信息不可见</i>
-      </div>
-    );
-  }
-
-  if (kind === "dial") {
-    return (
-      <div className="visual dial-visual">
-        <div className="dial" />
-        <p>稳定 ← temperature → 发散</p>
-      </div>
-    );
-  }
-
-  if (kind === "schema") {
-    return (
-      <div className="visual schema-visual">
-        <code>{"{ intent, confidence, entities }"}</code>
-        <span>parse</span>
-        <span>validate</span>
-        <span>fallback</span>
-      </div>
-    );
+function ConceptVisual({ diagram }: { diagram?: ConceptModule["diagram"] }) {
+  if (!diagram) {
+    return null;
   }
 
   return (
-    <div className="visual tools-visual">
-      <span>Model decides</span>
-      <b>tool(args)</b>
-      <span>System executes</span>
-      <small>auth + log + rollback</small>
-    </div>
+    <figure className="concept-diagram">
+      <div className="concept-diagram-flow">
+        {diagram.nodes.map((node, index) => (
+          <span key={node.id} className="concept-diagram-node" data-tone={node.tone ?? "neutral"}>
+            {node.label}
+            {index < diagram.nodes.length - 1 ? <i aria-hidden="true">→</i> : null}
+          </span>
+        ))}
+      </div>
+      <div className="concept-diagram-branches" aria-hidden="true">
+        {diagram.edges.filter((edge) => edge.label).map((edge) => (
+          <span key={`${edge.from}-${edge.to}`} data-tone={edge.tone ?? "default"}>{edge.label} → {diagram.nodes.find((node) => node.id === edge.to)?.label}</span>
+        ))}
+      </div>
+      <figcaption>{diagram.conclusion}</figcaption>
+    </figure>
   );
 }
 
@@ -280,6 +236,7 @@ export function QuizPanel({
   activeQuestion,
   answers,
   onAnswer,
+  onSelect,
   onNext,
   onPrev
 }: {
@@ -287,6 +244,7 @@ export function QuizPanel({
   activeQuestion: number;
   answers: Record<string, string>;
   onAnswer: (question: LessonQuestion, optionId: string) => void;
+  onSelect: (index: number) => void;
   onNext: () => void;
   onPrev: () => void;
 }) {
@@ -301,10 +259,13 @@ export function QuizPanel({
         <h2>通过做题完成学习</h2>
       </div>
       <div className="question-meta">
-        <span>
-          {activeQuestion + 1} / {lesson.questions.length}
-        </span>
+        <span>本题 {question.weight ?? 0} 分</span>
         <span>{conceptLabels[question.concept]}</span>
+      </div>
+      <div className="question-nav" aria-label="题目导航">
+        {lesson.questions.map((item, index) => (
+          <button key={item.id} type="button" className={index === activeQuestion ? "active" : ""} onClick={() => onSelect(index)} aria-label={`第 ${index + 1} 题`} aria-current={index === activeQuestion ? "true" : undefined}>{index + 1}</button>
+        ))}
       </div>
       {question.scenario ? <p className="scenario">{question.scenario}</p> : null}
       <h3>{question.prompt}</h3>

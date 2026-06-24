@@ -1,6 +1,6 @@
 # study-ai
 
-`study-ai` 是一个面向工程实践的 AI Agent 学习项目，用来沉淀学习路线、阶段计划、练习、Prompt 模式和可交互课程页面。
+`study-ai` 是一个面向工程实践的 AI 产品学习工作台。它把概念、架构判断、开放实践、100 分制测验和本地复盘连接成可验证的能力证据。
 
 ## 项目结构
 
@@ -8,33 +8,30 @@
 - `notes/`：按主题整理的核心概念笔记。
 - `labs/`：可执行练习，用于把概念转成判断和产出。
 - `prompts/`：可复用 Prompt 模板和模式。
-- `apps/interactive-lessons/`：纯前端 React + TypeScript 互动课程。
+- `apps/interactive-lessons/`：本地优先的 React + TypeScript 互动学习工作台。
 
 ## 学习入口
 
 - [AI Agent 系统学习计划](docs/ai-agent-learning-plan.md)
 - [交互学习总计划](docs/interactive-learning/overview.md)
-- [Day02 Prompt / RAG / Grounding](docs/interactive-learning/day02.md)
-- [Day03 Agent 架构](docs/interactive-learning/day03.md)
-- [Day04 产品化交付](docs/interactive-learning/day04.md)
+- [个人学习工作台设计规格（中文）](docs/superpowers/specs/2026-06-24-personal-learning-workbench-design.zh-CN.md)
 - [01 模型认知](notes/01-model-cognition.md)
 - [01 业务场景 AI 化判断练习](labs/01-ai-scenario-assessment.md)
 - [Prompt Patterns](prompts/prompt-patterns.md)
 
 ## 互动课程
 
-互动课程位于 `apps/interactive-lessons`，当前实现 Day01-Day04 的统一入口、独立路由、概念讲解、架构图、做题练习和本地复盘记录。它是纯前端项目，构建后的 `dist` 可以直接随仓库发布。
+互动课程位于 `apps/interactive-lessons`，当前提供 Day01–Day20 的能力路线、独立章节路由、关系型架构图、题号直选、100 分制加权测验和本地复盘记录。它是纯前端项目：学习进度和记录只保存在浏览器本地，未伪造登录、云同步或 AI 教练能力。
 
 常用命令：
 
-```powershell
-npm run lesson:dev
-npm run lesson:test
-npm run lesson:build
-npm run lesson:dist
+```bash
+pnpm --dir apps/interactive-lessons dev
+pnpm --dir apps/interactive-lessons test
+pnpm --dir apps/interactive-lessons build
 ```
 
-`lesson:dist` 会在 `apps/interactive-lessons/dist` 生成可发布文件。Vite 使用相对资源路径，适合部署到 GitHub Pages 的仓库子路径。
+构建会在 `apps/interactive-lessons/dist` 生成可发布文件。Vite 使用相对资源路径，适合部署到 Cloudflare Pages 或 GitHub Pages 的仓库子路径。
 
 ## GitHub Pages 发布建议
 

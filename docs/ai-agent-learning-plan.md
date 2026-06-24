@@ -1,10 +1,10 @@
 # AI Agent 系统学习计划
 
-更新时间：2026-06-07
+更新时间：2026-06-24
 
 适用对象：有 10 年工程经验，熟悉前端和服务端开发，希望系统掌握 AI Agent、AI 应用交付、部署运维、产品选型和 vibe coding 工作流的工程师。
 
-这份文档已经按 `docs/interactive-learning/overview.md` 的方式重组：原来的 12 周路线被合并为 12 个可执行学习日。每一天都包含目标、概念、架构、数据流、实战、测验和复盘，并同步进入 `apps/interactive-lessons` Web 应用。
+这份文档已经按 `docs/interactive-learning/overview.md` 的方式重组为 20 个可执行学习日。每一天都包含目标、概念、关系图、实战、100 分制测验和复盘，并同步进入 `apps/interactive-lessons` Web 应用。课程总览是唯一的顺序与标题来源。
 
 ## 学习目标
 
@@ -15,22 +15,14 @@
 3. 理解各厂商 Agent 平台和开源框架的差异，知道什么时候用 Dify、Coze、LangGraph、OpenAI Agents SDK、Vercel AI SDK、Mastra、CrewAI、n8n 或云厂商平台。
 4. 深入理解 vibe coding，让 AI 生成结果更贴近意图，用更少 token 和更短迭代链路完成高质量功能。
 
-## 12 天执行路线
+## 20 天执行路线
 
 | Day | 主题 | 核心产出 |
 | --- | --- | --- |
-| Day01 | 模型认知与能力边界 | 判断什么时候能信任 LLM，什么时候必须保留确定性系统控制。 |
-| Day02 | Prompt、RAG 与知识 grounding | 设计 prompt 合约和最小 RAG 链路，并能度量检索质量。 |
-| Day03 | Agent loop 与 workflow control | 设计带工具、状态、trace、人工确认和失败恢复的执行循环。 |
-| Day04 | AI product delivery and operations | 把 demo 变成有 UX、网关、eval、观测、成本控制和部署策略的产品。 |
-| Day05 | 平台、框架与供应商选型 | 根据团队能力和产品阶段选择 OpenAI Agents SDK、Vercel AI SDK、LangGraph、Dify、Coze、Mastra、n8n 或云平台。 |
-| Day06 | Vercel AI SDK、Next.js 与前后端协作 | 用 TypeScript 技术栈搭出流式 AI UI、provider abstraction、工具调用和服务端边界。 |
-| Day07 | LangGraph / durable workflow / human-in-the-loop | 学习状态图、checkpoint、interrupt/resume 和多步骤任务恢复。 |
-| Day08 | Dify、Coze、n8n 与业务验证 | 理解可视化平台如何加速原型、知识库、工作流和跨系统自动化。 |
-| Day09 | 检索、重排、权限、多租户与评估 | 把 Day02 的最小 RAG 扩展为多源、多租户、可评估、可运维的知识系统。 |
-| Day10 | Eval、反馈、红队与回归测试 | 建立 AI 功能的 golden dataset、离线评估、在线反馈、回归和风险样本库。 |
-| Day11 | 上下文工程、任务拆解与 AI 协作 | 把模糊想法转成 AI 可执行任务，降低 token 浪费和返工。 |
-| Day12 | Capstone：可演示 AI 产品闭环 | 把 11 天能力合成一个可演示产品：前端体验、编排层、工具、部署、日志、eval 和复盘。 |
+| Day01–05 | 定义可靠 AI 行为 | 定义任务、模型边界、Prompt、证据、工具与 Agent 状态。 |
+| Day06–11 | 构建生产系统 | 完成 AI UX、知识治理、安全、Eval、可观测性与技术选型。 |
+| Day12–16 | 扩展与运营 | 处理多模态、UI/UX、持久化工作流、发布治理与 AI SRE。 |
+| Day17–20 | 项目证据闭环 | 发现项目、定义契约、实现评估、发布复盘并沉淀能力证据。 |
 
 ## 每日学习结构
 
@@ -69,18 +61,7 @@ Python / FastAPI
 
 ## Day 文档索引
 
-- [Day01 模型认知与能力边界](interactive-learning/day01.md)
-- [Day02 Prompt、RAG 与知识 grounding](interactive-learning/day02.md)
-- [Day03 Agent loop 与 workflow control](interactive-learning/day03.md)
-- [Day04 AI product delivery and operations](interactive-learning/day04.md)
-- [Day05 平台、框架与供应商选型](interactive-learning/day05.md)
-- [Day06 Vercel AI SDK、Next.js 与前后端协作](interactive-learning/day06.md)
-- [Day07 LangGraph / durable workflow / human-in-the-loop](interactive-learning/day07.md)
-- [Day08 Dify、Coze、n8n 与业务验证](interactive-learning/day08.md)
-- [Day09 检索、重排、权限、多租户与评估](interactive-learning/day09.md)
-- [Day10 Eval、反馈、红队与回归测试](interactive-learning/day10.md)
-- [Day11 上下文工程、任务拆解与 AI 协作](interactive-learning/day11.md)
-- [Day12 Capstone：可演示 AI 产品闭环](interactive-learning/day12.md)
+完整的 Day01–Day20 主题、顺序、产出与文档链接见 [交互学习总计划](interactive-learning/overview.md)。其中 Day14–20 覆盖恢复、发布、SRE 与项目交付证据，是前 13 天工程基础的必经延伸，不是可选附录。
 
 ## 当前推荐资料源
 

@@ -1,5 +1,9 @@
 # Day 13 UI/UX Pro Max 实战
 
+<!-- architecture
+{"title":"设计建议到可验证界面","summary":"设计上下文驱动组件实现，渲染结果再回到视觉与交互验证。","type":"feedback","nodes":[{"label":"设计目标","tone":"accent"},{"label":"UI/UX 数据检索"},{"label":"设计系统","tone":"system"},{"label":"React 组件"},{"label":"页面验证","tone":"warning"},{"label":"设计调整"}],"feedback":"验证发现的问题回流到设计约束和组件实现。"}
+-->
+
 ## Goal
 
 掌握 UI/UX Pro Max 的原理和数据链路，并把一次设计建议稳定地落成可维护、可验证的 React 页面。

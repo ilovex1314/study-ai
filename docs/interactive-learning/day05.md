@@ -1,5 +1,9 @@
 # Day 05 平台选型
 
+<!-- architecture
+{"title":"选型责任边界","summary":"业务目标、平台能力、集成约束和退出成本必须分别被验证。","type":"boundary","nodes":[{"label":"业务任务","tone":"accent"},{"label":"平台能力"},{"label":"框架适配"},{"label":"数据与合规","tone":"system"},{"label":"供应商退出","tone":"warning"}]}
+-->
+
 ## Today Goal
 
 围绕“平台、框架与供应商选型”形成可执行工程判断。完成后，你应该能把相关工具、架构边界、数据流和验收方式讲清楚，并产出一个可以继续实现的小设计。

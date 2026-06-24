@@ -1,5 +1,9 @@
 # Day 02 Prompt / RAG / Grounding
 
+<!-- architecture
+{"title":"从知识入库到带引用回答","summary":"文档先被处理和索引，再按问题检索、组装上下文并输出可追溯回答。","type":"lifecycle","nodes":[{"label":"原始文档"},{"label":"清洗切块"},{"label":"索引入库","tone":"system"},{"label":"检索与重排"},{"label":"Prompt 合约","tone":"accent"},{"label":"带引用回答"}]}
+-->
+
 ## Today Goal
 
 学会把业务输入组织成稳定 prompt 合约，判断什么时候需要 RAG，并画出从文档入库到带引用回答的完整链路。

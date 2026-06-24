@@ -19,3 +19,13 @@ describe("course directory positioning", () => {
     expect(contract).toContain(".series-dock.open .series-dock-toggle { position: absolute !important;");
   });
 });
+
+describe("desktop section rail", () => {
+  it("keeps a clicked-open menu expanded after the toggle loses focus", () => {
+    const contract = stylesheet.slice(stylesheet.indexOf("/* FINAL: fixed-navigation-behavior.html"));
+
+    expect(contract).toContain(".section-rail:hover, .section-rail:focus-within, .section-rail.open { right: 0 !important; width: 154px !important; height: auto !important; padding: 8px 0 !important; }");
+    expect(contract).toContain(".section-rail .route-toggle { left: 0 !important; right: auto !important; border-left: 0 !important; border-right: 0 !important; }");
+    expect(contract).toContain(".section-rail.open .route-step { opacity: 1 !important; }");
+  });
+});

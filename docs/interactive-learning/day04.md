@@ -1,5 +1,9 @@
 # Day 04 产品化交付
 
+<!-- architecture
+{"title":"AI 产品交付分层","summary":"体验、应用编排、模型能力与观测治理分层协作，避免把责任塞进聊天界面。","type":"layered","nodes":[{"label":"前端体验","tone":"accent"},{"label":"应用 API"},{"label":"模型网关","tone":"system"},{"label":"RAG / Agent"},{"label":"业务系统","tone":"system"},{"label":"观测与评估","tone":"warning"}]}
+-->
+
 ## Today Goal
 
 把前 3 天的模型、RAG、Agent 能力接成可交付产品架构，明确前端、后端、网关、观测和评估各自负责什么。

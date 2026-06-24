@@ -1,46 +1,38 @@
-# study-ai Interactive Learning Plan
+# study-ai：20 天 AI 产品工程学习路线
 
-Persona: senior frontend/backend engineer who wants to ship AI products, not just learn AI vocabulary.
+面向已有前后端经验、希望交付真实 AI 产品的工程师。每天约 60 分钟；每一天都需要留下可复核的判断、任务或项目证据。
 
-Pace: 12 focused days, about 60 minutes per day. This is the executable interactive version of the larger 12-week AI Agent roadmap. Each day compresses one production learning slice into concepts, architecture, practice, quiz, and review.
+## 学习原则
 
-Quality score: 92/100
+> 模型负责概率性的理解与生成；系统负责状态、权限、成本、审计和可恢复性。
 
-Repair rounds: 1
+## 能力路线
 
-## Day Map
+| 阶段 | Day | 主题 | 可验证产出 |
+| --- | --- | --- | --- |
+| 定义可靠 AI 行为 | 01 | AI 产品问题与模型边界 | 可测任务与控制边界 |
+|  | 02 | Prompt、结构化输出与工具契约 | 可测试 Prompt 合约 |
+|  | 03 | 上下文、RAG 与 Grounding | 带证据的最小检索设计 |
+|  | 04 | 工具、Workflow 与人工确认 | 受控副作用工作流 |
+|  | 05 | Agent、状态与可恢复执行 | 有停止条件的 Agent 状态图 |
+| 构建生产系统 | 06 | AI UX：流式、引用与确认 | 失败可见的交互方案 |
+|  | 07 | 知识生命周期与数据治理 | 摄取、更新、删除与权限策略 |
+|  | 08 | AI 安全、身份与工具权限 | 威胁模型与审批矩阵 |
+|  | 09 | Eval、红队与质量工程 | Golden set 与回归规则 |
+|  | 10 | Trace、可观测性与反馈 | 运行证据与指标设计 |
+|  | 11 | 成本、延迟与技术选型 | 预算、SLO 与 ADR |
+| 扩展与运营 | 12 | 多模态与实时体验 | 渐进反馈和降级策略 |
+|  | 13 | AI 产品 UI/UX 工程化 | 可访问响应式设计系统 |
+|  | 14 | 持久化工作流与故障恢复 | Checkpoint 与补偿方案 |
+|  | 15 | 发布治理与变更控制 | 版本、灰度与回滚门禁 |
+|  | 16 | AI SRE、SLO 与事故响应 | Runbook 与故障演练 |
+| 项目证据闭环 | 17 | 项目发现、用户与成功指标 | 项目假设与指标 |
+|  | 18 | 项目架构、数据契约与风险 | 架构、数据契约和风险清单 |
+|  | 19 | 项目实现、评估与发布检查 | Eval 与发布检查表 |
+|  | 20 | 项目复盘、能力证据与产品飞轮 | 复盘与能力档案 |
 
-| Day | Focus | Production Capability |
-| --- | --- | --- |
-| Day01 | 模型认知与能力边界 | 判断什么时候能信任 LLM，什么时候必须保留确定性系统控制。 |
-| Day02 | Prompt、RAG 与知识 grounding | 设计 prompt 合约和最小 RAG 链路，并能度量检索质量。 |
-| Day03 | Agent loop 与 workflow control | 设计带工具、状态、trace、人工确认和失败恢复的执行循环。 |
-| Day04 | AI product delivery and operations | 把 demo 变成有 UX、网关、eval、观测、成本控制和部署策略的产品。 |
-| Day05 | 平台、框架与供应商选型 | 根据团队能力和产品阶段选择 OpenAI Agents SDK、Vercel AI SDK、LangGraph、Dify、Coze、Mastra、n8n 或云平台。 |
-| Day06 | Vercel AI SDK、Next.js 与前后端协作 | 用 TypeScript 技术栈搭出流式 AI UI、provider abstraction、工具调用和服务端边界。 |
-| Day07 | LangGraph / durable workflow / human-in-the-loop | 学习状态图、checkpoint、interrupt/resume 和多步骤任务恢复。 |
-| Day08 | Dify、Coze、n8n 与业务验证 | 理解可视化平台如何加速原型、知识库、工作流和跨系统自动化。 |
-| Day09 | 检索、重排、权限、多租户与评估 | 把 Day02 的最小 RAG 扩展为多源、多租户、可评估、可运维的知识系统。 |
-| Day10 | Eval、反馈、红队与回归测试 | 建立 AI 功能的 golden dataset、离线评估、在线反馈、回归和风险样本库。 |
-| Day11 | 上下文工程、任务拆解与 AI 协作 | 把模糊想法转成 AI 可执行任务，降低 token 浪费和返工。 |
-| Day12 | Capstone：可演示 AI 产品闭环 | 把 11 天能力合成一个可演示产品：前端体验、编排层、工具、部署、日志、eval 和复盘。 |
+## 互动课程约定
 
-## How This Merges The Roadmap
+每一天的网页都提供概念、关系型架构图、实践任务、至少 4 道加权题（总分 100）和复盘建议。桌面端使用右侧固定悬浮章节导航；H5 使用顶部横向锚点，不遮挡正文。
 
-The original `docs/ai-agent-learning-plan.md` used a 12-week path: model cognition, prompt/RAG, agent orchestration, platform selection, product delivery, operations, vibe coding, quality engineering, and a capstone project. This interactive plan keeps those themes, but converts them into 12 executable learning days so the web app can teach and review them consistently.
-
-## Sources Used
-
-- OpenAI Agents SDK docs: agents, tools, handoffs, guardrails, tracing.
-- Vercel AI SDK docs: TypeScript AI UI, streaming, tools, provider abstraction.
-- LangGraph docs: durable execution, state graphs, checkpointers, interrupts, human-in-the-loop resume.
-- Dify docs/product material: visual workflow, RAG pipelines, tools, agent strategies.
-- Mastra and n8n docs: TypeScript agent/workflow patterns and low-code automation patterns.
-
-## Quality Gate Notes
-
-- Every question concept is present in the lesson body.
-- Every Day includes architecture or data flow.
-- Every Day includes hands-on work, a production example, and a counterexample.
-- The 12-week roadmap content is merged into the same Day01-Day12 structure used by the interactive app.
-- Academic definitions are kept short; implementation, architecture, production tradeoffs, and verification are the center.
+本版本只实现个人、本地优先的学习闭环。登录、云同步、团队协作、AI 教练和自动评分属于后续阶段。

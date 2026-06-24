@@ -3,6 +3,20 @@ import { option } from "./helpers";
 
 const day01Modules: ConceptModule[] = [
   {
+    id: "d1-m0",
+    eyebrow: "Starting Point",
+    title: "先定义用户结果，再决定要不要用 AI",
+    summary: "“接入 AI”不是任务。任务必须同时说明用户结果、可用证据、错误代价和成功指标。",
+    visual: "schema",
+    concept: "product-delivery",
+    whyItMatters: "没有可测任务，团队会把聊天界面、模型调用次数或主观好评误当成产品结果。",
+    coreIdeas: ["结果描述用户完成什么，而不是模型做什么。", "成功指标要能在真实运行中观测。", "错误代价决定是否必须审批、拒答或转人工。"],
+    engineerLens: "先写任务边界卡：用户结果、证据、系统控制、失败兜底和验收指标。",
+    pitfalls: ["以“做个 AI 助手”代替任务定义", "只量模型回复长度", "高风险任务没有人工接管路径"],
+    practicePrompt: "为一个熟悉场景写出用户结果、成功指标、错误代价和不能交给模型的动作。",
+    fieldExample: "退款助手的结果是“用户理解资格并获得正确下一步”，不是“模型生成一段退款文字”。"
+  },
+  {
     id: "d1-m1",
     eyebrow: "Concept 01",
     title: "LLM 不是函数，是概率决策器",
@@ -14,7 +28,7 @@ const day01Modules: ConceptModule[] = [
     engineerLens: "把 LLM 当语义判断和生成组件，把状态机、权限、审计、重试、人工确认留给后端。",
     pitfalls: ["把模型回答当数据库事实","让模型直接决定高风险动作","只看 demo 不看失败模式"],
     practicePrompt: "选一个熟悉业务，标出哪些环节可交给 LLM，哪些必须由确定性系统控制。",
-    fieldExample: "在 LLM 不是函数，是概率决策器 相关工作中，先把边界和验收写出来，再让模型或平台参与生成。",
+    fieldExample: "模型可以识别退款意图并生成解释草稿；资格、金额、状态变更和审计必须由后端规则完成。",
     source: { label: "OpenAI Agents SDK", url: "https://platform.openai.com/docs/guides/agents-sdk/" }
   },
   {
@@ -29,7 +43,7 @@ const day01Modules: ConceptModule[] = [
     engineerLens: "先用搜索定位资料，再读取必要片段；不要把整仓库或整份文档塞进上下文。",
     pitfalls: ["整篇文档直接进 prompt","每轮重复粘贴稳定约定","不区分输入和输出 token 成本"],
     practicePrompt: "把一个长需求压缩成目标、约束、事实、验收四段。",
-    fieldExample: "在 Token 是成本、延迟和注意力预算 相关工作中，先把边界和验收写出来，再让模型或平台参与生成。",
+    fieldExample: "制度问答先按权限、生效日期和问题召回少量证据，不把整套制度库直接塞进 Prompt。",
     source: { label: "OpenAI Agents SDK", url: "https://platform.openai.com/docs/guides/agents-sdk/" }
   },
   {
@@ -44,7 +58,7 @@ const day01Modules: ConceptModule[] = [
     engineerLens: "设计 memory schema：什么进本轮上下文，什么存长期，什么由工具实时查。",
     pitfalls: ["把长上下文当记忆系统","不记录来源","让用户以为模型记住了全部历史"],
     practicePrompt: "为项目助手设计 memory schema：项目约定、用户偏好、临时任务状态分别怎么存。",
-    fieldExample: "在 上下文不是长期记忆 相关工作中，先把边界和验收写出来，再让模型或平台参与生成。",
+    fieldExample: "订单状态由工具实时查询，团队规范和用户偏好写入可版本化存储，再按任务取回。",
     source: { label: "OpenAI Agents SDK", url: "https://platform.openai.com/docs/guides/agents-sdk/" }
   },
   {
@@ -59,7 +73,7 @@ const day01Modules: ConceptModule[] = [
     engineerLens: "把 temperature 当采样参数，不要当可靠性开关。",
     pitfalls: ["以为 temperature=0 就一定正确","用高温做结构化抽取","用调参代替事实校验"],
     practicePrompt: "为分类、客服回复、方案 brainstorm、JSON 抽取分别选择 temperature 范围。",
-    fieldExample: "在 Temperature 控制发散，不控制事实正确 相关工作中，先把边界和验收写出来，再让模型或平台参与生成。",
+    fieldExample: "即便使用低 temperature，制度问答仍要提供来源引用并在证据不足时拒答。",
     source: { label: "OpenAI Agents SDK", url: "https://platform.openai.com/docs/guides/agents-sdk/" }
   }
 ];
@@ -97,14 +111,14 @@ const day01Architecture: DecisionLayer[] = [
 export const day01Lesson: LessonPage = {
   id: "day01",
   path: "/day01",
-  title: "模型认知",
+  title: "AI 产品问题与模型边界",
   phase: "Day01",
   status: "available",
-  summary: "理解 LLM 的概率本质、上下文、token、temperature 和工程边界。",
-  hero: "把 AI 名词变成工程判断力",
-  conceptIntro: "把“模型会回答”拆成可工程化的能力边界。完成后，你应该能判断一个需求适合 Chat、RAG、Agent、Workflow 还是 Fine-tuning，并说清楚成本、延迟和失败模式。",
-  decisionTitle: "模型认知与能力边界 架构判断",
-  decisionIntro: "用户输入 -> 意图识别 -> 上下文预算 -> 模型生成草稿 -> schema 校验 -> 业务系统决策 -> 输出/人工确认 高风险动作要走确定性状态机；模型只能提出建议或生成解释。",
+  summary: "先定义用户结果、证据、风险与系统边界，再决定模型、RAG、Workflow 或 Agent 是否适合进入产品。",
+  hero: "把模型输出变成可控的产品行为",
+  conceptIntro: "先定义任务，再决定 AI 的责任边界",
+  decisionTitle: "模型、证据、策略与业务结果的责任关系",
+  decisionIntro: "模型生成结构化意图；可信证据提供事实；策略层校验权限、金额和状态；受限工具执行后留下审计与可回滚状态。它们相互约束，而不是一条把模型放在中间的流水线。",
   decisionExample: "退款助手中，模型识别用户诉求并生成解释；退款资格、金额、风控和状态变更由后端规则与审计系统控制。",
   modules: day01Modules,
   decisionLayers: day01Architecture,
@@ -116,7 +130,8 @@ export const day01Lesson: LessonPage = {
         prompt: "为什么不能把 LLM 当普通后端函数？",
         scenario: "把这个问题放到真实产品或团队工程流程里判断。",
         options: [option("a", "因为 LLM 无法输出中文", false), option("b", "因为 LLM 基于概率生成，关键控制要系统兜底", true), option("c", "因为 LLM 只能做图片任务", false)],
-        explanation: "因为它基于概率生成，业务状态、权限和审计需要确定性系统控制。"
+        explanation: "因为它基于概率生成，业务状态、权限和审计需要确定性系统控制。",
+        weight: 30
       },
       {
         id: "d1-q2",
@@ -125,7 +140,8 @@ export const day01Lesson: LessonPage = {
         prompt: "token 预算主要影响什么？",
         scenario: "把这个问题放到真实产品或团队工程流程里判断。",
         options: [option("a", "成本、延迟和注意力质量", true), option("b", "只影响 UI 样式", false), option("c", "只影响数据库大小", false)],
-        explanation: "token 同时影响成本、延迟和上下文噪声。"
+        explanation: "token 同时影响成本、延迟和上下文噪声。",
+        weight: 10
       },
       {
         id: "d1-q3",
@@ -134,7 +150,8 @@ export const day01Lesson: LessonPage = {
         prompt: "为什么上下文不等于长期记忆？",
         scenario: "把这个问题放到真实产品或团队工程流程里判断。",
         options: [option("a", "因为上下文只能存图片", false), option("b", "因为上下文是本轮输入范围，不能替代持久化记忆", true), option("c", "因为上下文不会消耗 token", false)],
-        explanation: "上下文是本轮可见信息，长期事实要持久化并按需检索。"
+        explanation: "上下文是本轮可见信息，长期事实要持久化并按需检索。",
+        weight: 25
       },
       {
         id: "d1-q4",
@@ -143,7 +160,18 @@ export const day01Lesson: LessonPage = {
         prompt: "temperature=0 能保证事实正确吗？",
         scenario: "把这个问题放到真实产品或团队工程流程里判断。",
         options: [option("a", "能，所有答案都会正确", false), option("b", "不能，它不是事实校验机制", true), option("c", "能，它会自动调用数据库", false)],
-        explanation: "不能，它只降低采样发散，事实正确要靠证据、工具和校验。"
+        explanation: "不能，它只降低采样发散，事实正确要靠证据、工具和校验。",
+        weight: 20
+      },
+      {
+        id: "d1-q5",
+        type: "single",
+        concept: "model-cognition",
+        prompt: "退款助手准备调用付款工具时，哪个控制点最能降低重复或越权执行风险？",
+        scenario: "把模型生成的工具意图放进真实业务流程判断。",
+        options: [option("a", "只提高 temperature", false), option("b", "schema、权限作用域、幂等键与审批", true), option("c", "把工具名称写得更短", false)],
+        explanation: "工具调用需要系统侧 schema、授权和幂等控制；模型输出只是候选意图。",
+        weight: 15
       }
   ]
 };

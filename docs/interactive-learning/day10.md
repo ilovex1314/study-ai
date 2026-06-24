@@ -1,5 +1,9 @@
 # Day 10 AI 质量工程
 
+<!-- architecture
+{"title":"质量反馈闭环","summary":"离线基准、红队、线上反馈和回归测试共同决定是否允许发布。","type":"feedback","nodes":[{"label":"Golden Set","tone":"system"},{"label":"离线评估"},{"label":"红队测试","tone":"warning"},{"label":"上线门禁","tone":"accent"},{"label":"线上反馈"},{"label":"回归集更新","tone":"system"}],"feedback":"线上失败样本回流到评估集和门禁规则。"}
+-->
+
 ## Today Goal
 
 围绕“Eval、反馈、红队与回归测试”形成可执行工程判断。完成后，你应该能把相关工具、架构边界、数据流和验收方式讲清楚，并产出一个可以继续实现的小设计。

@@ -1,5 +1,9 @@
 # Day 11 Vibe Coding 工程化
 
+<!-- architecture
+{"title":"AI 协作验证回路","summary":"把模糊需求拆成上下文、任务、实现和验证，而不是只让模型一次生成。","type":"feedback","nodes":[{"label":"任务意图","tone":"accent"},{"label":"上下文包"},{"label":"小步实现"},{"label":"自动验证","tone":"system"},{"label":"人工审阅","tone":"warning"},{"label":"修正提示资产"}],"feedback":"验证结果反哺上下文和下一次任务拆解。"}
+-->
+
 ## Today Goal
 
 围绕“上下文工程、任务拆解与 AI 协作”形成可执行工程判断。完成后，你应该能把相关工具、架构边界、数据流和验收方式讲清楚，并产出一个可以继续实现的小设计。

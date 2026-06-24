@@ -29,6 +29,17 @@
 .practice-prompt, .field-example { background: #f8eee0; border-color: #e4c48d; }
 .practice-prompt strong, .source-link, .solution-top span, .choice-card strong { color: var(--accent-primary); }
 .architecture-diagram { background: #edf0f5; border-color: #cbd4e5; }
+.architecture-flow { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; margin-top: 18px; }
+.architecture-diagram[data-type="boundary"] .architecture-flow { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.architecture-diagram[data-type="lifecycle"] .architecture-flow { border-left: 3px solid var(--accent-primary); padding-left: 14px; }
+.architecture-diagram[data-type="layered"] .architecture-flow { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.architecture-diagram[data-type="state"] .architecture-flow { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); max-width: 720px; margin-inline: auto; }
+.architecture-diagram[data-type="feedback"] .architecture-flow { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); border-radius: 18px; outline: 1px dashed #9fafd0; padding: 14px; }
+.architecture-node { display: inline-flex; align-items: center; gap: 10px; padding: 10px 12px; border: 1px solid #cbd4e5; border-radius: 9px; background: #fcfbf7; color: var(--surface-ink); font-size: 13px; font-weight: 800; }
+.architecture-node i { color: var(--accent-primary); font-style: normal; font-weight: 900; }
+.architecture-node[data-tone="accent"] { border-color: #9fafd0; background: #dfe7f6; color: var(--accent-primary); }
+.architecture-node[data-tone="system"] { border-color: #a8c7ae; background: #eaf2ec; color: #356548; }
+.architecture-diagram figcaption { margin-top: 16px; color: var(--accent-progress); font-size: 13px; font-weight: 700; }
 .diagram-heading, .diagram-heading span { color: var(--text-muted); }
 .diagram-heading span, .plane-title, .lane-title { color: var(--accent-primary); fill: var(--accent-primary); }
 .architecture-svg .arch-card rect, .architecture-svg .service-box rect { fill: #fcfbf7; stroke: #8e9ab0; }
@@ -42,6 +53,122 @@
 .series-dock button.active { background: var(--accent-progress); color: #fff; }
 .score-card, .feedback.correct { background: #eaf2ec; border-color: #a8c7ae; color: var(--surface-ink); }
 .feedback.wrong { background: #f8e7e3; border-color: #db9c93; color: var(--surface-ink); }
+
+/* Approved fixed-navigation mockup: preserve the left course dock, mirror every other spatial rule. */
+@media (min-width: 1025px) {
+  .app-shell { width: min(920px, calc(100% - 36px)); padding: 48px 0 112px; }
+  .hero { padding: 38px; border-radius: 15px; box-shadow: 0 20px 50px rgba(24, 33, 50, .08); }
+  .hero h1 { max-width: 720px; margin: 6px 0 12px; font-size: 36px; line-height: 1.28; letter-spacing: -.04em; }
+  .hero-copy > p:last-child { max-width: 660px; margin: 0; font-size: 16px; line-height: 1.8; }
+  .section-heading h2 { margin: 0 0 12px; font-size: 30px; line-height: 1.38; }
+  .section-rail { position: fixed; z-index: 50; right: -112px; top: 36vh; width: 154px; height: 46px; min-height: 0; overflow: hidden; padding: 0; border: 1px solid var(--line); border-radius: 12px; background: var(--surface); box-shadow: 0 10px 26px rgba(20, 28, 42, .15); transition: right .2s ease, height .2s ease; }
+  .section-rail:hover, .section-rail:focus-within { right: -12px; height: 262px; width: 154px; }
+  .section-rail .route-toggle { position: absolute; top: 0; right: 0; display: grid; place-items: center; width: 42px; height: 44px; min-height: 0; padding: 0; border: 0; border-left: 1px solid var(--line); border-radius: 0; background: var(--surface); color: var(--accent-primary); font-size: 20px; }
+  .section-rail .route-step { display: block; width: 112px; min-height: 0; padding: 9px 8px; border: 0; border-radius: 7px; background: transparent; color: var(--text-muted); font-size: 12px; text-align: left; opacity: 0; transition: opacity .16s ease; }
+  .section-rail:hover .route-step, .section-rail:focus-within .route-step { opacity: 1; }
+  .section-rail .route-step.active { background: var(--accent-primary); color: #fff; font-weight: 850; }
+}
+
+/* Day01 workbench polish: source of truth for the approved warm editorial layout. */
+.app-shell { width: min(1180px, 100%); padding: 28px 44px 120px; }
+.hero { min-height: auto; padding: 42px 52px 36px; border-radius: 14px; background: linear-gradient(120deg, #fffdfa 0 70%, #e9e3d8 70%); }
+.hero h1 { max-width: 820px; font-size: clamp(28px, 2vw, 32px); line-height: 1.42; letter-spacing: -0.03em; }
+.hero-copy > p:last-child { max-width: 610px; margin-top: 14px; font-size: 16px; line-height: 1.72; }
+.lesson-layout { display: block; }
+.lesson-content { min-width: 0; }
+.architecture-diagram { margin-top: 20px; padding: 26px; border-radius: 12px; overflow: hidden; }
+.architecture-svg { display: block; width: 100%; height: auto; min-height: 0; }
+.learning-workbench { grid-template-columns: minmax(0, 1.12fr) minmax(320px, .88fr); }
+.quiz-panel, .review-panel { border-radius: 12px; }
+.question-meta { justify-content: flex-start; color: var(--accent-primary); }
+.question-nav { padding-bottom: 14px; border-bottom: 1px solid var(--line); }
+
+.concept-diagram {
+  margin: 20px 0 0;
+  padding: 16px;
+  border: 1px solid #cbd4e5;
+  border-radius: 12px;
+  background: #eef1f6;
+}
+
+.concept-diagram-flow,
+.concept-diagram-branches {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+}
+
+.concept-diagram-node {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 10px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--surface-raised);
+  color: var(--surface-ink);
+  font-size: 13px;
+  font-weight: 750;
+}
+
+.concept-diagram-node i { color: var(--accent-primary); font-style: normal; font-weight: 900; }
+.concept-diagram-node[data-tone="accent"] { border-color: #9fafd0; background: #dfe7f6; color: var(--accent-primary); }
+.concept-diagram-node[data-tone="success"] { border-color: #a8c7ae; background: #eaf2ec; color: #356548; }
+.concept-diagram-node[data-tone="warning"], .concept-diagram-branches [data-tone="warning"] { border-color: #e4c48d; background: #f8eee0; color: #8a4b25; }
+.concept-diagram-branches { margin-top: 10px; }
+.concept-diagram-branches span { padding: 6px 9px; border: 1px solid transparent; border-radius: 7px; font-size: 12px; font-weight: 750; }
+.concept-diagram figcaption { margin-top: 12px; color: var(--text-muted); font-size: 13px; line-height: 1.55; }
+
+@media (min-width: 1025px) {
+  .section-rail { top: 32vh; right: 0; width: 42px; height: 46px; min-height: 0; padding: 0; overflow: hidden; border-radius: 12px 0 0 12px; transition: width 180ms ease, height 180ms ease; }
+  .section-rail:hover, .section-rail:focus-within { width: 176px; height: 246px; }
+  .section-rail .route-toggle { right: 0; width: 42px; height: 46px; border-left: 1px solid var(--line); border-radius: 0; color: #40559a; font-size: 20px; }
+  .section-rail .route-toggle::after { content: none; }
+  .section-rail .route-step { width: 126px; opacity: 0; transform: translateX(-12px); transition: opacity 160ms ease, transform 160ms ease; }
+  .section-rail:hover .route-step, .section-rail:focus-within .route-step { opacity: 1; transform: translateX(0); }
+  .section-rail:hover .route-toggle, .section-rail:focus-within .route-toggle { border-left-color: transparent; }
+}
+
+@media (max-width: 1024px) {
+  .section-rail {
+    position: sticky;
+    top: 0;
+    z-index: 20;
+    display: flex;
+    grid-template-columns: none;
+    gap: 22px;
+    overflow-x: auto;
+    margin: 12px 0 20px;
+    padding: 12px 2px 9px;
+    border: 0;
+    border-bottom: 1px solid var(--line);
+    border-radius: 0;
+    background: rgba(245, 242, 236, .97);
+    box-shadow: none;
+    white-space: nowrap;
+  }
+  .section-rail .route-toggle { display: none; }
+  .section-rail .route-step,
+  .section-rail.open .route-step { display: block; flex: 0 0 auto; min-height: 0; padding: 0 0 9px; border: 0; border-radius: 0; background: transparent; color: var(--text-muted); font-size: 13px; }
+  .section-rail .route-step.active { border-bottom: 3px solid var(--accent-primary); background: transparent; color: var(--accent-primary); }
+  .hero { padding: 24px; border-radius: 12px; }
+  .hero h1 { max-width: 100%; margin: 6px 0 12px; font-size: 29px; line-height: 1.28; letter-spacing: -.04em; }
+  .hero-copy > p:last-child { max-width: 100%; margin: 0; font-size: 16px; line-height: 1.75; }
+.section-heading h2 { max-width: 720px; font-size: clamp(24px, 3vw, 30px); line-height: 1.42; letter-spacing: -0.025em; }
+}
+
+@media (max-width: 720px) {
+  .app-shell { padding: 14px 14px 96px; }
+  .hero { padding: 30px 24px 28px; border-radius: 12px; background: #fffdfa; }
+  .hero h1 { font-size: clamp(30px, 10vw, 42px); line-height: 1.34; }
+  .hero-copy > p:last-child { font-size: 16px; }
+  .section-rail { top: 0; z-index: 20; margin: 12px 0 20px; padding: 12px 2px 8px; gap: 20px; border-bottom: 1px solid var(--line); background: rgba(245, 242, 236, .97); }
+  .section-rail .route-step { flex: 0 0 auto; font-size: 13px; }
+  .architecture-diagram { padding: 14px; }
+  .architecture-svg { min-width: 620px; transform: scale(.72); transform-origin: top left; margin-bottom: -150px; }
+  .learning-workbench { grid-template-columns: 1fr; }
+}
 
 /* Application sidebar: desktop navigation is a layout column, never an overlay. */
 .series-dock-chevron { width: 24px; height: 24px; flex: 0 0 24px; stroke: currentColor; stroke-width: 2.5; stroke-linecap: round; stroke-linejoin: round; fill: none; }
@@ -327,7 +454,7 @@ button:disabled {
   color: #9da9bb;
 }
 
-.route-strip {
+.section-rail {
   position: sticky;
   top: 0;
   z-index: 10;
@@ -338,6 +465,32 @@ button:disabled {
   padding: 10px 0;
   background: rgba(243, 240, 232, 0.94);
   backdrop-filter: blur(10px);
+}
+
+@media (min-width: 1025px) {
+  .section-rail {
+    position: fixed;
+    top: 34vh;
+    right: -132px;
+    z-index: 30;
+    display: block;
+    width: 176px;
+    margin: 0;
+    padding: 8px;
+    border: 1px solid rgba(23, 32, 51, 0.16);
+    border-radius: 12px 0 0 12px;
+    background: rgba(255, 253, 250, 0.96);
+    box-shadow: 0 12px 32px rgba(23, 32, 51, 0.16);
+    transition: right 180ms ease;
+  }
+
+  .section-rail:hover,
+  .section-rail:focus-within { right: 0; }
+
+  .section-rail .route-toggle { position: absolute; right: 0; top: 0; display: grid; place-items: center; width: 42px; min-height: 46px; padding: 0; margin: 0; border-radius: 0; background: var(--surface); color: #40559a; font-size: 0; }
+  .section-rail .route-toggle::after { content: "☰"; font-size: 18px; }
+  .section-rail .route-step { display: block; width: calc(100% - 42px); min-height: 0; padding: 10px; text-align: left; border-radius: 8px; background: transparent; color: #687083; }
+  .section-rail .route-step.active { background: #40559a; color: #fff; }
 }
 
 .route-toggle {
@@ -967,6 +1120,10 @@ button:disabled {
   font-weight: 800;
 }
 
+.question-nav { display: flex; flex-wrap: wrap; gap: 8px; margin: 16px 0; }
+.question-nav button { width: 34px; height: 34px; border: 1px solid var(--line); border-radius: 8px; background: var(--surface); color: var(--text-primary); font-weight: 800; }
+.question-nav button.active { border-color: var(--accent-primary); background: var(--accent-primary); color: #fff; }
+
 .scenario {
   margin: 18px 0;
   padding: 16px;
@@ -1162,29 +1319,12 @@ button:disabled {
     padding: 20px;
   }
 
-  .route-strip {
-    grid-template-columns: 1fr;
-    gap: 8px;
-    padding: 8px;
-    border-radius: 8px;
-  }
+  .section-rail { position: sticky; top: 0; display: flex; gap: 18px; overflow-x: auto; margin: 12px 0; padding: 10px 0; background: rgba(243, 240, 232, .96); white-space: nowrap; }
 
-  .route-toggle {
-    display: block;
-    min-height: 42px;
-    color: #10131a;
-    background: #92e6a7;
-    font-weight: 900;
-  }
+  .section-rail .route-toggle { display: none; }
 
-  .route-step {
-    display: none;
-    min-height: 44px;
-  }
-
-  .route-strip.open .route-step {
-    display: grid;
-  }
+  .section-rail .route-step { display: block; min-height: 0; padding: 0 0 8px; border: 0; background: transparent; color: var(--text-muted); }
+  .section-rail .route-step.active { border-bottom: 3px solid var(--accent-primary); color: var(--accent-primary); }
 
   .series-grid,
   .section-grid,
@@ -1197,9 +1337,7 @@ button:disabled {
     min-height: 250px;
   }
 
-  .hero h1 {
-    font-size: 38px;
-  }
+  .hero h1 { font-size: 38px; line-height: 1.34; }
 
   .section-title-row {
     display: grid;
@@ -1373,6 +1511,27 @@ button:disabled {
 .series-dock:not(.open) .series-dock-toggle:focus-visible .series-dock-menu-icon { display: none; }
 .series-dock:not(.open) .series-dock-toggle:hover .series-dock-chevron,
 .series-dock:not(.open) .series-dock-toggle:focus-visible .series-dock-chevron { display: block; }
+
+/* FINAL: fixed-navigation-behavior.html is the source of truth for lesson reading geometry. */
+@media (min-width: 1025px) {
+  .app-shell { width: min(920px, calc(100% - 36px)) !important; padding: 48px 0 112px !important; }
+  .hero { min-height: 0 !important; padding: 38px !important; border-radius: 15px !important; }
+  .hero h1 { max-width: 720px !important; margin: 6px 0 12px !important; font-size: 36px !important; line-height: 1.28 !important; letter-spacing: -.04em !important; }
+  .hero-copy > p:last-child { max-width: 660px !important; margin: 0 !important; font-size: 16px !important; line-height: 1.8 !important; }
+  .section-heading h2 { margin: 0 0 12px !important; font-size: 30px !important; line-height: 1.38 !important; }
+  .section-rail { position: fixed !important; z-index: 50 !important; right: -112px !important; top: 36vh !important; width: 154px !important; height: 46px !important; min-height: 0 !important; overflow: hidden !important; padding: 0 !important; border: 1px solid var(--line) !important; border-radius: 12px !important; background: var(--surface-raised) !important; box-shadow: 0 10px 26px rgba(20,28,42,.15) !important; transition: right .2s ease, height .2s ease !important; }
+  .section-rail:hover, .section-rail:focus-within { right: -12px !important; height: 262px !important; }
+  .section-rail .route-toggle { position: absolute !important; top: 0 !important; right: 0 !important; display: grid !important; place-items: center !important; width: 42px !important; height: 44px !important; min-height: 0 !important; padding: 0 !important; border: 0 !important; border-left: 1px solid var(--line) !important; border-radius: 0 !important; background: var(--surface-raised) !important; color: var(--accent-primary) !important; font-size: 20px !important; }
+  .section-rail .route-step { display: block !important; width: 112px !important; min-height: 0 !important; padding: 9px 8px !important; border: 0 !important; border-radius: 7px !important; background: transparent !important; color: var(--text-muted) !important; font-size: 12px !important; text-align: left !important; opacity: 0 !important; }
+  .section-rail:hover .route-step, .section-rail:focus-within .route-step { opacity: 1 !important; }
+  .section-rail .route-step.active { background: var(--accent-primary) !important; color: #fff !important; font-weight: 850 !important; }
+  .section-rail { right: 0 !important; width: 42px !important; height: 46px !important; overflow: hidden !important; transition: width .2s ease, height .2s ease !important; }
+  .section-rail:hover, .section-rail:focus-within, .section-rail.open { right: 0 !important; width: 154px !important; height: auto !important; padding: 8px 0 !important; }
+  .section-rail .route-toggle { left: 0 !important; right: auto !important; border-left: 0 !important; border-right: 0 !important; }
+  .section-rail .route-toggle::before, .section-rail .route-toggle::after { content: none !important; display: none !important; }
+  .section-rail .route-step { margin-left: 42px !important; width: 112px !important; }
+  .section-rail.open .route-step { opacity: 1 !important; }
+}
 .section-heading h2, .concept-copy h2, .quiz-panel h3, .concept-detail h3, .field-example h3 { color: var(--surface-ink); }
 .concept-copy p:last-child, .concept-detail p, .concept-detail li, .decision-intro, .choice-card p, .choice-card small, .solution-top small, .field-example, .field-example p, .scenario, .feedback p, .recommendation-list p, .empty { color: var(--text-muted); }
 .concept-detail h3 { color: var(--accent-progress); }

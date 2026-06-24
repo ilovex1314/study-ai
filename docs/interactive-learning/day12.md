@@ -1,5 +1,9 @@
 # Day 12 毕业项目设计
 
+<!-- architecture
+{"title":"可演示项目交付结构","summary":"用范围、用户流、实现切片、验证和部署计划组成可验收的毕业项目。","type":"layered","nodes":[{"label":"问题与用户","tone":"accent"},{"label":"项目范围"},{"label":"核心任务流"},{"label":"实现切片","tone":"system"},{"label":"验证证据","tone":"warning"},{"label":"部署计划"}]}
+-->
+
 ## Today Goal
 
 围绕“Capstone：可演示 AI 产品闭环”形成可执行工程判断。完成后，你应该能把相关工具、架构边界、数据流和验收方式讲清楚，并产出一个可以继续实现的小设计。

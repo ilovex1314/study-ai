@@ -1,5 +1,9 @@
 # Day 07 复杂编排与可恢复执行
 
+<!-- architecture
+{"title":"持久化工作流状态","summary":"复杂任务在节点间保存状态，可中断、人工介入并从可靠检查点继续。","type":"state","nodes":[{"label":"启动任务"},{"label":"图节点执行","tone":"accent"},{"label":"持久化状态","tone":"system"},{"label":"失败重试","tone":"warning"},{"label":"人工介入","tone":"warning"},{"label":"恢复执行","tone":"system"}]}
+-->
+
 ## Today Goal
 
 围绕“LangGraph / durable workflow / human-in-the-loop”形成可执行工程判断。完成后，你应该能把相关工具、架构边界、数据流和验收方式讲清楚，并产出一个可以继续实现的小设计。

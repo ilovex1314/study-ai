@@ -63,6 +63,29 @@ export type LessonSummary = {
   summary: string;
 };
 
+export type ConceptDiagram = {
+  conclusion: string;
+  nodes: Array<{
+    id: string;
+    label: string;
+    tone?: "neutral" | "accent" | "success" | "warning";
+  }>;
+  edges: Array<{
+    from: string;
+    to: string;
+    label?: string;
+    tone?: "default" | "warning";
+  }>;
+};
+
+export type LessonArchitecture = {
+  title: string;
+  summary: string;
+  type: "boundary" | "lifecycle" | "layered" | "state" | "feedback";
+  nodes: Array<{ label: string; tone?: "neutral" | "accent" | "system" | "warning" }>;
+  feedback?: string;
+};
+
 export type ConceptModule = {
   id: string;
   title: string;
@@ -75,6 +98,7 @@ export type ConceptModule = {
   engineerLens: string;
   pitfalls: string[];
   practicePrompt: string;
+  diagram?: ConceptDiagram;
   fieldExample?: string;
   source?: { label: string; url: string; };
 };
@@ -94,13 +118,14 @@ export type LessonQuestion = {
   scenario?: string;
   options: Array<{ id: string; label: string; correct: boolean; }>;
   explanation: string;
+  weight?: number;
 };
 
 export type CurrentAttempt = { id: string; startedAt: string; answers: Record<string, string>; };
 
 export type Attempt = CurrentAttempt & { completedAt: string; answers: Record<string, string>; score: number; total: number; weakConcepts: ConceptId[]; recommendations: string[]; };
 
-export type LessonPage = LessonSummary & { hero: string; conceptIntro: string; decisionTitle: string; decisionIntro: string; decisionExample?: string; modules: ConceptModule[]; decisionLayers: DecisionLayer[]; questions: LessonQuestion[]; };
+export type LessonPage = LessonSummary & { hero: string; conceptIntro: string; decisionTitle: string; decisionIntro: string; decisionExample?: string; architecture?: LessonArchitecture; modules: ConceptModule[]; decisionLayers: DecisionLayer[]; questions: LessonQuestion[]; };
 
 export const conceptLabels: Record<ConceptId, string> = {
   "model-cognition": "模型认知",

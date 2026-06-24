@@ -5,8 +5,13 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
+    "generate:architectures": "node scripts/generate-architectures.mjs",
+    "prebuild": "node scripts/generate-architectures.mjs",
     "build": "tsc -p tsconfig.json && vite build",
+    "prebuild:dist": "node scripts/generate-architectures.mjs",
     "build:dist": "tsc -p tsconfig.json && vite build --outDir dist",
+    "validate:lessons": "node scripts/validate-lessons.mjs",
+    "pretest": "node scripts/generate-architectures.mjs",
     "test": "vitest run",
     "test:watch": "vitest"
   },

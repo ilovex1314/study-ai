@@ -1,5 +1,9 @@
 # Day 08 可视化平台与低代码工作流
 
+<!-- architecture
+{"title":"低代码验证到工程接管","summary":"可视化流程快速验证业务，稳定接口和数据契约再被工程化实现接管。","type":"layered","nodes":[{"label":"业务流程","tone":"accent"},{"label":"Dify / Coze / n8n"},{"label":"工具 API","tone":"system"},{"label":"人工运营"},{"label":"数据记录","tone":"system"},{"label":"工程化接管","tone":"warning"}]}
+-->
+
 ## Today Goal
 
 围绕“Dify、Coze、n8n 与业务验证”形成可执行工程判断。完成后，你应该能把相关工具、架构边界、数据流和验收方式讲清楚，并产出一个可以继续实现的小设计。
