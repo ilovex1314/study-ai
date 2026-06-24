@@ -245,7 +245,7 @@ function LessonPageView({ lesson, routeSection }: { lesson: LessonPage; routeSec
           aria-expanded={moduleNavOpen}
           aria-label={`模块导航：${sections.find((section) => section.id === activeSection)?.label ?? "页面模块"}`}
         >
-          {sections.find((section) => section.id === activeSection)?.label ?? "页面模块"}
+          <span aria-hidden="true">☰</span>
         </button>
         {sections.map((section) => (
           <button
