@@ -18,6 +18,7 @@ description: 该索引把已有需求按 feature、issue、refact 分类，作�
 
 | Topic | 状态 | 来源 | 摘要 |
 | --- | --- | --- | --- |
+| [架构图表达质量修复](topics/issue/2026-06-26-architecture-diagram-expression-quality.md) | ready | 用户原始意图、P0 规格、代码现状 | 按每章关系类型重做架构图表达，避免统一串式图、节点内箭头和不符合语义的图形。 |
 | [课程天数与文档漂移](topics/issue/2026-06-25-course-day-count-doc-drift.md) | ready | README、overview、代码现状 | README 写 Day01-Day04，overview 写 12 天，应用数据为 Day01-Day13，P0 规格要求 Day01-Day20。 |
 | [桌面右侧菜单样式问题](topics/issue/2026-06-25-desktop-right-menu-style.md) | ready | 用户历史反馈、superpowers spec | 修复桌面右侧菜单 hover 尺寸过大、图标右侧线条和覆盖/布局语义问题。 |
 
