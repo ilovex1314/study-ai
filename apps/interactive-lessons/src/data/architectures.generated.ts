@@ -339,239 +339,262 @@ export const architectures: Record<string, LessonArchitecture> = {
     ]
   },
   "day13": {
-    "title": "设计建议到可验证界面",
-    "summary": "设计上下文驱动组件实现，渲染结果再回到视觉与交互验证。",
+    "title": "设计数据到可验证界面闭环",
+    "summary": "需求约束先转成设计数据检索，再落成 token、组件状态和 UX 验收证据。",
     "type": "feedback",
     "nodes": [
       {
-        "label": "设计目标",
+        "label": "学习工作台需求",
         "tone": "accent"
       },
       {
-        "label": "UI/UX 数据检索"
+        "label": "设计数据域"
+      },
+      {
+        "label": "多域检索"
       },
       {
         "label": "设计系统",
         "tone": "system"
       },
       {
-        "label": "React 组件"
+        "label": "Token / 组件"
       },
       {
-        "label": "页面验证",
+        "label": "UX 验收",
+        "tone": "warning"
+      }
+    ],
+    "feedback": "验收发现的问题回流为新的设计约束。"
+  },
+  "day14": {
+    "title": "知识生命周期与删除传播",
+    "summary": "知识源变更必须传播到解析、切片、向量、缓存、引用和审计状态。",
+    "type": "lifecycle",
+    "nodes": [
+      {
+        "label": "知识源"
+      },
+      {
+        "label": "接入校验"
+      },
+      {
+        "label": "解析切分"
+      },
+      {
+        "label": "Metadata / Version",
+        "tone": "system"
+      },
+      {
+        "label": "权限过滤检索"
+      },
+      {
+        "label": "带引用回答",
+        "tone": "accent"
+      },
+      {
+        "label": "删除传播",
+        "tone": "warning"
+      }
+    ],
+    "feedback": "更新、撤回和权限变更触发补偿任务与缓存失效。"
+  },
+  "day15": {
+    "title": "工具调用策略门禁",
+    "summary": "模型只能提出工具意图，参数校验、身份策略、审批和审计由确定性系统执行。",
+    "type": "gate",
+    "nodes": [
+      {
+        "label": "不可信输入",
         "tone": "warning"
       },
       {
-        "label": "设计调整"
+        "label": "模型工具意图"
+      },
+      {
+        "label": "Tool Schema"
+      },
+      {
+        "label": "身份 / ACL",
+        "tone": "system"
+      },
+      {
+        "label": "策略门禁",
+        "tone": "accent"
+      },
+      {
+        "label": "审批或执行"
+      },
+      {
+        "label": "审计 Trace",
+        "tone": "system"
       }
     ],
-    "feedback": "验证发现的问题回流到设计约束和组件实现。"
+    "feedback": "注入和越权样本回流到红队回归集。"
   },
-  "day14": {
-    "title": "长任务恢复状态图",
-    "summary": "长任务在关键节点保存 checkpoint，失败后可补偿、暂停或恢复。",
+  "day16": {
+    "title": "多模态异步处理流水线",
+    "summary": "图片、语音和文本先统一为任务资产，再抽取证据、生成输出并展示进度与降级状态。",
+    "type": "pipeline",
+    "nodes": [
+      {
+        "label": "多模态输入",
+        "tone": "accent"
+      },
+      {
+        "label": "Asset Metadata"
+      },
+      {
+        "label": "任务队列",
+        "tone": "system"
+      },
+      {
+        "label": "OCR / ASR / Vision"
+      },
+      {
+        "label": "证据锚点",
+        "tone": "system"
+      },
+      {
+        "label": "模型生成"
+      },
+      {
+        "label": "进度与降级",
+        "tone": "warning"
+      }
+    ],
+    "feedback": "用户纠错回流到证据锚点和任务 contract。"
+  },
+  "day17": {
+    "title": "成本延迟预算控制闭环",
+    "summary": "路由器依据质量、预算和 SLO 选择模型与工具，运行指标再回写下一轮路由策略。",
+    "type": "feedback",
+    "nodes": [
+      {
+        "label": "任务请求",
+        "tone": "accent"
+      },
+      {
+        "label": "预算检查"
+      },
+      {
+        "label": "模型 / 工具路由",
+        "tone": "system"
+      },
+      {
+        "label": "检索与缓存"
+      },
+      {
+        "label": "模型调用"
+      },
+      {
+        "label": "成本延迟指标",
+        "tone": "warning"
+      },
+      {
+        "label": "预算与 SLO",
+        "tone": "system"
+      }
+    ],
+    "feedback": "指标超过阈值时触发缓存、降级、排队或轻量模型路由。"
+  },
+  "day18": {
+    "title": "AI 事故响应生命周期",
+    "summary": "SLO 告警进入分诊、降级、回滚、沟通和无责复盘，最后沉淀 runbook 与测试。",
     "type": "state",
     "nodes": [
       {
-        "label": "任务提交"
+        "label": "SLO 告警",
+        "tone": "warning"
       },
       {
-        "label": "执行节点",
-        "tone": "accent"
+        "label": "Trace 分诊"
       },
       {
-        "label": "保存 checkpoint",
+        "label": "降级 / 熔断",
         "tone": "system"
       },
       {
-        "label": "异常处理",
-        "tone": "warning"
+        "label": "回滚恢复",
+        "tone": "accent"
       },
       {
-        "label": "人工中断",
-        "tone": "warning"
+        "label": "用户沟通"
       },
       {
-        "label": "恢复或补偿",
+        "label": "无责复盘"
+      },
+      {
+        "label": "Runbook 更新",
         "tone": "system"
       }
-    ]
+    ],
+    "feedback": "复盘行动项进入发布门禁和演练计划。"
   },
-  "day15": {
-    "title": "受控发布反馈环",
-    "summary": "变更经过分级、灰度和停止阈值控制，线上信号决定继续或回滚。",
-    "type": "feedback",
+  "day19": {
+    "title": "AI 资产发布门禁",
+    "summary": "Prompt、模型、数据集、工作流和检索索引都作为版本化资产进入评审、灰度和回滚。",
+    "type": "gate",
     "nodes": [
       {
-        "label": "变更包",
-        "tone": "accent"
+        "label": "版本化 AI 资产",
+        "tone": "system"
       },
       {
-        "label": "风险分级"
+        "label": "变更评审"
+      },
+      {
+        "label": "离线 Eval"
+      },
+      {
+        "label": "红队门禁",
+        "tone": "warning"
       },
       {
         "label": "灰度发布",
-        "tone": "system"
-      },
-      {
-        "label": "停止阈值",
-        "tone": "warning"
-      },
-      {
-        "label": "线上指标"
-      },
-      {
-        "label": "回滚包",
-        "tone": "warning"
-      }
-    ],
-    "feedback": "指标越过阈值时回到已验证版本并记录治理证据。"
-  },
-  "day16": {
-    "title": "AI SRE 信号与响应环",
-    "summary": "用户体验 SLO、trace、告警和 runbook 连接成可执行的事故响应闭环。",
-    "type": "feedback",
-    "nodes": [
-      {
-        "label": "用户 SLO",
         "tone": "accent"
       },
       {
-        "label": "端到端 Trace",
+        "label": "Trace 监控"
+      },
+      {
+        "label": "回滚 Owner",
         "tone": "system"
-      },
-      {
-        "label": "告警触发",
-        "tone": "warning"
-      },
-      {
-        "label": "降级开关",
-        "tone": "system"
-      },
-      {
-        "label": "事故 Runbook"
-      },
-      {
-        "label": "复盘改进"
       }
     ],
-    "feedback": "事故复盘更新 SLO、告警和演练方案。"
-  },
-  "day17": {
-    "title": "项目发现验证飞轮",
-    "summary": "真实用户任务形成假设和最小切片，验证数据再决定下一轮发现。",
-    "type": "feedback",
-    "nodes": [
-      {
-        "label": "目标用户",
-        "tone": "accent"
-      },
-      {
-        "label": "高频任务"
-      },
-      {
-        "label": "可证伪假设"
-      },
-      {
-        "label": "两周切片",
-        "tone": "system"
-      },
-      {
-        "label": "成功指标",
-        "tone": "warning"
-      },
-      {
-        "label": "访谈与数据"
-      }
-    ],
-    "feedback": "证据不足时收缩问题定义，而非扩张功能。"
-  },
-  "day18": {
-    "title": "项目责任与数据边界",
-    "summary": "用户、应用、模型、数据和高风险动作由明确契约与权限矩阵隔离。",
-    "type": "boundary",
-    "nodes": [
-      {
-        "label": "用户与角色",
-        "tone": "accent"
-      },
-      {
-        "label": "应用编排"
-      },
-      {
-        "label": "模型服务"
-      },
-      {
-        "label": "数据契约",
-        "tone": "system"
-      },
-      {
-        "label": "权限矩阵",
-        "tone": "system"
-      },
-      {
-        "label": "高风险动作",
-        "tone": "warning"
-      }
-    ]
-  },
-  "day19": {
-    "title": "实现到发布的质量闭环",
-    "summary": "端到端任务切片通过 golden set、发布门禁和线上反馈持续被验证。",
-    "type": "feedback",
-    "nodes": [
-      {
-        "label": "任务切片",
-        "tone": "accent"
-      },
-      {
-        "label": "端到端实现"
-      },
-      {
-        "label": "Golden Set",
-        "tone": "system"
-      },
-      {
-        "label": "发布检查",
-        "tone": "warning"
-      },
-      {
-        "label": "线上监测"
-      },
-      {
-        "label": "缺陷回流"
-      }
-    ],
-    "feedback": "失败样本进入下一轮实现与评估，不被发布后遗忘。"
+    "feedback": "线上漂移和失败样本触发新版本资产评审。"
   },
   "day20": {
-    "title": "项目复盘与能力飞轮",
-    "summary": "运行事实形成复盘和证据档案，再转为下一轮产品与能力练习。",
-    "type": "feedback",
+    "title": "产品能力增长飞轮",
+    "summary": "学习行为形成能力证据，能力画像驱动下一步任务和实验，实验结果再改进课程与产品路线。",
+    "type": "flywheel",
     "nodes": [
       {
-        "label": "运行事实",
-        "tone": "system"
-      },
-      {
-        "label": "无责复盘",
-        "tone": "accent"
-      },
-      {
-        "label": "项目档案"
+        "label": "学习行为"
       },
       {
         "label": "能力证据",
         "tone": "system"
       },
       {
-        "label": "能力缺口",
+        "label": "能力画像"
+      },
+      {
+        "label": "下一步任务",
+        "tone": "accent"
+      },
+      {
+        "label": "项目产出"
+      },
+      {
+        "label": "实验优化",
         "tone": "warning"
       },
       {
-        "label": "下一轮练习"
+        "label": "路线图决策",
+        "tone": "system"
       }
     ],
-    "feedback": "沉淀的证据决定下一轮优先补齐什么。"
+    "feedback": "实验结论回流到课程、题目和产品优先级。"
   }
 };

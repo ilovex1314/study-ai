@@ -29,9 +29,29 @@
 pnpm --dir apps/interactive-lessons dev
 pnpm --dir apps/interactive-lessons test
 pnpm --dir apps/interactive-lessons build
+pnpm lesson:dev
+pnpm lesson:test
+pnpm lesson:build
+pnpm lesson:dist
 ```
 
+课程内容以 `docs/interactive-learning/dayXX.md` 为事实源；P0 阶段覆盖 Day01–Day20，并要求 Markdown、typed lesson、路由、题目概念和参考资料保持一致。
+
 构建会在 `apps/interactive-lessons/dist` 生成可发布文件。Vite 使用相对资源路径，适合部署到 Cloudflare Pages 或 GitHub Pages 的仓库子路径。
+
+## Markdown 格式化脚本
+
+`baoyu-format-markdown` 的 frontmatter 和结构设计完成后，可以用仓库内 wrapper 跑最后的 typography 阶段。该入口会依次尝试 `bun`、`npx -y bun`、`pnpm dlx bun`，并在 Codex 桌面环境中自动 fallback 到 bundled runtime：
+
+```bash
+./scripts/baoyu-format-markdown.sh docs/product/topics/feature/example.md
+```
+
+也可以通过 pnpm 脚本调用：
+
+```bash
+pnpm format:baoyu -- docs/product/topics/feature/example.md
+```
 
 ## GitHub Pages 发布建议
 

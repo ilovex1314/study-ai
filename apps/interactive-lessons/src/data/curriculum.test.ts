@@ -1,5 +1,9 @@
 import { describe, expect, it } from "vitest";
+import { existsSync, readFileSync } from "node:fs";
+import { resolve } from "node:path";
 import { lessons } from "./lessons";
+
+const root = resolve(process.cwd(), "../..");
 
 describe("curriculum contract", () => {
   it("publishes the ordered Day01-Day20 capability route", async () => {
@@ -10,6 +14,39 @@ describe("curriculum contract", () => {
       Array.from({ length: 20 }, (_, index) => `Day${String(index + 1).padStart(2, "0")}`)
     );
     expect(lessons).toHaveLength(20);
+  });
+
+  it("keeps Markdown day files, typed lesson files, registry ids and routes aligned", () => {
+    const dayIds = Array.from({ length: 20 }, (_, index) => `day${String(index + 1).padStart(2, "0")}`);
+
+    expect(lessons.map((lesson) => lesson.id)).toEqual(dayIds);
+    expect(lessons.map((lesson) => lesson.path)).toEqual(dayIds.map((id) => `/${id}`));
+
+    for (const id of dayIds) {
+      expect(existsSync(resolve(root, `docs/interactive-learning/${id}.md`))).toBe(true);
+      expect(existsSync(resolve(root, `apps/interactive-lessons/src/data/${id}.ts`))).toBe(true);
+    }
+  });
+
+  it("requires every typed lesson to expose the P0 source-of-truth schema", () => {
+    for (const lesson of lessons) {
+      expect(lesson.capabilityGoal).toEqual(expect.any(String));
+      expect(lesson.capabilityGoal.length).toBeGreaterThan(8);
+      expect(lesson.verifiableOutput).toEqual(expect.any(String));
+      expect(lesson.verifiableOutput.length).toBeGreaterThan(6);
+      expect(["boundary", "lifecycle", "layered", "state", "feedback", "gate", "flywheel", "pipeline"]).toContain(lesson.diagramType);
+      expect(lesson.references.length).toBeGreaterThanOrEqual(2);
+    }
+  });
+
+  it("aligns new P0 typed lessons with the upgraded Markdown source titles and references", () => {
+    for (const lesson of lessons.slice(13)) {
+      const markdown = readFileSync(resolve(root, `docs/interactive-learning/${lesson.id}.md`), "utf8");
+      expect(markdown).toContain(lesson.title);
+      for (const reference of lesson.references) {
+        expect(markdown).toContain(reference.url);
+      }
+    }
   });
 
   it("requires every lesson question set to sum to 100 points", () => {

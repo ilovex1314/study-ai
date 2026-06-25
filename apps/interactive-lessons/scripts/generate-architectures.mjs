@@ -11,7 +11,7 @@ function readArchitecture(source, id) {
 
   try {
     const architecture = JSON.parse(raw.trim());
-    const validType = ["boundary", "lifecycle", "layered", "state", "feedback"].includes(architecture.type);
+    const validType = ["boundary", "lifecycle", "layered", "state", "feedback", "gate", "flywheel", "pipeline"].includes(architecture.type);
     if (!architecture.title || !architecture.summary || !validType || !Array.isArray(architecture.nodes) || architecture.nodes.length < 3) {
       throw new Error("requires title, summary, a supported type, and at least three nodes");
     }

@@ -50,7 +50,35 @@ export type ConceptId =
   | "design-data"
   | "multi-domain-search"
   | "design-system"
-  | "ui-validation";
+  | "ui-validation"
+  | "data-contract"
+  | "freshness"
+  | "deletion-propagation"
+  | "citation-evidence"
+  | "untrusted-input"
+  | "least-privilege-tool"
+  | "policy-enforcement"
+  | "audit-trace"
+  | "modality-orchestration"
+  | "progressive-feedback"
+  | "evidence-anchor"
+  | "experience-fallback"
+  | "unit-economics"
+  | "model-routing"
+  | "cache-rate-limit"
+  | "capacity-protection"
+  | "slo"
+  | "trace-observability"
+  | "rollback-degradation"
+  | "incident-postmortem"
+  | "versioned-assets"
+  | "release-gate"
+  | "dataset-drift"
+  | "ownership-boundary"
+  | "capability-evidence"
+  | "north-star-metric"
+  | "experiment-design"
+  | "roadmap-strategy";
 
 export type LessonStatus = "available" | "planned";
 
@@ -81,10 +109,12 @@ export type ConceptDiagram = {
 export type LessonArchitecture = {
   title: string;
   summary: string;
-  type: "boundary" | "lifecycle" | "layered" | "state" | "feedback";
+  type: "boundary" | "lifecycle" | "layered" | "state" | "feedback" | "gate" | "flywheel" | "pipeline";
   nodes: Array<{ label: string; tone?: "neutral" | "accent" | "system" | "warning" }>;
   feedback?: string;
 };
+
+export type LessonReference = { label: string; url: string; };
 
 export type ConceptModule = {
   id: string;
@@ -125,7 +155,21 @@ export type CurrentAttempt = { id: string; startedAt: string; answers: Record<st
 
 export type Attempt = CurrentAttempt & { completedAt: string; answers: Record<string, string>; score: number; total: number; weakConcepts: ConceptId[]; recommendations: string[]; };
 
-export type LessonPage = LessonSummary & { hero: string; conceptIntro: string; decisionTitle: string; decisionIntro: string; decisionExample?: string; architecture?: LessonArchitecture; modules: ConceptModule[]; decisionLayers: DecisionLayer[]; questions: LessonQuestion[]; };
+export type LessonPage = LessonSummary & {
+  capabilityGoal?: string;
+  verifiableOutput?: string;
+  diagramType?: LessonArchitecture["type"];
+  references?: LessonReference[];
+  hero: string;
+  conceptIntro: string;
+  decisionTitle: string;
+  decisionIntro: string;
+  decisionExample?: string;
+  architecture?: LessonArchitecture;
+  modules: ConceptModule[];
+  decisionLayers: DecisionLayer[];
+  questions: LessonQuestion[];
+};
 
 export const conceptLabels: Record<ConceptId, string> = {
   "model-cognition": "模型认知",
@@ -179,7 +223,35 @@ export const conceptLabels: Record<ConceptId, string> = {
   "design-data": "设计数据",
   "multi-domain-search": "多域检索",
   "design-system": "设计系统",
-  "ui-validation": "UI 验收"
+  "ui-validation": "UI 验收",
+  "data-contract": "数据契约",
+  "freshness": "新鲜度控制",
+  "deletion-propagation": "删除传播",
+  "citation-evidence": "引用证据",
+  "untrusted-input": "不可信输入",
+  "least-privilege-tool": "最小权限工具",
+  "policy-enforcement": "策略执行",
+  "audit-trace": "审计追踪",
+  "modality-orchestration": "多模态编排",
+  "progressive-feedback": "渐进反馈",
+  "evidence-anchor": "证据锚点",
+  "experience-fallback": "体验降级",
+  "unit-economics": "单位经济性",
+  "model-routing": "模型路由",
+  "cache-rate-limit": "缓存与限流",
+  "capacity-protection": "容量保护",
+  "slo": "SLO",
+  "trace-observability": "Trace 可观测",
+  "rollback-degradation": "回滚与降级",
+  "incident-postmortem": "事故复盘",
+  "versioned-assets": "版本化资产",
+  "release-gate": "发布门禁",
+  "dataset-drift": "数据漂移",
+  "ownership-boundary": "责任边界",
+  "capability-evidence": "能力证据",
+  "north-star-metric": "北极星指标",
+  "experiment-design": "实验设计",
+  "roadmap-strategy": "路线图策略"
 };
 
 export const reviewAdvice: Record<ConceptId, string> = {
@@ -234,5 +306,33 @@ export const reviewAdvice: Record<ConceptId, string> = {
   "design-data": "复习设计数据：重新画出输入数据域及其约束。",
   "multi-domain-search": "复习多域检索：写出一个包含产品、行业和体验约束的查询。",
   "design-system": "复习设计系统：将结果映射为语义 token 和组件状态。",
-  "ui-validation": "复习 UI 验收：逐项检查焦点、断点和减弱动效。"
+  "ui-validation": "复习 UI 验收：逐项检查焦点、断点和减弱动效。",
+  "data-contract": "复习数据契约：写出 source、owner、tenant、version、acl 和删除策略字段。",
+  "freshness": "复习新鲜度控制：说明生效时间、过期时间和业务状态如何影响召回。",
+  "deletion-propagation": "复习删除传播：列出原文、chunk、embedding、索引、缓存和引用的清理动作。",
+  "citation-evidence": "复习引用证据：把答案引用连接到版本、chunk、锚点和权限状态。",
+  "untrusted-input": "复习不可信输入：标出用户、网页、检索片段和工具返回中的注入风险。",
+  "least-privilege-tool": "复习最小权限工具：把读、草稿、提交和审批拆成独立权限。",
+  "policy-enforcement": "复习策略执行：写出 allow、deny、require approval 三类确定性决策。",
+  "audit-trace": "复习审计追踪：记录 actor、resource、action、policy decision、tool result 和 trace id。",
+  "modality-orchestration": "复习多模态编排：为图片、语音和文本统一 task、asset、metadata 与输出契约。",
+  "progressive-feedback": "复习渐进反馈：设计 queued、processing、partial、done、failed 和 canceled 状态。",
+  "evidence-anchor": "复习证据锚点：把输出映射到图片坐标、音频时间段、文本片段或文件版本。",
+  "experience-fallback": "复习体验降级：说明实时失败时如何转为异步处理、草稿或稍后通知。",
+  "unit-economics": "复习单位经济性：按任务记录 token、检索、工具、存储和人工审核成本。",
+  "model-routing": "复习模型路由：根据风险、质量、上下文长度和预算选择模型或降级路径。",
+  "cache-rate-limit": "复习缓存与限流：区分可缓存结果、权限敏感内容和重试预算。",
+  "capacity-protection": "复习容量保护：为队列积压、限流和预算超限设计保护动作。",
+  "slo": "复习 SLO：把成功率、延迟和安全失败率写成用户可感知的目标。",
+  "trace-observability": "复习 Trace 可观测：串联模型、检索、工具、版本、成本和输出证据。",
+  "rollback-degradation": "复习回滚与降级：定义 kill switch、轻量模型、关闭工具和恢复路径。",
+  "incident-postmortem": "复习事故复盘：用时间线、影响、根因、行动项和 owner 完成无责复盘。",
+  "versioned-assets": "复习版本化资产：为 prompt、模型、数据集、索引和工作流建立 release id。",
+  "release-gate": "复习发布门禁：把 eval、红队、成本、灰度和回滚绑定为 go/no-go 条件。",
+  "dataset-drift": "复习数据漂移：识别样本分布、权限、业务规则或用户行为的变化。",
+  "ownership-boundary": "复习责任边界：明确产品、研发、安全、运营和回滚 owner。",
+  "capability-evidence": "复习能力证据：用任务提交、架构判断、测验、项目结果和复盘证明学习迁移。",
+  "north-star-metric": "复习北极星指标：连接用户价值和产品增长，避免只看活跃度。",
+  "experiment-design": "复习实验设计：写出假设、样本、指标、成功阈值和停止条件。",
+  "roadmap-strategy": "复习路线图策略：把证据、实验和能力缺口转成 90 天优先级。"
 };
