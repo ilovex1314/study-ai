@@ -8,7 +8,7 @@ description: 本章把多模态能力拆成输入规范、任务队列、引用�
 # Day16 多模态与实时体验
 
 <!-- architecture
-{"title":"多模态异步处理流水线","summary":"图片、语音和文本先统一为任务资产，再抽取证据、生成输出并展示进度与降级状态。","type":"pipeline","nodes":[{"label":"多模态输入","tone":"accent"},{"label":"Asset Metadata"},{"label":"任务队列","tone":"system"},{"label":"OCR / ASR / Vision"},{"label":"证据锚点","tone":"system"},{"label":"模型生成"},{"label":"进度与降级","tone":"warning"}],"feedback":"用户纠错回流到证据锚点和任务 contract。"}
+{"title":"多模态异步处理流水线","summary":"图片、语音和文本先统一为任务资产，再抽取证据、生成输出并展示进度与降级状态。","type":"pipeline","nodes":[{"id":"n1","label":"多模态输入","tone":"accent","group":"g1"},{"id":"n2","label":"Asset Metadata","group":"g1"},{"id":"n3","label":"任务队列","tone":"system","group":"g2"},{"id":"n4","label":"OCR / ASR / Vision","group":"g3"},{"id":"n5","label":"证据锚点","tone":"system","group":"g4"},{"id":"n6","label":"模型生成","group":"g5"},{"id":"n7","label":"进度与降级","tone":"warning","group":"g5"}],"feedback":"用户纠错回流到证据锚点和任务 contract。","renderMode":"diagram","edges":[{"from":"n1","to":"n2","relation":"primary"},{"from":"n2","to":"n3","relation":"primary"},{"from":"n3","to":"n4","relation":"primary"},{"from":"n4","to":"n5","relation":"primary"},{"from":"n5","to":"n6","relation":"primary"},{"from":"n6","to":"n7","relation":"primary"},{"from":"n7","to":"n5","relation":"feedback","label":"纠错回流"}],"groups":[{"id":"g1","label":"输入层","kind":"lane"},{"id":"g2","label":"任务层","kind":"lane"},{"id":"g3","label":"处理层","kind":"lane"},{"id":"g4","label":"推理层","kind":"lane"},{"id":"g5","label":"体验层","kind":"lane"}]}
 -->
 
 ## Today Goal

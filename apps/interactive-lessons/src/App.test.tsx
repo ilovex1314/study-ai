@@ -246,6 +246,25 @@ describe("App navigation", () => {
     expect(document.querySelector(".concept-diagram")?.textContent).toContain("Metadata");
   });
 
+  it("does not place arrows inside architecture or concept nodes", () => {
+    renderApp("/day15/decision");
+
+    for (const node of document.querySelectorAll(".architecture-node, .concept-diagram-node")) {
+      expect(node.textContent).not.toMatch(/[→←↔]|->|<-/);
+    }
+  });
+
+  it("renders feedback and gate diagrams with semantic edge relations", () => {
+    const day20 = renderApp("/day20/decision");
+    expect(document.querySelector('.architecture-diagram[data-type="flywheel"]')).toBeInTheDocument();
+    expect(document.querySelector('.architecture-edges [data-relation="feedback"]')).toBeInTheDocument();
+    day20.unmount();
+
+    renderApp("/day15/decision");
+    expect(document.querySelector('.architecture-diagram[data-type="gate"]')).toBeInTheDocument();
+    expect(document.querySelector('.architecture-edges [data-relation="branch"]')).toBeInTheDocument();
+  });
+
   it("does not render a generic visual placeholder for a module without a diagram", () => {
     renderApp("/day14/concepts");
 

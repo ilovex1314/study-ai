@@ -1,7 +1,7 @@
 # Day 13 UI/UX Pro Max 与学习工作台
 
 <!-- architecture
-{"title":"设计数据到可验证界面闭环","summary":"需求约束先转成设计数据检索，再落成 token、组件状态和 UX 验收证据。","type":"feedback","nodes":[{"label":"学习工作台需求","tone":"accent"},{"label":"设计数据域"},{"label":"多域检索"},{"label":"设计系统","tone":"system"},{"label":"Token / 组件"},{"label":"UX 验收","tone":"warning"}],"feedback":"验收发现的问题回流为新的设计约束。"}
+{"title":"设计数据到可验证界面闭环","summary":"需求约束先转成设计数据检索，再落成 token、组件状态和 UX 验收证据。","type":"feedback","nodes":[{"id":"n1","label":"学习工作台需求","tone":"accent","group":"g1"},{"id":"n2","label":"设计数据域","group":"g1"},{"id":"n3","label":"多域检索","group":"g1"},{"id":"n4","label":"设计系统","tone":"system","group":"g1"},{"id":"n5","label":"Token / 组件","group":"g1"},{"id":"n6","label":"UX 验收","tone":"warning","group":"g2"}],"feedback":"验收发现的问题回流为新的设计约束。","renderMode":"diagram","edges":[{"from":"n1","to":"n2","relation":"primary"},{"from":"n2","to":"n3","relation":"primary"},{"from":"n3","to":"n4","relation":"primary"},{"from":"n4","to":"n5","relation":"primary"},{"from":"n5","to":"n6","relation":"primary"},{"from":"n6","to":"n1","relation":"feedback","label":"回流"}],"groups":[{"id":"g1","label":"主流程","kind":"lane"},{"id":"g2","label":"评估与反馈","kind":"lane"}]}
 -->
 
 ## Today Goal

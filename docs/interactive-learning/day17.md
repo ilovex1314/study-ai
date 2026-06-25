@@ -8,7 +8,7 @@ description: 本章把 AI 系统的成本和延迟拆成可观测指标、任务
 # Day17 成本、延迟与容量工程
 
 <!-- architecture
-{"title":"成本延迟预算控制闭环","summary":"路由器依据质量、预算和 SLO 选择模型与工具，运行指标再回写下一轮路由策略。","type":"feedback","nodes":[{"label":"任务请求","tone":"accent"},{"label":"预算检查"},{"label":"模型 / 工具路由","tone":"system"},{"label":"检索与缓存"},{"label":"模型调用"},{"label":"成本延迟指标","tone":"warning"},{"label":"预算与 SLO","tone":"system"}],"feedback":"指标超过阈值时触发缓存、降级、排队或轻量模型路由。"}
+{"title":"成本延迟预算控制闭环","summary":"路由器依据质量、预算和 SLO 选择模型与工具，运行指标再回写下一轮路由策略。","type":"feedback","nodes":[{"id":"n1","label":"任务请求","tone":"accent","group":"g1"},{"id":"n2","label":"预算检查","group":"g1"},{"id":"n3","label":"模型 / 工具路由","tone":"system","group":"g1"},{"id":"n4","label":"检索与缓存","group":"g1"},{"id":"n5","label":"模型调用","group":"g1"},{"id":"n6","label":"成本延迟指标","tone":"warning","group":"g1"},{"id":"n7","label":"预算与 SLO","tone":"system","group":"g2"}],"feedback":"指标超过阈值时触发缓存、降级、排队或轻量模型路由。","renderMode":"diagram","edges":[{"from":"n1","to":"n2","relation":"primary"},{"from":"n2","to":"n3","relation":"primary"},{"from":"n3","to":"n4","relation":"primary"},{"from":"n4","to":"n5","relation":"primary"},{"from":"n5","to":"n6","relation":"primary"},{"from":"n6","to":"n7","relation":"primary"},{"from":"n7","to":"n1","relation":"feedback","label":"回流"}],"groups":[{"id":"g1","label":"主流程","kind":"lane"},{"id":"g2","label":"评估与反馈","kind":"lane"}]}
 -->
 
 ## Today Goal

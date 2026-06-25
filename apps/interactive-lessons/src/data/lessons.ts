@@ -22,7 +22,7 @@ import { day20Lesson } from "./day20";
 import { architectures } from "./architectures.generated";
 
 export { conceptLabels, reviewAdvice } from "./types";
-export type { Attempt, ConceptId, ConceptModule, CurrentAttempt, DecisionLayer, LessonPage, LessonQuestion, LessonStatus, LessonSummary } from "./types";
+export type { ArchitectureEdge, ArchitectureGroup, ArchitectureNode, Attempt, ConceptId, ConceptModule, CurrentAttempt, DecisionLayer, LessonPage, LessonQuestion, LessonStatus, LessonSummary } from "./types";
 
 const baseLessons = [day01Lesson, day02Lesson, day03Lesson, day04Lesson, day05Lesson, day06Lesson, day07Lesson, day08Lesson, day09Lesson, day10Lesson, day11Lesson, day12Lesson, day13Lesson, day14Lesson, day15Lesson, day16Lesson, day17Lesson, day18Lesson, day19Lesson, day20Lesson];
 const defaultWeights = [30, 25, 25, 20];

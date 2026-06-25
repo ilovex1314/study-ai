@@ -1,7 +1,7 @@
 # Day 08 可视化平台与低代码工作流
 
 <!-- architecture
-{"title":"低代码验证到工程接管","summary":"可视化流程快速验证业务，稳定接口和数据契约再被工程化实现接管。","type":"layered","nodes":[{"label":"业务流程","tone":"accent"},{"label":"Dify / Coze / n8n"},{"label":"工具 API","tone":"system"},{"label":"人工运营"},{"label":"数据记录","tone":"system"},{"label":"工程化接管","tone":"warning"}]}
+{"title":"低代码验证到工程接管","summary":"可视化流程快速验证业务，稳定接口和数据契约再被工程化实现接管。","type":"layered","nodes":[{"id":"n1","label":"业务流程","tone":"accent","group":"g1"},{"id":"n2","label":"Dify / Coze / n8n","group":"g1"},{"id":"n3","label":"工具 API","tone":"system","group":"g2"},{"id":"n4","label":"人工运营","group":"g3"},{"id":"n5","label":"数据记录","tone":"system","group":"g4"},{"id":"n6","label":"工程化接管","tone":"warning","group":"g4"}],"renderMode":"diagram","edges":[{"from":"n1","to":"n2","relation":"primary"},{"from":"n2","to":"n3","relation":"primary"},{"from":"n3","to":"n4","relation":"primary"},{"from":"n4","to":"n5","relation":"primary"},{"from":"n5","to":"n6","relation":"primary"},{"from":"n6","to":"n1","relation":"feedback","label":"观测 / 反馈"}],"groups":[{"id":"g1","label":"体验层","kind":"layer"},{"id":"g2","label":"应用服务层","kind":"layer"},{"id":"g3","label":"模型 / 平台层","kind":"layer"},{"id":"g4","label":"业务与治理层","kind":"layer"}]}
 -->
 
 ## Today Goal

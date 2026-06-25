@@ -1,7 +1,7 @@
 # Day 15 AI 安全、身份与工具权限
 
 <!-- architecture
-{"title":"工具调用策略门禁","summary":"模型只能提出工具意图，参数校验、身份策略、审批和审计由确定性系统执行。","type":"gate","nodes":[{"label":"不可信输入","tone":"warning"},{"label":"模型工具意图"},{"label":"Tool Schema"},{"label":"身份 / ACL","tone":"system"},{"label":"策略门禁","tone":"accent"},{"label":"审批或执行"},{"label":"审计 Trace","tone":"system"}],"feedback":"注入和越权样本回流到红队回归集。"}
+{"title":"工具调用策略门禁","summary":"模型只能提出工具意图，参数校验、身份策略、审批和审计由确定性系统执行。","type":"gate","nodes":[{"id":"n1","label":"不可信输入","tone":"warning","group":"g1"},{"id":"n2","label":"模型工具意图","group":"g1"},{"id":"n3","label":"Tool Schema","group":"g2"},{"id":"n4","label":"身份 / ACL","tone":"system","group":"g2"},{"id":"n5","label":"策略门禁","tone":"accent","group":"g2"},{"id":"n6","label":"审批或执行","group":"g3"},{"id":"n7","label":"审计 Trace","tone":"system","group":"g4"}],"feedback":"注入和越权样本回流到红队回归集。","renderMode":"diagram","edges":[{"from":"n1","to":"n2","relation":"guard"},{"from":"n2","to":"n3","relation":"guard"},{"from":"n3","to":"n4","relation":"guard"},{"from":"n4","to":"n5","relation":"guard"},{"from":"n5","to":"n6","relation":"guard"},{"from":"n6","to":"n7","relation":"guard"},{"from":"n5","to":"n4","relation":"branch","label":"允许"},{"from":"n5","to":"n6","relation":"branch","label":"审批"},{"from":"n5","to":"n7","relation":"branch","label":"拒绝"}],"groups":[{"id":"g1","label":"输入","kind":"lane"},{"id":"g2","label":"确定性控制","kind":"lane"},{"id":"g3","label":"结果分支","kind":"lane"},{"id":"g4","label":"审计","kind":"lane"}]}
 -->
 
 ## Today Goal

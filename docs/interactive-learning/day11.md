@@ -1,7 +1,7 @@
 # Day 11 上下文工程与 AI 协作
 
 <!-- architecture
-{"title":"AI 协作验证回路","summary":"把模糊需求拆成上下文、任务、实现和验证，而不是只让模型一次生成。","type":"feedback","nodes":[{"label":"任务意图","tone":"accent"},{"label":"上下文包"},{"label":"小步实现"},{"label":"自动验证","tone":"system"},{"label":"人工审阅","tone":"warning"},{"label":"修正提示资产"}],"feedback":"验证结果反哺上下文和下一次任务拆解。"}
+{"title":"AI 协作验证回路","summary":"把模糊需求拆成上下文、任务、实现和验证，而不是只让模型一次生成。","type":"feedback","nodes":[{"id":"n1","label":"任务意图","tone":"accent","group":"g1"},{"id":"n2","label":"上下文包","group":"g1"},{"id":"n3","label":"小步实现","group":"g1"},{"id":"n4","label":"自动验证","tone":"system","group":"g1"},{"id":"n5","label":"人工审阅","tone":"warning","group":"g1"},{"id":"n6","label":"修正提示资产","group":"g2"}],"feedback":"验证结果反哺上下文和下一次任务拆解。","renderMode":"diagram","edges":[{"from":"n1","to":"n2","relation":"primary"},{"from":"n2","to":"n3","relation":"primary"},{"from":"n3","to":"n4","relation":"primary"},{"from":"n4","to":"n5","relation":"primary"},{"from":"n5","to":"n6","relation":"primary"},{"from":"n6","to":"n1","relation":"feedback","label":"回流"}],"groups":[{"id":"g1","label":"主流程","kind":"lane"},{"id":"g2","label":"评估与反馈","kind":"lane"}]}
 -->
 
 ## Today Goal

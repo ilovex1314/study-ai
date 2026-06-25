@@ -1,7 +1,7 @@
 # Day 09 RAG 深水区
 
 <!-- architecture
-{"title":"受权限约束的 RAG 生命周期","summary":"知识在入库、索引、检索和回答时都保留租户与权限过滤。","type":"lifecycle","nodes":[{"label":"知识源"},{"label":"解析切块"},{"label":"权限标记","tone":"system"},{"label":"混合检索"},{"label":"重排"},{"label":"引用回答","tone":"accent"}]}
+{"title":"受权限约束的 RAG 生命周期","summary":"知识在入库、索引、检索和回答时都保留租户与权限过滤。","type":"lifecycle","nodes":[{"id":"n1","label":"知识源","group":"g1"},{"id":"n2","label":"解析切块","group":"g1"},{"id":"n3","label":"权限标记","tone":"system","group":"g2"},{"id":"n4","label":"混合检索","group":"g3"},{"id":"n5","label":"重排","group":"g4"},{"id":"n6","label":"引用回答","tone":"accent","group":"g4"}],"renderMode":"diagram","edges":[{"from":"n1","to":"n2","relation":"primary"},{"from":"n2","to":"n3","relation":"primary"},{"from":"n3","to":"n4","relation":"primary"},{"from":"n4","to":"n5","relation":"primary"},{"from":"n5","to":"n6","relation":"primary"},{"from":"n6","to":"n4","relation":"feedback","label":"反馈"}],"groups":[{"id":"g1","label":"离线入库","kind":"lane"},{"id":"g2","label":"在线查询","kind":"lane"},{"id":"g3","label":"更新 / 删除 / 反馈","kind":"lane"},{"id":"g4","label":"分组 4","kind":"lane"}]}
 -->
 
 ## Today Goal

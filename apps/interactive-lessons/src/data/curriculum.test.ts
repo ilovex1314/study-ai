@@ -89,4 +89,38 @@ describe("curriculum contract", () => {
     expect(architectures.every((architecture) => architecture && architecture.nodes.length >= 3)).toBe(true);
     expect(new Set(architectures.map((architecture) => architecture?.title)).size).toBe(20);
   });
+
+  it("requires architecture metadata to use semantic edges or groups", () => {
+    for (const lesson of lessons) {
+      const architecture = lesson.architecture;
+      expect(architecture).toBeTruthy();
+      if (!architecture || architecture.renderMode === "none") continue;
+
+      expect(architecture.nodes.every((node) => node.id && node.label)).toBe(true);
+      expect(architecture.nodes.every((node) => !/[→←↔]|->|<-/.test(node.label))).toBe(true);
+      expect((architecture.edges?.length ?? 0) + (architecture.groups?.length ?? 0)).toBeGreaterThan(0);
+    }
+  });
+
+  it("validates relation-specific architecture semantics", () => {
+    for (const lesson of lessons) {
+      const architecture = lesson.architecture;
+      if (!architecture || architecture.renderMode === "none") continue;
+      const relations = new Set((architecture.edges ?? []).map((edge) => edge.relation));
+      const groupKinds = new Set((architecture.groups ?? []).map((group) => group.kind));
+
+      if (architecture.type === "feedback" || architecture.type === "flywheel") {
+        expect(relations.has("feedback")).toBe(true);
+      }
+      if (architecture.type === "gate" || architecture.type === "state") {
+        expect([...relations].some((relation) => relation === "branch" || relation === "guard" || relation === "feedback")).toBe(true);
+      }
+      if (architecture.type === "layered") {
+        expect(groupKinds.has("layer") || groupKinds.has("lane")).toBe(true);
+      }
+      if (architecture.type === "boundary") {
+        expect(groupKinds.has("boundary") || [...relations].some((relation) => relation === "guard" || relation === "dependency")).toBe(true);
+      }
+    }
+  });
 });

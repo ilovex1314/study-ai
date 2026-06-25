@@ -8,7 +8,7 @@ description: 本章把能力证据、北极星指标、护栏指标、实验设�
 # Day20 产品战略与能力飞轮
 
 <!-- architecture
-{"title":"产品能力增长飞轮","summary":"学习行为形成能力证据，能力画像驱动下一步任务和实验，实验结果再改进课程与产品路线。","type":"flywheel","nodes":[{"label":"学习行为"},{"label":"能力证据","tone":"system"},{"label":"能力画像"},{"label":"下一步任务","tone":"accent"},{"label":"项目产出"},{"label":"实验优化","tone":"warning"},{"label":"路线图决策","tone":"system"}],"feedback":"实验结论回流到课程、题目和产品优先级。"}
+{"title":"产品能力增长飞轮","summary":"学习行为形成能力证据，能力画像驱动下一步任务和实验，实验结果再改进课程与产品路线。","type":"flywheel","nodes":[{"id":"n1","label":"学习行为","group":"g1"},{"id":"n2","label":"能力证据","tone":"system","group":"g1"},{"id":"n3","label":"能力画像","group":"g1"},{"id":"n4","label":"下一步任务","tone":"accent","group":"g1"},{"id":"n5","label":"项目产出","group":"g1"},{"id":"n6","label":"实验优化","tone":"warning","group":"g1"},{"id":"n7","label":"路线图决策","tone":"system","group":"g2"}],"feedback":"实验结论回流到课程、题目和产品优先级。","renderMode":"diagram","edges":[{"from":"n1","to":"n2","relation":"primary"},{"from":"n2","to":"n3","relation":"primary"},{"from":"n3","to":"n4","relation":"primary"},{"from":"n4","to":"n5","relation":"primary"},{"from":"n5","to":"n6","relation":"primary"},{"from":"n6","to":"n7","relation":"primary"},{"from":"n7","to":"n1","relation":"feedback","label":"回流"}],"groups":[{"id":"g1","label":"飞轮循环","kind":"lane"},{"id":"g2","label":"策略决策","kind":"lane"}]}
 -->
 
 ## Today Goal

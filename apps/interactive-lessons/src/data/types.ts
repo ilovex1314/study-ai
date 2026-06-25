@@ -106,11 +106,46 @@ export type ConceptDiagram = {
   }>;
 };
 
+export type ArchitectureType =
+  | "boundary"
+  | "lifecycle"
+  | "layered"
+  | "state"
+  | "feedback"
+  | "gate"
+  | "flywheel"
+  | "pipeline"
+  | "tree";
+
+export type ArchitectureNode = {
+  id: string;
+  label: string;
+  tone?: "neutral" | "accent" | "system" | "warning" | "success";
+  group?: string;
+};
+
+export type ArchitectureEdge = {
+  from: string;
+  to: string;
+  label?: string;
+  tone?: "default" | "warning" | "success";
+  relation?: "primary" | "feedback" | "branch" | "guard" | "dependency";
+};
+
+export type ArchitectureGroup = {
+  id: string;
+  label: string;
+  kind?: "boundary" | "layer" | "lane";
+};
+
 export type LessonArchitecture = {
   title: string;
   summary: string;
-  type: "boundary" | "lifecycle" | "layered" | "state" | "feedback" | "gate" | "flywheel" | "pipeline";
-  nodes: Array<{ label: string; tone?: "neutral" | "accent" | "system" | "warning" }>;
+  type: ArchitectureType;
+  renderMode?: "diagram" | "structured-list" | "none";
+  nodes: ArchitectureNode[];
+  edges?: ArchitectureEdge[];
+  groups?: ArchitectureGroup[];
   feedback?: string;
 };
 

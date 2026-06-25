@@ -1,7 +1,7 @@
 # Day 02 Prompt / RAG / Grounding
 
 <!-- architecture
-{"title":"从知识入库到带引用回答","summary":"文档先被处理和索引，再按问题检索、组装上下文并输出可追溯回答。","type":"lifecycle","nodes":[{"label":"原始文档"},{"label":"清洗切块"},{"label":"索引入库","tone":"system"},{"label":"检索与重排"},{"label":"Prompt 合约","tone":"accent"},{"label":"带引用回答"}]}
+{"title":"从知识入库到带引用回答","summary":"文档先被处理和索引，再按问题检索、组装上下文并输出可追溯回答。","type":"lifecycle","nodes":[{"id":"n1","label":"原始文档","group":"g1"},{"id":"n2","label":"清洗切块","group":"g1"},{"id":"n3","label":"索引入库","tone":"system","group":"g2"},{"id":"n4","label":"检索与重排","group":"g3"},{"id":"n5","label":"Prompt 合约","tone":"accent","group":"g4"},{"id":"n6","label":"带引用回答","group":"g4"}],"renderMode":"diagram","edges":[{"from":"n1","to":"n2","relation":"primary"},{"from":"n2","to":"n3","relation":"primary"},{"from":"n3","to":"n4","relation":"primary"},{"from":"n4","to":"n5","relation":"primary"},{"from":"n5","to":"n6","relation":"primary"},{"from":"n6","to":"n4","relation":"feedback","label":"反馈"}],"groups":[{"id":"g1","label":"离线入库","kind":"lane"},{"id":"g2","label":"在线查询","kind":"lane"},{"id":"g3","label":"更新 / 删除 / 反馈","kind":"lane"},{"id":"g4","label":"分组 4","kind":"lane"}]}
 -->
 
 ## Today Goal

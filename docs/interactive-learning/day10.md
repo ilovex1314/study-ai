@@ -1,7 +1,7 @@
 # Day 10 AI 质量工程
 
 <!-- architecture
-{"title":"质量反馈闭环","summary":"离线基准、红队、线上反馈和回归测试共同决定是否允许发布。","type":"feedback","nodes":[{"label":"Golden Set","tone":"system"},{"label":"离线评估"},{"label":"红队测试","tone":"warning"},{"label":"上线门禁","tone":"accent"},{"label":"线上反馈"},{"label":"回归集更新","tone":"system"}],"feedback":"线上失败样本回流到评估集和门禁规则。"}
+{"title":"质量反馈闭环","summary":"离线基准、红队、线上反馈和回归测试共同决定是否允许发布。","type":"feedback","nodes":[{"id":"n1","label":"Golden Set","tone":"system","group":"g1"},{"id":"n2","label":"离线评估","group":"g1"},{"id":"n3","label":"红队测试","tone":"warning","group":"g1"},{"id":"n4","label":"上线门禁","tone":"accent","group":"g1"},{"id":"n5","label":"线上反馈","group":"g1"},{"id":"n6","label":"回归集更新","tone":"system","group":"g2"}],"feedback":"线上失败样本回流到评估集和门禁规则。","renderMode":"diagram","edges":[{"from":"n1","to":"n2","relation":"primary"},{"from":"n2","to":"n3","relation":"primary"},{"from":"n3","to":"n4","relation":"primary"},{"from":"n4","to":"n5","relation":"primary"},{"from":"n5","to":"n6","relation":"primary"},{"from":"n6","to":"n1","relation":"feedback","label":"回流"}],"groups":[{"id":"g1","label":"主流程","kind":"lane"},{"id":"g2","label":"评估与反馈","kind":"lane"}]}
 -->
 
 ## Today Goal

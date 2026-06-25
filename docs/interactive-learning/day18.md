@@ -8,7 +8,7 @@ description: 本章将 SLO、trace、告警、runbook、熔断和回滚应用到
 # Day18 AI SRE 与事故响应
 
 <!-- architecture
-{"title":"AI 事故响应生命周期","summary":"SLO 告警进入分诊、降级、回滚、沟通和无责复盘，最后沉淀 runbook 与测试。","type":"state","nodes":[{"label":"SLO 告警","tone":"warning"},{"label":"Trace 分诊"},{"label":"降级 / 熔断","tone":"system"},{"label":"回滚恢复","tone":"accent"},{"label":"用户沟通"},{"label":"无责复盘"},{"label":"Runbook 更新","tone":"system"}],"feedback":"复盘行动项进入发布门禁和演练计划。"}
+{"title":"AI 事故响应生命周期","summary":"SLO 告警进入分诊、降级、回滚、沟通和无责复盘，最后沉淀 runbook 与测试。","type":"state","nodes":[{"id":"n1","label":"SLO 告警","tone":"warning","group":"g1"},{"id":"n2","label":"Trace 分诊","group":"g1"},{"id":"n3","label":"降级 / 熔断","tone":"system","group":"g1"},{"id":"n4","label":"回滚恢复","tone":"accent","group":"g2"},{"id":"n5","label":"用户沟通","group":"g2"},{"id":"n6","label":"无责复盘","group":"g3"},{"id":"n7","label":"Runbook 更新","tone":"system","group":"g3"}],"feedback":"复盘行动项进入发布门禁和演练计划。","renderMode":"diagram","edges":[{"from":"n1","to":"n2","relation":"primary"},{"from":"n2","to":"n3","relation":"primary"},{"from":"n3","to":"n4","relation":"primary"},{"from":"n4","to":"n5","relation":"primary"},{"from":"n5","to":"n6","relation":"primary"},{"from":"n6","to":"n7","relation":"primary"},{"from":"n4","to":"n5","relation":"branch","label":"异常"},{"from":"n4","to":"n6","relation":"feedback","label":"恢复"},{"from":"n4","to":"n7","relation":"feedback","label":"恢复"}],"groups":[{"id":"g1","label":"正常状态","kind":"lane"},{"id":"g2","label":"人工 / 暂停","kind":"lane"},{"id":"g3","label":"失败 / 恢复","kind":"lane"}]}
 -->
 
 ## Today Goal

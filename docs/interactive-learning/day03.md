@@ -1,7 +1,7 @@
 # Day 03 Agent 编排
 
 <!-- architecture
-{"title":"可暂停的 Agent 执行状态","summary":"规划、工具调用和人工确认共享可恢复状态，不把执行当成一次性聊天。","type":"state","nodes":[{"label":"任务进入"},{"label":"制定计划","tone":"accent"},{"label":"调用工具"},{"label":"保存 checkpoint","tone":"system"},{"label":"人工确认","tone":"warning"},{"label":"恢复或补偿","tone":"system"}]}
+{"title":"可暂停的 Agent 执行状态","summary":"规划、工具调用和人工确认共享可恢复状态，不把执行当成一次性聊天。","type":"state","nodes":[{"id":"n1","label":"任务进入","group":"g1"},{"id":"n2","label":"制定计划","tone":"accent","group":"g1"},{"id":"n3","label":"调用工具","group":"g1"},{"id":"n4","label":"保存 checkpoint","tone":"system","group":"g2"},{"id":"n5","label":"人工确认","tone":"warning","group":"g2"},{"id":"n6","label":"恢复或补偿","tone":"system","group":"g3"}],"renderMode":"diagram","edges":[{"from":"n1","to":"n2","relation":"primary"},{"from":"n2","to":"n3","relation":"primary"},{"from":"n3","to":"n4","relation":"primary"},{"from":"n4","to":"n5","relation":"primary"},{"from":"n5","to":"n6","relation":"primary"},{"from":"n4","to":"n5","relation":"feedback","label":"恢复"},{"from":"n4","to":"n6","relation":"feedback","label":"恢复"}],"groups":[{"id":"g1","label":"正常状态","kind":"lane"},{"id":"g2","label":"人工 / 暂停","kind":"lane"},{"id":"g3","label":"失败 / 恢复","kind":"lane"}]}
 -->
 
 ## Today Goal

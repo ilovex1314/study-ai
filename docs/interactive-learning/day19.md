@@ -8,7 +8,7 @@ description: 本章将 AI 资产纳入版本、评审、门禁、灰度和回滚
 # Day19 团队协作与发布治理
 
 <!-- architecture
-{"title":"AI 资产发布门禁","summary":"Prompt、模型、数据集、工作流和检索索引都作为版本化资产进入评审、灰度和回滚。","type":"gate","nodes":[{"label":"版本化 AI 资产","tone":"system"},{"label":"变更评审"},{"label":"离线 Eval"},{"label":"红队门禁","tone":"warning"},{"label":"灰度发布","tone":"accent"},{"label":"Trace 监控"},{"label":"回滚 Owner","tone":"system"}],"feedback":"线上漂移和失败样本触发新版本资产评审。"}
+{"title":"AI 资产发布门禁","summary":"Prompt、模型、数据集、工作流和检索索引都作为版本化资产进入评审、灰度和回滚。","type":"gate","nodes":[{"id":"n1","label":"版本化 AI 资产","tone":"system","group":"g1"},{"id":"n2","label":"变更评审","group":"g1"},{"id":"n3","label":"离线 Eval","group":"g2"},{"id":"n4","label":"红队门禁","tone":"warning","group":"g2"},{"id":"n5","label":"灰度发布","tone":"accent","group":"g2"},{"id":"n6","label":"Trace 监控","group":"g3"},{"id":"n7","label":"回滚 Owner","tone":"system","group":"g4"}],"feedback":"线上漂移和失败样本触发新版本资产评审。","renderMode":"diagram","edges":[{"from":"n1","to":"n2","relation":"guard"},{"from":"n2","to":"n3","relation":"guard"},{"from":"n3","to":"n4","relation":"guard"},{"from":"n4","to":"n5","relation":"guard"},{"from":"n5","to":"n6","relation":"guard"},{"from":"n6","to":"n7","relation":"guard"},{"from":"n2","to":"n5","relation":"branch","label":"允许"},{"from":"n2","to":"n6","relation":"branch","label":"审批"},{"from":"n2","to":"n7","relation":"branch","label":"拒绝"}],"groups":[{"id":"g1","label":"输入","kind":"lane"},{"id":"g2","label":"确定性控制","kind":"lane"},{"id":"g3","label":"结果分支","kind":"lane"},{"id":"g4","label":"审计","kind":"lane"}]}
 -->
 
 ## Today Goal

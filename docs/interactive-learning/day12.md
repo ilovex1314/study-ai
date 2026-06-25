@@ -1,7 +1,7 @@
 # Day 12 Capstone：可演示 AI 产品闭环
 
 <!-- architecture
-{"title":"可演示项目交付结构","summary":"用范围、用户流、实现切片、验证和部署计划组成可验收的毕业项目。","type":"layered","nodes":[{"label":"问题与用户","tone":"accent"},{"label":"项目范围"},{"label":"核心任务流"},{"label":"实现切片","tone":"system"},{"label":"验证证据","tone":"warning"},{"label":"部署计划"}]}
+{"title":"可演示项目交付结构","summary":"用范围、用户流、实现切片、验证和部署计划组成可验收的毕业项目。","type":"layered","nodes":[{"id":"n1","label":"问题与用户","tone":"accent","group":"g1"},{"id":"n2","label":"项目范围","group":"g1"},{"id":"n3","label":"核心任务流","group":"g2"},{"id":"n4","label":"实现切片","tone":"system","group":"g3"},{"id":"n5","label":"验证证据","tone":"warning","group":"g4"},{"id":"n6","label":"部署计划","group":"g4"}],"renderMode":"diagram","edges":[{"from":"n1","to":"n2","relation":"primary"},{"from":"n2","to":"n3","relation":"primary"},{"from":"n3","to":"n4","relation":"primary"},{"from":"n4","to":"n5","relation":"primary"},{"from":"n5","to":"n6","relation":"primary"},{"from":"n6","to":"n1","relation":"feedback","label":"观测 / 反馈"}],"groups":[{"id":"g1","label":"体验层","kind":"layer"},{"id":"g2","label":"应用服务层","kind":"layer"},{"id":"g3","label":"模型 / 平台层","kind":"layer"},{"id":"g4","label":"业务与治理层","kind":"layer"}]}
 -->
 
 ## Today Goal

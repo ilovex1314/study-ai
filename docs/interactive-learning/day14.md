@@ -1,7 +1,7 @@
 # Day 14 数据治理与知识生命周期
 
 <!-- architecture
-{"title":"知识生命周期与删除传播","summary":"知识源变更必须传播到解析、切片、向量、缓存、引用和审计状态。","type":"lifecycle","nodes":[{"label":"知识源"},{"label":"接入校验"},{"label":"解析切分"},{"label":"Metadata / Version","tone":"system"},{"label":"权限过滤检索"},{"label":"带引用回答","tone":"accent"},{"label":"删除传播","tone":"warning"}],"feedback":"更新、撤回和权限变更触发补偿任务与缓存失效。"}
+{"title":"知识生命周期与删除传播","summary":"知识源变更必须传播到解析、切片、向量、缓存、引用和审计状态。","type":"lifecycle","nodes":[{"id":"n1","label":"知识源","group":"g1"},{"id":"n2","label":"接入校验","group":"g1"},{"id":"n3","label":"解析切分","group":"g2"},{"id":"n4","label":"Metadata / Version","tone":"system","group":"g3"},{"id":"n5","label":"权限过滤检索","group":"g3"},{"id":"n6","label":"带引用回答","tone":"accent","group":"g4"},{"id":"n7","label":"删除传播","tone":"warning","group":"g4"}],"feedback":"更新、撤回和权限变更触发补偿任务与缓存失效。","renderMode":"diagram","edges":[{"from":"n1","to":"n2","relation":"primary"},{"from":"n2","to":"n3","relation":"primary"},{"from":"n3","to":"n4","relation":"primary"},{"from":"n4","to":"n5","relation":"primary"},{"from":"n5","to":"n6","relation":"primary"},{"from":"n6","to":"n7","relation":"primary"},{"from":"n7","to":"n5","relation":"feedback","label":"更新 / 删除传播"}],"groups":[{"id":"g1","label":"离线入库","kind":"lane"},{"id":"g2","label":"在线查询","kind":"lane"},{"id":"g3","label":"更新 / 删除 / 反馈","kind":"lane"},{"id":"g4","label":"分组 4","kind":"lane"}]}
 -->
 
 ## Today Goal

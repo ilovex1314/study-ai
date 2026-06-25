@@ -54,6 +54,264 @@
 .score-card, .feedback.correct { background: #eaf2ec; border-color: #a8c7ae; color: var(--surface-ink); }
 .feedback.wrong { background: #f8e7e3; border-color: #db9c93; color: var(--surface-ink); }
 
+/* FINAL: semantic architecture grammar renderer. */
+.architecture-groups {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 14px;
+  margin-top: 18px;
+}
+
+.architecture-diagram[data-type="layered"] .architecture-groups,
+.architecture-diagram[data-type="pipeline"] .architecture-groups {
+  grid-template-columns: 1fr;
+}
+
+.architecture-diagram[data-type="gate"] .architecture-groups,
+.architecture-diagram[data-type="state"] .architecture-groups {
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+}
+
+.architecture-group {
+  border: 1px solid #cbd4e5;
+  border-radius: 12px;
+  padding: 12px;
+  background: rgba(252, 251, 247, .78);
+}
+
+.architecture-group h3 {
+  margin: 0 0 10px;
+  font-size: 12px;
+  color: var(--text-muted);
+}
+
+.architecture-group[data-kind="boundary"] {
+  outline: 1px dashed #9fafd0;
+  background: rgba(247, 249, 253, .92);
+}
+
+.architecture-group[data-kind="layer"] {
+  background: #eef2f8;
+}
+
+.architecture-node-list {
+  display: grid;
+  gap: 8px;
+}
+
+.architecture-node {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 38px;
+  gap: 10px;
+  padding: 10px 12px;
+  border: 1px solid #cbd4e5;
+  border-radius: 9px;
+  background: #fcfbf7;
+  color: var(--surface-ink);
+  font-size: 13px;
+  font-weight: 800;
+  text-align: center;
+}
+
+.architecture-node i {
+  display: none;
+}
+
+.architecture-node[data-tone="accent"] {
+  border-color: #9fafd0;
+  background: #dfe7f6;
+  color: var(--accent-primary);
+}
+
+.architecture-node[data-tone="system"] {
+  border-color: #a8c7ae;
+  background: #eaf2ec;
+  color: #356548;
+}
+
+.architecture-node[data-tone="warning"] {
+  border-color: #e4c48d;
+  background: #f8eee0;
+  color: #8a4b25;
+}
+
+.architecture-node[data-tone="success"] {
+  border-color: #9fc5a9;
+  background: #eef7ef;
+  color: #2f6b48;
+}
+
+.architecture-loop {
+  width: min(760px, 100%);
+  min-height: 360px;
+  margin: 22px auto 10px;
+  padding: 20px;
+  border: 2px dashed #9fafd0;
+  border-radius: 28px;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(140px, 1fr));
+  grid-template-rows: repeat(3, minmax(62px, auto));
+  align-items: center;
+  gap: 18px;
+}
+
+.architecture-loop::after {
+  content: "↻";
+  grid-column: 2;
+  grid-row: 2;
+  justify-self: center;
+  align-self: center;
+  color: var(--accent-progress);
+  font-size: 34px;
+  font-weight: 900;
+}
+
+.architecture-loop-slot {
+  min-width: 0;
+}
+
+.architecture-loop[data-count="6"] .architecture-loop-slot:nth-child(1),
+.architecture-loop[data-count="7"] .architecture-loop-slot:nth-child(7) {
+  grid-column: 1;
+  grid-row: 2;
+}
+
+.architecture-loop[data-count="6"] .architecture-loop-slot:nth-child(2),
+.architecture-loop[data-count="7"] .architecture-loop-slot:nth-child(1) {
+  grid-column: 2;
+  grid-row: 1;
+}
+
+.architecture-loop[data-count="6"] .architecture-loop-slot:nth-child(3),
+.architecture-loop[data-count="7"] .architecture-loop-slot:nth-child(2) {
+  grid-column: 3;
+  grid-row: 1;
+}
+
+.architecture-loop[data-count="6"] .architecture-loop-slot:nth-child(4),
+.architecture-loop[data-count="7"] .architecture-loop-slot:nth-child(3) {
+  grid-column: 3;
+  grid-row: 2;
+}
+
+.architecture-loop[data-count="6"] .architecture-loop-slot:nth-child(5),
+.architecture-loop[data-count="7"] .architecture-loop-slot:nth-child(4) {
+  grid-column: 3;
+  grid-row: 3;
+}
+
+.architecture-loop[data-count="6"] .architecture-loop-slot:nth-child(6),
+.architecture-loop[data-count="7"] .architecture-loop-slot:nth-child(5) {
+  grid-column: 2;
+  grid-row: 3;
+}
+
+.architecture-loop[data-count="7"] .architecture-loop-slot:nth-child(6) {
+  grid-column: 1;
+  grid-row: 3;
+}
+
+.architecture-edges {
+  display: grid;
+  gap: 8px;
+  margin: 16px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.architecture-edges li {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 28px minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+  color: var(--text-muted);
+}
+
+.architecture-edges i {
+  height: 2px;
+  background: #9fafd0;
+  position: relative;
+}
+
+.architecture-edges i::after {
+  content: "";
+  position: absolute;
+  right: -1px;
+  top: 50%;
+  width: 7px;
+  height: 7px;
+  border-right: 2px solid #9fafd0;
+  border-top: 2px solid #9fafd0;
+  transform: translateY(-50%) rotate(45deg);
+}
+
+.architecture-edges [data-relation="feedback"] i,
+.architecture-edges [data-relation="branch"] i,
+.architecture-edges [data-relation="guard"] i {
+  background: #c78d3d;
+}
+
+.architecture-edges [data-relation="feedback"] i::after,
+.architecture-edges [data-relation="branch"] i::after,
+.architecture-edges [data-relation="guard"] i::after {
+  border-color: #c78d3d;
+}
+
+.architecture-edges em {
+  font-style: normal;
+  font-weight: 800;
+  color: var(--accent-progress);
+}
+
+.concept-diagram-branches span {
+  display: inline-flex;
+  gap: 6px;
+  align-items: center;
+}
+
+.concept-diagram-branches span::before {
+  content: "";
+  width: 16px;
+  height: 2px;
+  background: currentColor;
+}
+
+.concept-diagram-branches strong {
+  font-weight: 850;
+}
+
+@media (max-width: 1024px) {
+  .architecture-loop {
+    aspect-ratio: auto;
+    border-radius: 18px;
+    padding: 14px;
+    display: block;
+    min-height: auto;
+  }
+
+  .architecture-loop::after {
+    display: none;
+  }
+
+  .architecture-loop-slot {
+    position: static;
+    width: auto;
+    transform: none;
+    margin: 8px 0;
+  }
+
+  .architecture-edges li {
+    grid-template-columns: minmax(0, 1fr) 22px minmax(0, 1fr);
+  }
+
+  .architecture-edges em {
+    grid-column: 1 / -1;
+  }
+}
+
 /* Approved fixed-navigation mockup: preserve the left course dock, mirror every other spatial rule. */
 @media (min-width: 1025px) {
   .app-shell { width: min(920px, calc(100% - 36px)); padding: 48px 0 112px; }
