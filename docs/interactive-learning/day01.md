@@ -6,7 +6,7 @@ description: Day01 面向已有工程经验的学习者，建立 AI 产品的第
 ---
 
 <!-- architecture
-{"title":"模型建议与系统控制边界","summary":"模型负责理解与建议；权限、状态和高风险动作由可审计系统控制。","type":"boundary","nodes":[{"label":"用户目标","tone":"accent"},{"label":"模型建议"},{"label":"策略与权限","tone":"system"},{"label":"业务系统状态","tone":"system"},{"label":"可审计动作","tone":"warning"}]}
+{"title":"模型建议与系统控制边界","summary":"模型负责理解与建议；权限、状态和高风险动作由可审计系统控制。","type":"boundary","nodes":[{"id":"n1","label":"用户目标","tone":"accent","group":"g1"},{"id":"n2","label":"模型建议","group":"g2"},{"id":"n3","label":"策略与权限","tone":"system","group":"g3"},{"id":"n4","label":"业务系统状态","tone":"system","group":"g4"},{"id":"n5","label":"可审计动作","tone":"warning","group":"g4"}],"renderMode":"diagram","edges":[{"from":"n1","to":"n2","relation":"primary"},{"from":"n2","to":"n3","relation":"primary"},{"from":"n3","to":"n4","relation":"primary"},{"from":"n4","to":"n5","relation":"primary"},{"from":"n1","to":"n3","relation":"guard","label":"边界判断"},{"from":"n5","to":"n2","relation":"dependency","label":"审计反馈"}],"groups":[{"id":"g1","label":"输入 / 目标","kind":"boundary"},{"id":"g2","label":"模型与平台能力","kind":"boundary"},{"id":"g3","label":"系统控制","kind":"boundary"},{"id":"g4","label":"治理与退出","kind":"boundary"}]}
 -->
 
 ## 今日目标

@@ -168,16 +168,18 @@ function ConceptVisual({ diagram }: { diagram?: ConceptModule["diagram"] }) {
   return (
     <figure className="concept-diagram">
       <div className="concept-diagram-flow">
-        {diagram.nodes.map((node, index) => (
+        {diagram.nodes.map((node) => (
           <span key={node.id} className="concept-diagram-node" data-tone={node.tone ?? "neutral"}>
             {node.label}
-            {index < diagram.nodes.length - 1 ? <i aria-hidden="true">→</i> : null}
           </span>
         ))}
       </div>
       <div className="concept-diagram-branches" aria-hidden="true">
         {diagram.edges.filter((edge) => edge.label).map((edge) => (
-          <span key={`${edge.from}-${edge.to}`} data-tone={edge.tone ?? "default"}>{edge.label} → {diagram.nodes.find((node) => node.id === edge.to)?.label}</span>
+          <span key={`${edge.from}-${edge.to}`} data-tone={edge.tone ?? "default"}>
+            <strong>{edge.label}</strong>
+            <span>{diagram.nodes.find((node) => node.id === edge.to)?.label}</span>
+          </span>
         ))}
       </div>
       <figcaption>{diagram.conclusion}</figcaption>

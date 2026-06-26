@@ -1,7 +1,7 @@
 # Day 07 复杂编排与可恢复执行
 
 <!-- architecture
-{"title":"持久化工作流状态","summary":"复杂任务在节点间保存状态，可中断、人工介入并从可靠检查点继续。","type":"state","nodes":[{"label":"启动任务"},{"label":"图节点执行","tone":"accent"},{"label":"持久化状态","tone":"system"},{"label":"失败重试","tone":"warning"},{"label":"人工介入","tone":"warning"},{"label":"恢复执行","tone":"system"}]}
+{"title":"持久化工作流状态","summary":"复杂任务在节点间保存状态，可中断、人工介入并从可靠检查点继续。","type":"state","nodes":[{"id":"n1","label":"启动任务","group":"g1"},{"id":"n2","label":"图节点执行","tone":"accent","group":"g1"},{"id":"n3","label":"持久化状态","tone":"system","group":"g1"},{"id":"n4","label":"失败重试","tone":"warning","group":"g2"},{"id":"n5","label":"人工介入","tone":"warning","group":"g2"},{"id":"n6","label":"恢复执行","tone":"system","group":"g3"}],"renderMode":"diagram","edges":[{"from":"n1","to":"n2","relation":"primary"},{"from":"n2","to":"n3","relation":"primary"},{"from":"n3","to":"n4","relation":"primary"},{"from":"n4","to":"n5","relation":"primary"},{"from":"n5","to":"n6","relation":"primary"},{"from":"n4","to":"n5","relation":"feedback","label":"恢复"},{"from":"n4","to":"n6","relation":"feedback","label":"恢复"}],"groups":[{"id":"g1","label":"正常状态","kind":"lane"},{"id":"g2","label":"人工 / 暂停","kind":"lane"},{"id":"g3","label":"失败 / 恢复","kind":"lane"}]}
 -->
 
 ## Today Goal

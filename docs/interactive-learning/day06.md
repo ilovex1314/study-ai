@@ -1,7 +1,7 @@
 # Day 06 TypeScript AI 应用栈
 
 <!-- architecture
-{"title":"TypeScript AI 应用分层","summary":"UI 状态、服务端边界、Provider 适配与业务能力各守自己的接口。","type":"layered","nodes":[{"label":"React / Next UI","tone":"accent"},{"label":"流式状态"},{"label":"服务端 API","tone":"system"},{"label":"AI SDK"},{"label":"Provider Adapter","tone":"system"},{"label":"业务数据"}]}
+{"title":"TypeScript AI 应用分层","summary":"UI 状态、服务端边界、Provider 适配与业务能力各守自己的接口。","type":"layered","nodes":[{"id":"n1","label":"React / Next UI","tone":"accent","group":"g1"},{"id":"n2","label":"流式状态","group":"g1"},{"id":"n3","label":"服务端 API","tone":"system","group":"g2"},{"id":"n4","label":"AI SDK","group":"g3"},{"id":"n5","label":"Provider Adapter","tone":"system","group":"g4"},{"id":"n6","label":"业务数据","group":"g4"}],"renderMode":"diagram","edges":[{"from":"n1","to":"n2","relation":"primary"},{"from":"n2","to":"n3","relation":"primary"},{"from":"n3","to":"n4","relation":"primary"},{"from":"n4","to":"n5","relation":"primary"},{"from":"n5","to":"n6","relation":"primary"},{"from":"n6","to":"n1","relation":"feedback","label":"观测 / 反馈"}],"groups":[{"id":"g1","label":"体验层","kind":"layer"},{"id":"g2","label":"应用服务层","kind":"layer"},{"id":"g3","label":"模型 / 平台层","kind":"layer"},{"id":"g4","label":"业务与治理层","kind":"layer"}]}
 -->
 
 ## Today Goal

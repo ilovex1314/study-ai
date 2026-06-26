@@ -1,7 +1,7 @@
 # Day 04 产品化交付
 
 <!-- architecture
-{"title":"AI 产品交付分层","summary":"体验、应用编排、模型能力与观测治理分层协作，避免把责任塞进聊天界面。","type":"layered","nodes":[{"label":"前端体验","tone":"accent"},{"label":"应用 API"},{"label":"模型网关","tone":"system"},{"label":"RAG / Agent"},{"label":"业务系统","tone":"system"},{"label":"观测与评估","tone":"warning"}]}
+{"title":"AI 产品交付分层","summary":"体验、应用编排、模型能力与观测治理分层协作，避免把责任塞进聊天界面。","type":"layered","nodes":[{"id":"n1","label":"前端体验","tone":"accent","group":"g1"},{"id":"n2","label":"应用 API","group":"g1"},{"id":"n3","label":"模型网关","tone":"system","group":"g2"},{"id":"n4","label":"RAG / Agent","group":"g3"},{"id":"n5","label":"业务系统","tone":"system","group":"g4"},{"id":"n6","label":"观测与评估","tone":"warning","group":"g4"}],"renderMode":"diagram","edges":[{"from":"n1","to":"n2","relation":"primary"},{"from":"n2","to":"n3","relation":"primary"},{"from":"n3","to":"n4","relation":"primary"},{"from":"n4","to":"n5","relation":"primary"},{"from":"n5","to":"n6","relation":"primary"},{"from":"n6","to":"n1","relation":"feedback","label":"观测 / 反馈"}],"groups":[{"id":"g1","label":"体验层","kind":"layer"},{"id":"g2","label":"应用服务层","kind":"layer"},{"id":"g3","label":"模型 / 平台层","kind":"layer"},{"id":"g4","label":"业务与治理层","kind":"layer"}]}
 -->
 
 ## Today Goal

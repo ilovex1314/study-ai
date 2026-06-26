@@ -1,38 +1,72 @@
-# study-ai：20 天 AI 产品工程学习路线
+---
+title: study-ai 20 天互动学习路线
+slug: study-ai-interactive-learning-20-days
+summary: 以 PRD P0 为基准，将 AI 工程课程整理为 Day01-Day20 的可交付学习路线。
+description: 本总览是互动课程的 Markdown 事实源索引，明确每一天的能力目标、可验证产出、关系图类型、题目概念和研发导入要点。
+---
 
-面向已有前后端经验、希望交付真实 AI 产品的工程师。每天约 60 分钟；每一天都需要留下可复核的判断、任务或项目证据。
+# study-ai Interactive Learning Plan
 
-## 学习原则
+Persona: senior frontend/backend engineer who wants to ship AI products, not just learn AI vocabulary.
 
-> 模型负责概率性的理解与生成；系统负责状态、权限、成本、审计和可恢复性。
+Pace: 20 focused days, about 60 minutes per day. This is the P0 course-upgrade version of the larger AI engineering roadmap. Every day must connect concepts, architecture, practice, quiz, review, and a concrete production artifact.
 
-## 能力路线
+Quality target: every Day includes a learning goal, verifiable output, core concepts, architecture or flow recommendation, production example, counterexample, hands-on task, at least 4 quiz questions, review advice, and references.
 
-| 阶段 | Day | 主题 | 可验证产出 |
-| --- | --- | --- | --- |
-| 定义可靠 AI 行为 | 01 | AI 产品问题与模型边界 | 可测任务与控制边界 |
-|  | 02 | Prompt、结构化输出与工具契约 | 可测试 Prompt 合约 |
-|  | 03 | 上下文、RAG 与 Grounding | 带证据的最小检索设计 |
-|  | 04 | 工具、Workflow 与人工确认 | 受控副作用工作流 |
-|  | 05 | Agent、状态与可恢复执行 | 有停止条件的 Agent 状态图 |
-| 构建生产系统 | 06 | AI UX：流式、引用与确认 | 失败可见的交互方案 |
-|  | 07 | 知识生命周期与数据治理 | 摄取、更新、删除与权限策略 |
-|  | 08 | AI 安全、身份与工具权限 | 威胁模型与审批矩阵 |
-|  | 09 | Eval、红队与质量工程 | Golden set 与回归规则 |
-|  | 10 | Trace、可观测性与反馈 | 运行证据与指标设计 |
-|  | 11 | 成本、延迟与技术选型 | 预算、SLO 与 ADR |
-| 扩展与运营 | 12 | 多模态与实时体验 | 渐进反馈和降级策略 |
-|  | 13 | AI 产品 UI/UX 工程化 | 可访问响应式设计系统 |
-|  | 14 | 持久化工作流与故障恢复 | Checkpoint 与补偿方案 |
-|  | 15 | 发布治理与变更控制 | 版本、灰度与回滚门禁 |
-|  | 16 | AI SRE、SLO 与事故响应 | Runbook 与故障演练 |
-| 项目证据闭环 | 17 | 项目发现、用户与成功指标 | 项目假设与指标 |
-|  | 18 | 项目架构、数据契约与风险 | 架构、数据契约和风险清单 |
-|  | 19 | 项目实现、评估与发布检查 | Eval 与发布检查表 |
-|  | 20 | 项目复盘、能力证据与产品飞轮 | 复盘与能力档案 |
+## P0 Source Of Truth
 
-## 互动课程约定
+- Product baseline: `docs/study-ai-product-prd.md`
+- P0 topic: `docs/product/topics/feature/2026-06-25-p0-course-upgrade-alignment.md`
+- Learning source: `docs/ai-learning-system-plan.md`
+- Interactive lessons: `docs/interactive-learning/day01.md` to `day20.md`
 
-每一天的网页都提供概念、关系型架构图、实践任务、至少 4 道加权题（总分 100）和复盘建议。桌面端使用右侧固定悬浮章节导航；H5 使用顶部横向锚点，不遮挡正文。
+## Day Map
 
-本版本只实现个人、本地优先的学习闭环。登录、云同步、团队协作、AI 教练和自动评分属于后续阶段。
+| Day | Focus | Capability Target | Verifiable Output | Diagram Type | Quiz Concepts |
+| --- | --- | --- | --- | --- | --- |
+| Day01 | 模型认知与能力边界 | 判断什么时候信任 LLM，什么时候保留确定性控制 | 能力边界决策表 | Boundary map | capability, uncertainty, deterministic fallback, eval |
+| Day02 | Prompt、RAG 与知识 grounding | 设计 prompt 合约和最小 RAG 链路 | 最小 RAG 设计说明 | Lifecycle | prompt contract, chunking, retrieval, grounding |
+| Day03 | Agent loop 与 workflow control | 设计带工具、状态、trace 和人工确认的执行循环 | Agent 状态图 | State machine | loop, tool, state, approval |
+| Day04 | AI product delivery and operations | 把 demo 变成可观测、可评估、可部署的产品 | 发布 checklist | Layered system | gateway, eval, observability, cost |
+| Day05 | 平台、框架与供应商选型 | 根据团队能力和阶段选择合适平台 | 技术选型矩阵 | Boundary map | build-vs-buy, abstraction, migration, team fit |
+| Day06 | Vercel AI SDK、Next.js 与前后端协作 | 搭出流式 AI UI、provider abstraction 和工具边界 | TypeScript AI UI 方案 | Layered system | streaming, provider, server boundary, tool call |
+| Day07 | LangGraph / durable workflow / human-in-the-loop | 设计 checkpoint、interrupt/resume 和恢复链路 | durable workflow 状态图 | State machine | checkpoint, interrupt, resume, compensation |
+| Day08 | Dify、Coze、n8n 与业务验证 | 用可视化平台加速原型、知识库和跨系统自动化 | 原型验证方案 | Layered system | workflow, connector, prototype, governance |
+| Day09 | 检索、重排、权限、多租户与评估 | 把 RAG 扩展为多源、多租户、可评估知识系统 | 多租户 RAG 架构 | Lifecycle | rerank, tenant, permission, retrieval eval |
+| Day10 | Eval、反馈、红队与回归测试 | 建立 golden dataset、离线评估、在线反馈和风险样本库 | Eval 回归计划 | Feedback loop | golden set, regression, red team, rubric |
+| Day11 | 上下文工程、任务拆解与 AI 协作 | 把模糊想法转成 AI 可执行任务 | 任务拆解模板 | Lifecycle | context, task slicing, constraints, review |
+| Day12 | Capstone：可演示 AI 产品闭环 | 合成前端、编排、工具、日志、eval 与复盘 | 可演示产品闭环 | Layered + feedback | integration, evidence, release, review |
+| Day13 | UI/UX Pro Max 实战 | 将设计建议落成可维护、可验证的 React 页面 | 设计 token 与验收记录 | Feedback loop | design data, token, accessibility, validation |
+| Day14 | 数据治理与知识生命周期 | 为知识库设计可追溯、可删除、可权限过滤的摄取链路 | 知识生命周期图与 metadata contract | Lifecycle | metadata, deletion propagation, permission filter, freshness |
+| Day15 | AI 安全、身份与工具权限 | 把 Prompt Injection、越权工具调用和数据泄露转成系统控制点 | 工具权限矩阵与审批策略 | Boundary + gate | untrusted input, tool schema, approval, audit |
+| Day16 | 多模态与实时体验 | 为图片、语音与文本任务定义统一输入、异步处理和降级方案 | 多模态任务编排图 | Layered pipeline | multimodal input, async queue, citation, graceful degradation |
+| Day17 | 成本、延迟与容量工程 | 将 token、检索、工具调用和队列转成预算与服务目标 | 成本/延迟预算表 | Feedback loop | routing, cache, retry budget, p95 |
+| Day18 | AI SRE 与事故响应 | 让 AI 功能具备可观测、可降级、可回滚和可复盘能力 | 两份 runbook 与 trace 分析 | Incident lifecycle | SLO, trace, circuit breaker, rollback |
+| Day19 | 团队协作与发布治理 | 把 Prompt、模型、数据集和工作流作为可审查发布物 | AI 发布 checklist | Gate flow | versioning, release gate, gray rollout, ownership |
+| Day20 | 产品战略与能力飞轮 | 将课程能力转成持续增强的产品与团队学习机制 | 北极星指标、实验计划和 90 天路线图 | Flywheel | capability evidence, guardrail metric, experiment, retention |
+
+## How This Merges The Roadmap
+
+The original 12-day interactive course covered core AI product delivery. P0 extends it to 20 days by adding production-system depth: data lifecycle, security, multimodal experience, cost engineering, SRE, release governance, and product strategy.
+
+The course order now follows capability dependency:
+
+1. Day01-Day04 establish model, RAG, agent, and product delivery fundamentals.
+2. Day05-Day09 compare implementation platforms and mature knowledge systems.
+3. Day10-Day13 add eval, context work, capstone integration, and design validation.
+4. Day14-Day20 harden the system for data governance, security, multimodal UX, operations, release, and long-term product learning.
+
+## R&D Import Notes
+
+- `docs/interactive-learning/dayXX.md` is the content source for typed lesson generation.
+- Every Day includes a recommended diagram type; renderer should support relationship type rather than day-specific special cases.
+- Quiz concepts listed in this overview must appear in the matching day body before they are used in typed lesson questions.
+- Day14-Day20 should not be imported as outline-only pages; each has practice, quiz, review, and references.
+
+## Quality Gate Notes
+
+- Every Day has a concrete output useful for production delivery.
+- Every Day has at least one architecture or flow diagram recommendation.
+- Every Day includes a production example and counterexample.
+- Quiz concepts are declared in this overview and must be validated against the lesson body.
+- Fast-moving topics use official or authoritative references inside each Day.

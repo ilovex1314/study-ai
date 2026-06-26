@@ -7,23 +7,90 @@ export const architectures: Record<string, LessonArchitecture> = {
     "type": "boundary",
     "nodes": [
       {
+        "id": "n1",
         "label": "用户目标",
-        "tone": "accent"
+        "tone": "accent",
+        "group": "g1"
       },
       {
-        "label": "模型建议"
+        "id": "n2",
+        "label": "模型建议",
+        "group": "g2"
       },
       {
+        "id": "n3",
         "label": "策略与权限",
-        "tone": "system"
+        "tone": "system",
+        "group": "g3"
       },
       {
+        "id": "n4",
         "label": "业务系统状态",
-        "tone": "system"
+        "tone": "system",
+        "group": "g4"
       },
       {
+        "id": "n5",
         "label": "可审计动作",
-        "tone": "warning"
+        "tone": "warning",
+        "group": "g4"
+      }
+    ],
+    "renderMode": "diagram",
+    "edges": [
+      {
+        "from": "n1",
+        "to": "n2",
+        "relation": "primary"
+      },
+      {
+        "from": "n2",
+        "to": "n3",
+        "relation": "primary"
+      },
+      {
+        "from": "n3",
+        "to": "n4",
+        "relation": "primary"
+      },
+      {
+        "from": "n4",
+        "to": "n5",
+        "relation": "primary"
+      },
+      {
+        "from": "n1",
+        "to": "n3",
+        "relation": "guard",
+        "label": "边界判断"
+      },
+      {
+        "from": "n5",
+        "to": "n2",
+        "relation": "dependency",
+        "label": "审计反馈"
+      }
+    ],
+    "groups": [
+      {
+        "id": "g1",
+        "label": "输入 / 目标",
+        "kind": "boundary"
+      },
+      {
+        "id": "g2",
+        "label": "模型与平台能力",
+        "kind": "boundary"
+      },
+      {
+        "id": "g3",
+        "label": "系统控制",
+        "kind": "boundary"
+      },
+      {
+        "id": "g4",
+        "label": "治理与退出",
+        "kind": "boundary"
       }
     ]
   },
@@ -33,24 +100,92 @@ export const architectures: Record<string, LessonArchitecture> = {
     "type": "lifecycle",
     "nodes": [
       {
-        "label": "原始文档"
+        "id": "n1",
+        "label": "原始文档",
+        "group": "g1"
       },
       {
-        "label": "清洗切块"
+        "id": "n2",
+        "label": "清洗切块",
+        "group": "g1"
       },
       {
+        "id": "n3",
         "label": "索引入库",
-        "tone": "system"
+        "tone": "system",
+        "group": "g2"
       },
       {
-        "label": "检索与重排"
+        "id": "n4",
+        "label": "检索与重排",
+        "group": "g3"
       },
       {
+        "id": "n5",
         "label": "Prompt 合约",
-        "tone": "accent"
+        "tone": "accent",
+        "group": "g4"
       },
       {
-        "label": "带引用回答"
+        "id": "n6",
+        "label": "带引用回答",
+        "group": "g4"
+      }
+    ],
+    "renderMode": "diagram",
+    "edges": [
+      {
+        "from": "n1",
+        "to": "n2",
+        "relation": "primary"
+      },
+      {
+        "from": "n2",
+        "to": "n3",
+        "relation": "primary"
+      },
+      {
+        "from": "n3",
+        "to": "n4",
+        "relation": "primary"
+      },
+      {
+        "from": "n4",
+        "to": "n5",
+        "relation": "primary"
+      },
+      {
+        "from": "n5",
+        "to": "n6",
+        "relation": "primary"
+      },
+      {
+        "from": "n6",
+        "to": "n4",
+        "relation": "feedback",
+        "label": "反馈"
+      }
+    ],
+    "groups": [
+      {
+        "id": "g1",
+        "label": "离线入库",
+        "kind": "lane"
+      },
+      {
+        "id": "g2",
+        "label": "在线查询",
+        "kind": "lane"
+      },
+      {
+        "id": "g3",
+        "label": "更新 / 删除 / 反馈",
+        "kind": "lane"
+      },
+      {
+        "id": "g4",
+        "label": "分组 4",
+        "kind": "lane"
       }
     ]
   },
@@ -60,26 +195,95 @@ export const architectures: Record<string, LessonArchitecture> = {
     "type": "state",
     "nodes": [
       {
-        "label": "任务进入"
+        "id": "n1",
+        "label": "任务进入",
+        "group": "g1"
       },
       {
+        "id": "n2",
         "label": "制定计划",
-        "tone": "accent"
+        "tone": "accent",
+        "group": "g1"
       },
       {
-        "label": "调用工具"
+        "id": "n3",
+        "label": "调用工具",
+        "group": "g1"
       },
       {
+        "id": "n4",
         "label": "保存 checkpoint",
-        "tone": "system"
+        "tone": "system",
+        "group": "g2"
       },
       {
+        "id": "n5",
         "label": "人工确认",
-        "tone": "warning"
+        "tone": "warning",
+        "group": "g2"
       },
       {
+        "id": "n6",
         "label": "恢复或补偿",
-        "tone": "system"
+        "tone": "system",
+        "group": "g3"
+      }
+    ],
+    "renderMode": "diagram",
+    "edges": [
+      {
+        "from": "n1",
+        "to": "n2",
+        "relation": "primary"
+      },
+      {
+        "from": "n2",
+        "to": "n3",
+        "relation": "primary"
+      },
+      {
+        "from": "n3",
+        "to": "n4",
+        "relation": "primary"
+      },
+      {
+        "from": "n4",
+        "to": "n5",
+        "relation": "primary"
+      },
+      {
+        "from": "n5",
+        "to": "n6",
+        "relation": "primary"
+      },
+      {
+        "from": "n4",
+        "to": "n5",
+        "relation": "feedback",
+        "label": "恢复"
+      },
+      {
+        "from": "n4",
+        "to": "n6",
+        "relation": "feedback",
+        "label": "恢复"
+      }
+    ],
+    "groups": [
+      {
+        "id": "g1",
+        "label": "正常状态",
+        "kind": "lane"
+      },
+      {
+        "id": "g2",
+        "label": "人工 / 暂停",
+        "kind": "lane"
+      },
+      {
+        "id": "g3",
+        "label": "失败 / 恢复",
+        "kind": "lane"
       }
     ]
   },
@@ -89,26 +293,94 @@ export const architectures: Record<string, LessonArchitecture> = {
     "type": "layered",
     "nodes": [
       {
+        "id": "n1",
         "label": "前端体验",
-        "tone": "accent"
+        "tone": "accent",
+        "group": "g1"
       },
       {
-        "label": "应用 API"
+        "id": "n2",
+        "label": "应用 API",
+        "group": "g1"
       },
       {
+        "id": "n3",
         "label": "模型网关",
-        "tone": "system"
+        "tone": "system",
+        "group": "g2"
       },
       {
-        "label": "RAG / Agent"
+        "id": "n4",
+        "label": "RAG / Agent",
+        "group": "g3"
       },
       {
+        "id": "n5",
         "label": "业务系统",
-        "tone": "system"
+        "tone": "system",
+        "group": "g4"
       },
       {
+        "id": "n6",
         "label": "观测与评估",
-        "tone": "warning"
+        "tone": "warning",
+        "group": "g4"
+      }
+    ],
+    "renderMode": "diagram",
+    "edges": [
+      {
+        "from": "n1",
+        "to": "n2",
+        "relation": "primary"
+      },
+      {
+        "from": "n2",
+        "to": "n3",
+        "relation": "primary"
+      },
+      {
+        "from": "n3",
+        "to": "n4",
+        "relation": "primary"
+      },
+      {
+        "from": "n4",
+        "to": "n5",
+        "relation": "primary"
+      },
+      {
+        "from": "n5",
+        "to": "n6",
+        "relation": "primary"
+      },
+      {
+        "from": "n6",
+        "to": "n1",
+        "relation": "feedback",
+        "label": "观测 / 反馈"
+      }
+    ],
+    "groups": [
+      {
+        "id": "g1",
+        "label": "体验层",
+        "kind": "layer"
+      },
+      {
+        "id": "g2",
+        "label": "应用服务层",
+        "kind": "layer"
+      },
+      {
+        "id": "g3",
+        "label": "模型 / 平台层",
+        "kind": "layer"
+      },
+      {
+        "id": "g4",
+        "label": "业务与治理层",
+        "kind": "layer"
       }
     ]
   },
@@ -118,22 +390,89 @@ export const architectures: Record<string, LessonArchitecture> = {
     "type": "boundary",
     "nodes": [
       {
+        "id": "n1",
         "label": "业务任务",
-        "tone": "accent"
+        "tone": "accent",
+        "group": "g1"
       },
       {
-        "label": "平台能力"
+        "id": "n2",
+        "label": "平台能力",
+        "group": "g2"
       },
       {
-        "label": "框架适配"
+        "id": "n3",
+        "label": "框架适配",
+        "group": "g3"
       },
       {
+        "id": "n4",
         "label": "数据与合规",
-        "tone": "system"
+        "tone": "system",
+        "group": "g4"
       },
       {
+        "id": "n5",
         "label": "供应商退出",
-        "tone": "warning"
+        "tone": "warning",
+        "group": "g4"
+      }
+    ],
+    "renderMode": "diagram",
+    "edges": [
+      {
+        "from": "n1",
+        "to": "n2",
+        "relation": "primary"
+      },
+      {
+        "from": "n2",
+        "to": "n3",
+        "relation": "primary"
+      },
+      {
+        "from": "n3",
+        "to": "n4",
+        "relation": "primary"
+      },
+      {
+        "from": "n4",
+        "to": "n5",
+        "relation": "primary"
+      },
+      {
+        "from": "n1",
+        "to": "n3",
+        "relation": "guard",
+        "label": "边界判断"
+      },
+      {
+        "from": "n5",
+        "to": "n2",
+        "relation": "dependency",
+        "label": "审计反馈"
+      }
+    ],
+    "groups": [
+      {
+        "id": "g1",
+        "label": "输入 / 目标",
+        "kind": "boundary"
+      },
+      {
+        "id": "g2",
+        "label": "模型与平台能力",
+        "kind": "boundary"
+      },
+      {
+        "id": "g3",
+        "label": "系统控制",
+        "kind": "boundary"
+      },
+      {
+        "id": "g4",
+        "label": "治理与退出",
+        "kind": "boundary"
       }
     ]
   },
@@ -143,25 +482,93 @@ export const architectures: Record<string, LessonArchitecture> = {
     "type": "layered",
     "nodes": [
       {
+        "id": "n1",
         "label": "React / Next UI",
-        "tone": "accent"
+        "tone": "accent",
+        "group": "g1"
       },
       {
-        "label": "流式状态"
+        "id": "n2",
+        "label": "流式状态",
+        "group": "g1"
       },
       {
+        "id": "n3",
         "label": "服务端 API",
-        "tone": "system"
+        "tone": "system",
+        "group": "g2"
       },
       {
-        "label": "AI SDK"
+        "id": "n4",
+        "label": "AI SDK",
+        "group": "g3"
       },
       {
+        "id": "n5",
         "label": "Provider Adapter",
-        "tone": "system"
+        "tone": "system",
+        "group": "g4"
       },
       {
-        "label": "业务数据"
+        "id": "n6",
+        "label": "业务数据",
+        "group": "g4"
+      }
+    ],
+    "renderMode": "diagram",
+    "edges": [
+      {
+        "from": "n1",
+        "to": "n2",
+        "relation": "primary"
+      },
+      {
+        "from": "n2",
+        "to": "n3",
+        "relation": "primary"
+      },
+      {
+        "from": "n3",
+        "to": "n4",
+        "relation": "primary"
+      },
+      {
+        "from": "n4",
+        "to": "n5",
+        "relation": "primary"
+      },
+      {
+        "from": "n5",
+        "to": "n6",
+        "relation": "primary"
+      },
+      {
+        "from": "n6",
+        "to": "n1",
+        "relation": "feedback",
+        "label": "观测 / 反馈"
+      }
+    ],
+    "groups": [
+      {
+        "id": "g1",
+        "label": "体验层",
+        "kind": "layer"
+      },
+      {
+        "id": "g2",
+        "label": "应用服务层",
+        "kind": "layer"
+      },
+      {
+        "id": "g3",
+        "label": "模型 / 平台层",
+        "kind": "layer"
+      },
+      {
+        "id": "g4",
+        "label": "业务与治理层",
+        "kind": "layer"
       }
     ]
   },
@@ -171,27 +578,96 @@ export const architectures: Record<string, LessonArchitecture> = {
     "type": "state",
     "nodes": [
       {
-        "label": "启动任务"
+        "id": "n1",
+        "label": "启动任务",
+        "group": "g1"
       },
       {
+        "id": "n2",
         "label": "图节点执行",
-        "tone": "accent"
+        "tone": "accent",
+        "group": "g1"
       },
       {
+        "id": "n3",
         "label": "持久化状态",
-        "tone": "system"
+        "tone": "system",
+        "group": "g1"
       },
       {
+        "id": "n4",
         "label": "失败重试",
-        "tone": "warning"
+        "tone": "warning",
+        "group": "g2"
       },
       {
+        "id": "n5",
         "label": "人工介入",
-        "tone": "warning"
+        "tone": "warning",
+        "group": "g2"
       },
       {
+        "id": "n6",
         "label": "恢复执行",
-        "tone": "system"
+        "tone": "system",
+        "group": "g3"
+      }
+    ],
+    "renderMode": "diagram",
+    "edges": [
+      {
+        "from": "n1",
+        "to": "n2",
+        "relation": "primary"
+      },
+      {
+        "from": "n2",
+        "to": "n3",
+        "relation": "primary"
+      },
+      {
+        "from": "n3",
+        "to": "n4",
+        "relation": "primary"
+      },
+      {
+        "from": "n4",
+        "to": "n5",
+        "relation": "primary"
+      },
+      {
+        "from": "n5",
+        "to": "n6",
+        "relation": "primary"
+      },
+      {
+        "from": "n4",
+        "to": "n5",
+        "relation": "feedback",
+        "label": "恢复"
+      },
+      {
+        "from": "n4",
+        "to": "n6",
+        "relation": "feedback",
+        "label": "恢复"
+      }
+    ],
+    "groups": [
+      {
+        "id": "g1",
+        "label": "正常状态",
+        "kind": "lane"
+      },
+      {
+        "id": "g2",
+        "label": "人工 / 暂停",
+        "kind": "lane"
+      },
+      {
+        "id": "g3",
+        "label": "失败 / 恢复",
+        "kind": "lane"
       }
     ]
   },
@@ -201,26 +677,94 @@ export const architectures: Record<string, LessonArchitecture> = {
     "type": "layered",
     "nodes": [
       {
+        "id": "n1",
         "label": "业务流程",
-        "tone": "accent"
+        "tone": "accent",
+        "group": "g1"
       },
       {
-        "label": "Dify / Coze / n8n"
+        "id": "n2",
+        "label": "Dify / Coze / n8n",
+        "group": "g1"
       },
       {
+        "id": "n3",
         "label": "工具 API",
-        "tone": "system"
+        "tone": "system",
+        "group": "g2"
       },
       {
-        "label": "人工运营"
+        "id": "n4",
+        "label": "人工运营",
+        "group": "g3"
       },
       {
+        "id": "n5",
         "label": "数据记录",
-        "tone": "system"
+        "tone": "system",
+        "group": "g4"
       },
       {
+        "id": "n6",
         "label": "工程化接管",
-        "tone": "warning"
+        "tone": "warning",
+        "group": "g4"
+      }
+    ],
+    "renderMode": "diagram",
+    "edges": [
+      {
+        "from": "n1",
+        "to": "n2",
+        "relation": "primary"
+      },
+      {
+        "from": "n2",
+        "to": "n3",
+        "relation": "primary"
+      },
+      {
+        "from": "n3",
+        "to": "n4",
+        "relation": "primary"
+      },
+      {
+        "from": "n4",
+        "to": "n5",
+        "relation": "primary"
+      },
+      {
+        "from": "n5",
+        "to": "n6",
+        "relation": "primary"
+      },
+      {
+        "from": "n6",
+        "to": "n1",
+        "relation": "feedback",
+        "label": "观测 / 反馈"
+      }
+    ],
+    "groups": [
+      {
+        "id": "g1",
+        "label": "体验层",
+        "kind": "layer"
+      },
+      {
+        "id": "g2",
+        "label": "应用服务层",
+        "kind": "layer"
+      },
+      {
+        "id": "g3",
+        "label": "模型 / 平台层",
+        "kind": "layer"
+      },
+      {
+        "id": "g4",
+        "label": "业务与治理层",
+        "kind": "layer"
       }
     ]
   },
@@ -230,24 +774,92 @@ export const architectures: Record<string, LessonArchitecture> = {
     "type": "lifecycle",
     "nodes": [
       {
-        "label": "知识源"
+        "id": "n1",
+        "label": "知识源",
+        "group": "g1"
       },
       {
-        "label": "解析切块"
+        "id": "n2",
+        "label": "解析切块",
+        "group": "g1"
       },
       {
+        "id": "n3",
         "label": "权限标记",
-        "tone": "system"
+        "tone": "system",
+        "group": "g2"
       },
       {
-        "label": "混合检索"
+        "id": "n4",
+        "label": "混合检索",
+        "group": "g3"
       },
       {
-        "label": "重排"
+        "id": "n5",
+        "label": "重排",
+        "group": "g4"
       },
       {
+        "id": "n6",
         "label": "引用回答",
-        "tone": "accent"
+        "tone": "accent",
+        "group": "g4"
+      }
+    ],
+    "renderMode": "diagram",
+    "edges": [
+      {
+        "from": "n1",
+        "to": "n2",
+        "relation": "primary"
+      },
+      {
+        "from": "n2",
+        "to": "n3",
+        "relation": "primary"
+      },
+      {
+        "from": "n3",
+        "to": "n4",
+        "relation": "primary"
+      },
+      {
+        "from": "n4",
+        "to": "n5",
+        "relation": "primary"
+      },
+      {
+        "from": "n5",
+        "to": "n6",
+        "relation": "primary"
+      },
+      {
+        "from": "n6",
+        "to": "n4",
+        "relation": "feedback",
+        "label": "反馈"
+      }
+    ],
+    "groups": [
+      {
+        "id": "g1",
+        "label": "离线入库",
+        "kind": "lane"
+      },
+      {
+        "id": "g2",
+        "label": "在线查询",
+        "kind": "lane"
+      },
+      {
+        "id": "g3",
+        "label": "更新 / 删除 / 反馈",
+        "kind": "lane"
+      },
+      {
+        "id": "g4",
+        "label": "分组 4",
+        "kind": "lane"
       }
     ]
   },
@@ -257,29 +869,87 @@ export const architectures: Record<string, LessonArchitecture> = {
     "type": "feedback",
     "nodes": [
       {
+        "id": "n1",
         "label": "Golden Set",
-        "tone": "system"
+        "tone": "system",
+        "group": "g1"
       },
       {
-        "label": "离线评估"
+        "id": "n2",
+        "label": "离线评估",
+        "group": "g1"
       },
       {
+        "id": "n3",
         "label": "红队测试",
-        "tone": "warning"
+        "tone": "warning",
+        "group": "g1"
       },
       {
+        "id": "n4",
         "label": "上线门禁",
-        "tone": "accent"
+        "tone": "accent",
+        "group": "g1"
       },
       {
-        "label": "线上反馈"
+        "id": "n5",
+        "label": "线上反馈",
+        "group": "g1"
       },
       {
+        "id": "n6",
         "label": "回归集更新",
-        "tone": "system"
+        "tone": "system",
+        "group": "g2"
       }
     ],
-    "feedback": "线上失败样本回流到评估集和门禁规则。"
+    "feedback": "线上失败样本回流到评估集和门禁规则。",
+    "renderMode": "diagram",
+    "edges": [
+      {
+        "from": "n1",
+        "to": "n2",
+        "relation": "primary"
+      },
+      {
+        "from": "n2",
+        "to": "n3",
+        "relation": "primary"
+      },
+      {
+        "from": "n3",
+        "to": "n4",
+        "relation": "primary"
+      },
+      {
+        "from": "n4",
+        "to": "n5",
+        "relation": "primary"
+      },
+      {
+        "from": "n5",
+        "to": "n6",
+        "relation": "primary"
+      },
+      {
+        "from": "n6",
+        "to": "n1",
+        "relation": "feedback",
+        "label": "回流"
+      }
+    ],
+    "groups": [
+      {
+        "id": "g1",
+        "label": "主流程",
+        "kind": "lane"
+      },
+      {
+        "id": "g2",
+        "label": "评估与反馈",
+        "kind": "lane"
+      }
+    ]
   },
   "day11": {
     "title": "AI 协作验证回路",
@@ -287,28 +957,86 @@ export const architectures: Record<string, LessonArchitecture> = {
     "type": "feedback",
     "nodes": [
       {
+        "id": "n1",
         "label": "任务意图",
-        "tone": "accent"
+        "tone": "accent",
+        "group": "g1"
       },
       {
-        "label": "上下文包"
+        "id": "n2",
+        "label": "上下文包",
+        "group": "g1"
       },
       {
-        "label": "小步实现"
+        "id": "n3",
+        "label": "小步实现",
+        "group": "g1"
       },
       {
+        "id": "n4",
         "label": "自动验证",
-        "tone": "system"
+        "tone": "system",
+        "group": "g1"
       },
       {
+        "id": "n5",
         "label": "人工审阅",
-        "tone": "warning"
+        "tone": "warning",
+        "group": "g1"
       },
       {
-        "label": "修正提示资产"
+        "id": "n6",
+        "label": "修正提示资产",
+        "group": "g2"
       }
     ],
-    "feedback": "验证结果反哺上下文和下一次任务拆解。"
+    "feedback": "验证结果反哺上下文和下一次任务拆解。",
+    "renderMode": "diagram",
+    "edges": [
+      {
+        "from": "n1",
+        "to": "n2",
+        "relation": "primary"
+      },
+      {
+        "from": "n2",
+        "to": "n3",
+        "relation": "primary"
+      },
+      {
+        "from": "n3",
+        "to": "n4",
+        "relation": "primary"
+      },
+      {
+        "from": "n4",
+        "to": "n5",
+        "relation": "primary"
+      },
+      {
+        "from": "n5",
+        "to": "n6",
+        "relation": "primary"
+      },
+      {
+        "from": "n6",
+        "to": "n1",
+        "relation": "feedback",
+        "label": "回流"
+      }
+    ],
+    "groups": [
+      {
+        "id": "g1",
+        "label": "主流程",
+        "kind": "lane"
+      },
+      {
+        "id": "g2",
+        "label": "评估与反馈",
+        "kind": "lane"
+      }
+    ]
   },
   "day12": {
     "title": "可演示项目交付结构",
@@ -316,262 +1044,952 @@ export const architectures: Record<string, LessonArchitecture> = {
     "type": "layered",
     "nodes": [
       {
+        "id": "n1",
         "label": "问题与用户",
-        "tone": "accent"
+        "tone": "accent",
+        "group": "g1"
       },
       {
-        "label": "项目范围"
+        "id": "n2",
+        "label": "项目范围",
+        "group": "g1"
       },
       {
-        "label": "核心任务流"
+        "id": "n3",
+        "label": "核心任务流",
+        "group": "g2"
       },
       {
+        "id": "n4",
         "label": "实现切片",
-        "tone": "system"
+        "tone": "system",
+        "group": "g3"
       },
       {
+        "id": "n5",
         "label": "验证证据",
-        "tone": "warning"
+        "tone": "warning",
+        "group": "g4"
       },
       {
-        "label": "部署计划"
+        "id": "n6",
+        "label": "部署计划",
+        "group": "g4"
+      }
+    ],
+    "renderMode": "diagram",
+    "edges": [
+      {
+        "from": "n1",
+        "to": "n2",
+        "relation": "primary"
+      },
+      {
+        "from": "n2",
+        "to": "n3",
+        "relation": "primary"
+      },
+      {
+        "from": "n3",
+        "to": "n4",
+        "relation": "primary"
+      },
+      {
+        "from": "n4",
+        "to": "n5",
+        "relation": "primary"
+      },
+      {
+        "from": "n5",
+        "to": "n6",
+        "relation": "primary"
+      },
+      {
+        "from": "n6",
+        "to": "n1",
+        "relation": "feedback",
+        "label": "观测 / 反馈"
+      }
+    ],
+    "groups": [
+      {
+        "id": "g1",
+        "label": "体验层",
+        "kind": "layer"
+      },
+      {
+        "id": "g2",
+        "label": "应用服务层",
+        "kind": "layer"
+      },
+      {
+        "id": "g3",
+        "label": "模型 / 平台层",
+        "kind": "layer"
+      },
+      {
+        "id": "g4",
+        "label": "业务与治理层",
+        "kind": "layer"
       }
     ]
   },
   "day13": {
-    "title": "设计建议到可验证界面",
-    "summary": "设计上下文驱动组件实现，渲染结果再回到视觉与交互验证。",
+    "title": "设计数据到可验证界面闭环",
+    "summary": "需求约束先转成设计数据检索，再落成 token、组件状态和 UX 验收证据。",
     "type": "feedback",
     "nodes": [
       {
-        "label": "设计目标",
-        "tone": "accent"
+        "id": "n1",
+        "label": "学习工作台需求",
+        "tone": "accent",
+        "group": "g1"
       },
       {
-        "label": "UI/UX 数据检索"
+        "id": "n2",
+        "label": "设计数据域",
+        "group": "g1"
       },
       {
+        "id": "n3",
+        "label": "多域检索",
+        "group": "g1"
+      },
+      {
+        "id": "n4",
         "label": "设计系统",
-        "tone": "system"
+        "tone": "system",
+        "group": "g1"
       },
       {
-        "label": "React 组件"
+        "id": "n5",
+        "label": "Token / 组件",
+        "group": "g1"
       },
       {
-        "label": "页面验证",
-        "tone": "warning"
-      },
-      {
-        "label": "设计调整"
+        "id": "n6",
+        "label": "UX 验收",
+        "tone": "warning",
+        "group": "g2"
       }
     ],
-    "feedback": "验证发现的问题回流到设计约束和组件实现。"
+    "feedback": "验收发现的问题回流为新的设计约束。",
+    "renderMode": "diagram",
+    "edges": [
+      {
+        "from": "n1",
+        "to": "n2",
+        "relation": "primary"
+      },
+      {
+        "from": "n2",
+        "to": "n3",
+        "relation": "primary"
+      },
+      {
+        "from": "n3",
+        "to": "n4",
+        "relation": "primary"
+      },
+      {
+        "from": "n4",
+        "to": "n5",
+        "relation": "primary"
+      },
+      {
+        "from": "n5",
+        "to": "n6",
+        "relation": "primary"
+      },
+      {
+        "from": "n6",
+        "to": "n1",
+        "relation": "feedback",
+        "label": "回流"
+      }
+    ],
+    "groups": [
+      {
+        "id": "g1",
+        "label": "主流程",
+        "kind": "lane"
+      },
+      {
+        "id": "g2",
+        "label": "评估与反馈",
+        "kind": "lane"
+      }
+    ]
   },
   "day14": {
-    "title": "长任务恢复状态图",
-    "summary": "长任务在关键节点保存 checkpoint，失败后可补偿、暂停或恢复。",
-    "type": "state",
+    "title": "知识生命周期与删除传播",
+    "summary": "知识源变更必须传播到解析、切片、向量、缓存、引用和审计状态。",
+    "type": "lifecycle",
     "nodes": [
       {
-        "label": "任务提交"
+        "id": "n1",
+        "label": "知识源",
+        "group": "g1"
       },
       {
-        "label": "执行节点",
-        "tone": "accent"
+        "id": "n2",
+        "label": "接入校验",
+        "group": "g1"
       },
       {
-        "label": "保存 checkpoint",
-        "tone": "system"
+        "id": "n3",
+        "label": "解析切分",
+        "group": "g2"
       },
       {
-        "label": "异常处理",
-        "tone": "warning"
+        "id": "n4",
+        "label": "Metadata / Version",
+        "tone": "system",
+        "group": "g3"
       },
       {
-        "label": "人工中断",
-        "tone": "warning"
+        "id": "n5",
+        "label": "权限过滤检索",
+        "group": "g3"
       },
       {
-        "label": "恢复或补偿",
-        "tone": "system"
+        "id": "n6",
+        "label": "带引用回答",
+        "tone": "accent",
+        "group": "g4"
+      },
+      {
+        "id": "n7",
+        "label": "删除传播",
+        "tone": "warning",
+        "group": "g4"
+      }
+    ],
+    "feedback": "更新、撤回和权限变更触发补偿任务与缓存失效。",
+    "renderMode": "diagram",
+    "edges": [
+      {
+        "from": "n1",
+        "to": "n2",
+        "relation": "primary"
+      },
+      {
+        "from": "n2",
+        "to": "n3",
+        "relation": "primary"
+      },
+      {
+        "from": "n3",
+        "to": "n4",
+        "relation": "primary"
+      },
+      {
+        "from": "n4",
+        "to": "n5",
+        "relation": "primary"
+      },
+      {
+        "from": "n5",
+        "to": "n6",
+        "relation": "primary"
+      },
+      {
+        "from": "n6",
+        "to": "n7",
+        "relation": "primary"
+      },
+      {
+        "from": "n7",
+        "to": "n5",
+        "relation": "feedback",
+        "label": "更新 / 删除传播"
+      }
+    ],
+    "groups": [
+      {
+        "id": "g1",
+        "label": "离线入库",
+        "kind": "lane"
+      },
+      {
+        "id": "g2",
+        "label": "在线查询",
+        "kind": "lane"
+      },
+      {
+        "id": "g3",
+        "label": "更新 / 删除 / 反馈",
+        "kind": "lane"
+      },
+      {
+        "id": "g4",
+        "label": "分组 4",
+        "kind": "lane"
       }
     ]
   },
   "day15": {
-    "title": "受控发布反馈环",
-    "summary": "变更经过分级、灰度和停止阈值控制，线上信号决定继续或回滚。",
-    "type": "feedback",
+    "title": "工具调用策略门禁",
+    "summary": "模型只能提出工具意图，参数校验、身份策略、审批和审计由确定性系统执行。",
+    "type": "gate",
     "nodes": [
       {
-        "label": "变更包",
-        "tone": "accent"
+        "id": "n1",
+        "label": "不可信输入",
+        "tone": "warning",
+        "group": "g1"
       },
       {
-        "label": "风险分级"
+        "id": "n2",
+        "label": "模型工具意图",
+        "group": "g1"
       },
       {
-        "label": "灰度发布",
-        "tone": "system"
+        "id": "n3",
+        "label": "Tool Schema",
+        "group": "g2"
       },
       {
-        "label": "停止阈值",
-        "tone": "warning"
+        "id": "n4",
+        "label": "身份 / ACL",
+        "tone": "system",
+        "group": "g2"
       },
       {
-        "label": "线上指标"
+        "id": "n5",
+        "label": "策略门禁",
+        "tone": "accent",
+        "group": "g2"
       },
       {
-        "label": "回滚包",
-        "tone": "warning"
+        "id": "n6",
+        "label": "审批或执行",
+        "group": "g3"
+      },
+      {
+        "id": "n7",
+        "label": "审计 Trace",
+        "tone": "system",
+        "group": "g4"
       }
     ],
-    "feedback": "指标越过阈值时回到已验证版本并记录治理证据。"
+    "feedback": "注入和越权样本回流到红队回归集。",
+    "renderMode": "diagram",
+    "edges": [
+      {
+        "from": "n1",
+        "to": "n2",
+        "relation": "guard"
+      },
+      {
+        "from": "n2",
+        "to": "n3",
+        "relation": "guard"
+      },
+      {
+        "from": "n3",
+        "to": "n4",
+        "relation": "guard"
+      },
+      {
+        "from": "n4",
+        "to": "n5",
+        "relation": "guard"
+      },
+      {
+        "from": "n5",
+        "to": "n6",
+        "relation": "guard"
+      },
+      {
+        "from": "n6",
+        "to": "n7",
+        "relation": "guard"
+      },
+      {
+        "from": "n5",
+        "to": "n4",
+        "relation": "branch",
+        "label": "允许"
+      },
+      {
+        "from": "n5",
+        "to": "n6",
+        "relation": "branch",
+        "label": "审批"
+      },
+      {
+        "from": "n5",
+        "to": "n7",
+        "relation": "branch",
+        "label": "拒绝"
+      }
+    ],
+    "groups": [
+      {
+        "id": "g1",
+        "label": "输入",
+        "kind": "lane"
+      },
+      {
+        "id": "g2",
+        "label": "确定性控制",
+        "kind": "lane"
+      },
+      {
+        "id": "g3",
+        "label": "结果分支",
+        "kind": "lane"
+      },
+      {
+        "id": "g4",
+        "label": "审计",
+        "kind": "lane"
+      }
+    ]
   },
   "day16": {
-    "title": "AI SRE 信号与响应环",
-    "summary": "用户体验 SLO、trace、告警和 runbook 连接成可执行的事故响应闭环。",
-    "type": "feedback",
+    "title": "多模态异步处理流水线",
+    "summary": "图片、语音和文本先统一为任务资产，再抽取证据、生成输出并展示进度与降级状态。",
+    "type": "pipeline",
     "nodes": [
       {
-        "label": "用户 SLO",
-        "tone": "accent"
+        "id": "n1",
+        "label": "多模态输入",
+        "tone": "accent",
+        "group": "g1"
       },
       {
-        "label": "端到端 Trace",
-        "tone": "system"
+        "id": "n2",
+        "label": "Asset Metadata",
+        "group": "g1"
       },
       {
-        "label": "告警触发",
-        "tone": "warning"
+        "id": "n3",
+        "label": "任务队列",
+        "tone": "system",
+        "group": "g2"
       },
       {
-        "label": "降级开关",
-        "tone": "system"
+        "id": "n4",
+        "label": "OCR / ASR / Vision",
+        "group": "g3"
       },
       {
-        "label": "事故 Runbook"
+        "id": "n5",
+        "label": "证据锚点",
+        "tone": "system",
+        "group": "g4"
       },
       {
-        "label": "复盘改进"
+        "id": "n6",
+        "label": "模型生成",
+        "group": "g5"
+      },
+      {
+        "id": "n7",
+        "label": "进度与降级",
+        "tone": "warning",
+        "group": "g5"
       }
     ],
-    "feedback": "事故复盘更新 SLO、告警和演练方案。"
+    "feedback": "用户纠错回流到证据锚点和任务 contract。",
+    "renderMode": "diagram",
+    "edges": [
+      {
+        "from": "n1",
+        "to": "n2",
+        "relation": "primary"
+      },
+      {
+        "from": "n2",
+        "to": "n3",
+        "relation": "primary"
+      },
+      {
+        "from": "n3",
+        "to": "n4",
+        "relation": "primary"
+      },
+      {
+        "from": "n4",
+        "to": "n5",
+        "relation": "primary"
+      },
+      {
+        "from": "n5",
+        "to": "n6",
+        "relation": "primary"
+      },
+      {
+        "from": "n6",
+        "to": "n7",
+        "relation": "primary"
+      },
+      {
+        "from": "n7",
+        "to": "n5",
+        "relation": "feedback",
+        "label": "纠错回流"
+      }
+    ],
+    "groups": [
+      {
+        "id": "g1",
+        "label": "输入层",
+        "kind": "lane"
+      },
+      {
+        "id": "g2",
+        "label": "任务层",
+        "kind": "lane"
+      },
+      {
+        "id": "g3",
+        "label": "处理层",
+        "kind": "lane"
+      },
+      {
+        "id": "g4",
+        "label": "推理层",
+        "kind": "lane"
+      },
+      {
+        "id": "g5",
+        "label": "体验层",
+        "kind": "lane"
+      }
+    ]
   },
   "day17": {
-    "title": "项目发现验证飞轮",
-    "summary": "真实用户任务形成假设和最小切片，验证数据再决定下一轮发现。",
+    "title": "成本延迟预算控制闭环",
+    "summary": "路由器依据质量、预算和 SLO 选择模型与工具，运行指标再回写下一轮路由策略。",
     "type": "feedback",
     "nodes": [
       {
-        "label": "目标用户",
-        "tone": "accent"
+        "id": "n1",
+        "label": "任务请求",
+        "tone": "accent",
+        "group": "g1"
       },
       {
-        "label": "高频任务"
+        "id": "n2",
+        "label": "预算检查",
+        "group": "g1"
       },
       {
-        "label": "可证伪假设"
+        "id": "n3",
+        "label": "模型 / 工具路由",
+        "tone": "system",
+        "group": "g1"
       },
       {
-        "label": "两周切片",
-        "tone": "system"
+        "id": "n4",
+        "label": "检索与缓存",
+        "group": "g1"
       },
       {
-        "label": "成功指标",
-        "tone": "warning"
+        "id": "n5",
+        "label": "模型调用",
+        "group": "g1"
       },
       {
-        "label": "访谈与数据"
+        "id": "n6",
+        "label": "成本延迟指标",
+        "tone": "warning",
+        "group": "g1"
+      },
+      {
+        "id": "n7",
+        "label": "预算与 SLO",
+        "tone": "system",
+        "group": "g2"
       }
     ],
-    "feedback": "证据不足时收缩问题定义，而非扩张功能。"
+    "feedback": "指标超过阈值时触发缓存、降级、排队或轻量模型路由。",
+    "renderMode": "diagram",
+    "edges": [
+      {
+        "from": "n1",
+        "to": "n2",
+        "relation": "primary"
+      },
+      {
+        "from": "n2",
+        "to": "n3",
+        "relation": "primary"
+      },
+      {
+        "from": "n3",
+        "to": "n4",
+        "relation": "primary"
+      },
+      {
+        "from": "n4",
+        "to": "n5",
+        "relation": "primary"
+      },
+      {
+        "from": "n5",
+        "to": "n6",
+        "relation": "primary"
+      },
+      {
+        "from": "n6",
+        "to": "n7",
+        "relation": "primary"
+      },
+      {
+        "from": "n7",
+        "to": "n1",
+        "relation": "feedback",
+        "label": "回流"
+      }
+    ],
+    "groups": [
+      {
+        "id": "g1",
+        "label": "主流程",
+        "kind": "lane"
+      },
+      {
+        "id": "g2",
+        "label": "评估与反馈",
+        "kind": "lane"
+      }
+    ]
   },
   "day18": {
-    "title": "项目责任与数据边界",
-    "summary": "用户、应用、模型、数据和高风险动作由明确契约与权限矩阵隔离。",
-    "type": "boundary",
+    "title": "AI 事故响应生命周期",
+    "summary": "SLO 告警进入分诊、降级、回滚、沟通和无责复盘，最后沉淀 runbook 与测试。",
+    "type": "state",
     "nodes": [
       {
-        "label": "用户与角色",
-        "tone": "accent"
+        "id": "n1",
+        "label": "SLO 告警",
+        "tone": "warning",
+        "group": "g1"
       },
       {
-        "label": "应用编排"
+        "id": "n2",
+        "label": "Trace 分诊",
+        "group": "g1"
       },
       {
-        "label": "模型服务"
+        "id": "n3",
+        "label": "降级 / 熔断",
+        "tone": "system",
+        "group": "g1"
       },
       {
-        "label": "数据契约",
-        "tone": "system"
+        "id": "n4",
+        "label": "回滚恢复",
+        "tone": "accent",
+        "group": "g2"
       },
       {
-        "label": "权限矩阵",
-        "tone": "system"
+        "id": "n5",
+        "label": "用户沟通",
+        "group": "g2"
       },
       {
-        "label": "高风险动作",
-        "tone": "warning"
+        "id": "n6",
+        "label": "无责复盘",
+        "group": "g3"
+      },
+      {
+        "id": "n7",
+        "label": "Runbook 更新",
+        "tone": "system",
+        "group": "g3"
+      }
+    ],
+    "feedback": "复盘行动项进入发布门禁和演练计划。",
+    "renderMode": "diagram",
+    "edges": [
+      {
+        "from": "n1",
+        "to": "n2",
+        "relation": "primary"
+      },
+      {
+        "from": "n2",
+        "to": "n3",
+        "relation": "primary"
+      },
+      {
+        "from": "n3",
+        "to": "n4",
+        "relation": "primary"
+      },
+      {
+        "from": "n4",
+        "to": "n5",
+        "relation": "primary"
+      },
+      {
+        "from": "n5",
+        "to": "n6",
+        "relation": "primary"
+      },
+      {
+        "from": "n6",
+        "to": "n7",
+        "relation": "primary"
+      },
+      {
+        "from": "n4",
+        "to": "n5",
+        "relation": "branch",
+        "label": "异常"
+      },
+      {
+        "from": "n4",
+        "to": "n6",
+        "relation": "feedback",
+        "label": "恢复"
+      },
+      {
+        "from": "n4",
+        "to": "n7",
+        "relation": "feedback",
+        "label": "恢复"
+      }
+    ],
+    "groups": [
+      {
+        "id": "g1",
+        "label": "正常状态",
+        "kind": "lane"
+      },
+      {
+        "id": "g2",
+        "label": "人工 / 暂停",
+        "kind": "lane"
+      },
+      {
+        "id": "g3",
+        "label": "失败 / 恢复",
+        "kind": "lane"
       }
     ]
   },
   "day19": {
-    "title": "实现到发布的质量闭环",
-    "summary": "端到端任务切片通过 golden set、发布门禁和线上反馈持续被验证。",
-    "type": "feedback",
+    "title": "AI 资产发布门禁",
+    "summary": "Prompt、模型、数据集、工作流和检索索引都作为版本化资产进入评审、灰度和回滚。",
+    "type": "gate",
     "nodes": [
       {
-        "label": "任务切片",
-        "tone": "accent"
+        "id": "n1",
+        "label": "版本化 AI 资产",
+        "tone": "system",
+        "group": "g1"
       },
       {
-        "label": "端到端实现"
+        "id": "n2",
+        "label": "变更评审",
+        "group": "g1"
       },
       {
-        "label": "Golden Set",
-        "tone": "system"
+        "id": "n3",
+        "label": "离线 Eval",
+        "group": "g2"
       },
       {
-        "label": "发布检查",
-        "tone": "warning"
+        "id": "n4",
+        "label": "红队门禁",
+        "tone": "warning",
+        "group": "g2"
       },
       {
-        "label": "线上监测"
+        "id": "n5",
+        "label": "灰度发布",
+        "tone": "accent",
+        "group": "g2"
       },
       {
-        "label": "缺陷回流"
+        "id": "n6",
+        "label": "Trace 监控",
+        "group": "g3"
+      },
+      {
+        "id": "n7",
+        "label": "回滚 Owner",
+        "tone": "system",
+        "group": "g4"
       }
     ],
-    "feedback": "失败样本进入下一轮实现与评估，不被发布后遗忘。"
+    "feedback": "线上漂移和失败样本触发新版本资产评审。",
+    "renderMode": "diagram",
+    "edges": [
+      {
+        "from": "n1",
+        "to": "n2",
+        "relation": "guard"
+      },
+      {
+        "from": "n2",
+        "to": "n3",
+        "relation": "guard"
+      },
+      {
+        "from": "n3",
+        "to": "n4",
+        "relation": "guard"
+      },
+      {
+        "from": "n4",
+        "to": "n5",
+        "relation": "guard"
+      },
+      {
+        "from": "n5",
+        "to": "n6",
+        "relation": "guard"
+      },
+      {
+        "from": "n6",
+        "to": "n7",
+        "relation": "guard"
+      },
+      {
+        "from": "n2",
+        "to": "n5",
+        "relation": "branch",
+        "label": "允许"
+      },
+      {
+        "from": "n2",
+        "to": "n6",
+        "relation": "branch",
+        "label": "审批"
+      },
+      {
+        "from": "n2",
+        "to": "n7",
+        "relation": "branch",
+        "label": "拒绝"
+      }
+    ],
+    "groups": [
+      {
+        "id": "g1",
+        "label": "输入",
+        "kind": "lane"
+      },
+      {
+        "id": "g2",
+        "label": "确定性控制",
+        "kind": "lane"
+      },
+      {
+        "id": "g3",
+        "label": "结果分支",
+        "kind": "lane"
+      },
+      {
+        "id": "g4",
+        "label": "审计",
+        "kind": "lane"
+      }
+    ]
   },
   "day20": {
-    "title": "项目复盘与能力飞轮",
-    "summary": "运行事实形成复盘和证据档案，再转为下一轮产品与能力练习。",
-    "type": "feedback",
+    "title": "产品能力增长飞轮",
+    "summary": "学习行为形成能力证据，能力画像驱动下一步任务和实验，实验结果再改进课程与产品路线。",
+    "type": "flywheel",
     "nodes": [
       {
-        "label": "运行事实",
-        "tone": "system"
+        "id": "n1",
+        "label": "学习行为",
+        "group": "g1"
       },
       {
-        "label": "无责复盘",
-        "tone": "accent"
-      },
-      {
-        "label": "项目档案"
-      },
-      {
+        "id": "n2",
         "label": "能力证据",
-        "tone": "system"
+        "tone": "system",
+        "group": "g1"
       },
       {
-        "label": "能力缺口",
-        "tone": "warning"
+        "id": "n3",
+        "label": "能力画像",
+        "group": "g1"
       },
       {
-        "label": "下一轮练习"
+        "id": "n4",
+        "label": "下一步任务",
+        "tone": "accent",
+        "group": "g1"
+      },
+      {
+        "id": "n5",
+        "label": "项目产出",
+        "group": "g1"
+      },
+      {
+        "id": "n6",
+        "label": "实验优化",
+        "tone": "warning",
+        "group": "g1"
+      },
+      {
+        "id": "n7",
+        "label": "路线图决策",
+        "tone": "system",
+        "group": "g2"
       }
     ],
-    "feedback": "沉淀的证据决定下一轮优先补齐什么。"
+    "feedback": "实验结论回流到课程、题目和产品优先级。",
+    "renderMode": "diagram",
+    "edges": [
+      {
+        "from": "n1",
+        "to": "n2",
+        "relation": "primary"
+      },
+      {
+        "from": "n2",
+        "to": "n3",
+        "relation": "primary"
+      },
+      {
+        "from": "n3",
+        "to": "n4",
+        "relation": "primary"
+      },
+      {
+        "from": "n4",
+        "to": "n5",
+        "relation": "primary"
+      },
+      {
+        "from": "n5",
+        "to": "n6",
+        "relation": "primary"
+      },
+      {
+        "from": "n6",
+        "to": "n7",
+        "relation": "primary"
+      },
+      {
+        "from": "n7",
+        "to": "n1",
+        "relation": "feedback",
+        "label": "回流"
+      }
+    ],
+    "groups": [
+      {
+        "id": "g1",
+        "label": "飞轮循环",
+        "kind": "lane"
+      },
+      {
+        "id": "g2",
+        "label": "策略决策",
+        "kind": "lane"
+      }
+    ]
   }
 };

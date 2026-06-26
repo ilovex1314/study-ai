@@ -219,8 +219,8 @@ describe("App navigation", () => {
     day04.unmount();
 
     renderApp("/day13/decision");
-    expect(screen.getByRole("img", { name: "设计建议到可验证界面" })).toHaveAttribute("data-type", "feedback");
-    expect(screen.getByText("验证发现的问题回流到设计约束和组件实现。")).toBeInTheDocument();
+    expect(screen.getByRole("img", { name: "设计数据到可验证界面闭环" })).toHaveAttribute("data-type", "feedback");
+    expect(screen.getByText("验收发现的问题回流为新的设计约束。")).toBeInTheDocument();
   });
 
   it("keeps every quiz concept covered by its lesson modules", () => {
@@ -242,8 +242,29 @@ describe("App navigation", () => {
   it("renders an authored relationship diagram with its conclusion", () => {
     renderApp("/day14/concepts");
 
-    expect(screen.getByText("checkpoint 保存的是一致状态，失败进入补偿或人工决策。")).toBeInTheDocument();
-    expect(document.querySelector(".concept-diagram")?.textContent).toContain("状态快照");
+    expect(screen.getByText("metadata 把知识源、派生资产、权限和引用连接成可追踪生命周期。")).toBeInTheDocument();
+    expect(document.querySelector(".concept-diagram")?.textContent).toContain("Metadata");
+  });
+
+  it("does not place arrows inside architecture or concept nodes", () => {
+    renderApp("/day15/decision");
+
+    for (const node of document.querySelectorAll(".architecture-node, .concept-diagram-node")) {
+      expect(node.textContent).not.toMatch(/[→←↔]|->|<-/);
+    }
+  });
+
+  it("renders semantic edge relations as diagram connectors", () => {
+    const day20 = renderApp("/day20/decision");
+    expect(document.querySelector('.architecture-diagram[data-type="flywheel"]')).toBeInTheDocument();
+    expect(document.querySelector('.architecture-connector[data-relation="feedback"]')).toBeInTheDocument();
+    day20.unmount();
+
+    renderApp("/day15/decision");
+    expect(document.querySelector('.architecture-diagram[data-type="gate"]')).toBeInTheDocument();
+    expect(document.querySelector('.architecture-connector[data-relation="branch"]')).toBeInTheDocument();
+    expect(document.querySelector(".architecture-relation-badge")).not.toBeInTheDocument();
+    expect(document.querySelector(".architecture-edges")).not.toBeInTheDocument();
   });
 
   it("does not render a generic visual placeholder for a module without a diagram", () => {

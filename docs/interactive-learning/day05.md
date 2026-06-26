@@ -1,7 +1,7 @@
 # Day 05 平台选型
 
 <!-- architecture
-{"title":"选型责任边界","summary":"业务目标、平台能力、集成约束和退出成本必须分别被验证。","type":"boundary","nodes":[{"label":"业务任务","tone":"accent"},{"label":"平台能力"},{"label":"框架适配"},{"label":"数据与合规","tone":"system"},{"label":"供应商退出","tone":"warning"}]}
+{"title":"选型责任边界","summary":"业务目标、平台能力、集成约束和退出成本必须分别被验证。","type":"boundary","nodes":[{"id":"n1","label":"业务任务","tone":"accent","group":"g1"},{"id":"n2","label":"平台能力","group":"g2"},{"id":"n3","label":"框架适配","group":"g3"},{"id":"n4","label":"数据与合规","tone":"system","group":"g4"},{"id":"n5","label":"供应商退出","tone":"warning","group":"g4"}],"renderMode":"diagram","edges":[{"from":"n1","to":"n2","relation":"primary"},{"from":"n2","to":"n3","relation":"primary"},{"from":"n3","to":"n4","relation":"primary"},{"from":"n4","to":"n5","relation":"primary"},{"from":"n1","to":"n3","relation":"guard","label":"边界判断"},{"from":"n5","to":"n2","relation":"dependency","label":"审计反馈"}],"groups":[{"id":"g1","label":"输入 / 目标","kind":"boundary"},{"id":"g2","label":"模型与平台能力","kind":"boundary"},{"id":"g3","label":"系统控制","kind":"boundary"},{"id":"g4","label":"治理与退出","kind":"boundary"}]}
 -->
 
 ## Today Goal
