@@ -254,15 +254,16 @@ describe("App navigation", () => {
     }
   });
 
-  it("renders feedback and gate diagrams with semantic edge relations", () => {
+  it("renders semantic edge relations inside the diagram nodes", () => {
     const day20 = renderApp("/day20/decision");
     expect(document.querySelector('.architecture-diagram[data-type="flywheel"]')).toBeInTheDocument();
-    expect(document.querySelector('.architecture-edges [data-relation="feedback"]')).toBeInTheDocument();
+    expect(document.querySelector('.architecture-node [data-relation="feedback"]')).toBeInTheDocument();
     day20.unmount();
 
     renderApp("/day15/decision");
     expect(document.querySelector('.architecture-diagram[data-type="gate"]')).toBeInTheDocument();
-    expect(document.querySelector('.architecture-edges [data-relation="branch"]')).toBeInTheDocument();
+    expect(document.querySelector('.architecture-node [data-relation="branch"]')).toBeInTheDocument();
+    expect(document.querySelector(".architecture-edges")).not.toBeInTheDocument();
   });
 
   it("does not render a generic visual placeholder for a module without a diagram", () => {

@@ -99,12 +99,17 @@
   gap: 8px;
 }
 
+.architecture-canvas {
+  margin-top: 18px;
+}
+
 .architecture-node {
   display: inline-flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   min-height: 38px;
-  gap: 10px;
+  gap: 6px;
   padding: 10px 12px;
   border: 1px solid #cbd4e5;
   border-radius: 9px;
@@ -113,6 +118,53 @@
   font-size: 13px;
   font-weight: 800;
   text-align: center;
+}
+
+.architecture-node-label {
+  display: block;
+}
+
+.architecture-relation-badges {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 4px;
+}
+
+.architecture-relation-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  border: 1px solid rgba(48, 77, 139, .25);
+  border-radius: 999px;
+  padding: 2px 7px;
+  background: rgba(48, 77, 139, .08);
+  color: var(--accent-primary);
+  font-size: 10px;
+  line-height: 1.4;
+  font-weight: 850;
+}
+
+.architecture-relation-badge::before {
+  content: "";
+  width: 14px;
+  height: 2px;
+  border-radius: 999px;
+  background: currentColor;
+}
+
+.architecture-relation-badge[data-relation="feedback"],
+.architecture-relation-badge[data-relation="branch"],
+.architecture-relation-badge[data-relation="guard"] {
+  border-color: rgba(199, 141, 61, .32);
+  background: rgba(248, 238, 224, .78);
+  color: #8a4b25;
+}
+
+.architecture-relation-badge[data-relation="dependency"] {
+  border-color: rgba(53, 101, 72, .28);
+  background: rgba(234, 242, 236, .82);
+  color: #356548;
 }
 
 .architecture-node i {
@@ -213,59 +265,6 @@
   grid-row: 3;
 }
 
-.architecture-edges {
-  display: grid;
-  gap: 8px;
-  margin: 16px 0 0;
-  padding: 0;
-  list-style: none;
-}
-
-.architecture-edges li {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) 28px minmax(0, 1fr) auto;
-  align-items: center;
-  gap: 8px;
-  font-size: 12px;
-  color: var(--text-muted);
-}
-
-.architecture-edges i {
-  height: 2px;
-  background: #9fafd0;
-  position: relative;
-}
-
-.architecture-edges i::after {
-  content: "";
-  position: absolute;
-  right: -1px;
-  top: 50%;
-  width: 7px;
-  height: 7px;
-  border-right: 2px solid #9fafd0;
-  border-top: 2px solid #9fafd0;
-  transform: translateY(-50%) rotate(45deg);
-}
-
-.architecture-edges [data-relation="feedback"] i,
-.architecture-edges [data-relation="branch"] i,
-.architecture-edges [data-relation="guard"] i {
-  background: #c78d3d;
-}
-
-.architecture-edges [data-relation="feedback"] i::after,
-.architecture-edges [data-relation="branch"] i::after,
-.architecture-edges [data-relation="guard"] i::after {
-  border-color: #c78d3d;
-}
-
-.architecture-edges em {
-  font-style: normal;
-  font-weight: 800;
-  color: var(--accent-progress);
-}
-
 .concept-diagram-branches span {
   display: inline-flex;
   gap: 6px;
@@ -303,13 +302,6 @@
     margin: 8px 0;
   }
 
-  .architecture-edges li {
-    grid-template-columns: minmax(0, 1fr) 22px minmax(0, 1fr);
-  }
-
-  .architecture-edges em {
-    grid-column: 1 / -1;
-  }
 }
 
 /* Approved fixed-navigation mockup: preserve the left course dock, mirror every other spatial rule. */

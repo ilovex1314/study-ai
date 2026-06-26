@@ -11,28 +11,27 @@ function groupNodes(nodes: ArchitectureNode[], groups: ArchitectureGroup[] = [])
   }));
 }
 
-function NodeView({ node }: { node: ArchitectureNode }) {
+function NodeView({ node, edges = [] }: { node: ArchitectureNode; edges?: ArchitectureEdge[] }) {
+  const relationEdges = edges.filter((edge) => edge.to === node.id && edge.label);
+
   return (
     <span className="architecture-node" data-node-id={node.id} data-tone={node.tone ?? "neutral"}>
-      {node.label}
+      <span className="architecture-node-label">{node.label}</span>
+      {relationEdges.length > 0 ? (
+        <span className="architecture-relation-badges" aria-label="关系标记">
+          {relationEdges.map((edge, index) => (
+            <span
+              key={`${edge.from}-${edge.to}-${edge.label ?? ""}-${index}`}
+              className="architecture-relation-badge"
+              data-relation={edge.relation ?? "primary"}
+              data-tone={edge.tone ?? "default"}
+            >
+              {edge.label}
+            </span>
+          ))}
+        </span>
+      ) : null}
     </span>
-  );
-}
-
-function EdgeList({ edges = [], nodes }: { edges?: ArchitectureEdge[]; nodes: ArchitectureNode[] }) {
-  const labelFor = (id: string) => nodes.find((node) => node.id === id)?.label ?? id;
-
-  return (
-    <ul className="architecture-edges" aria-label="架构关系">
-      {edges.map((edge, index) => (
-        <li key={`${edge.from}-${edge.to}-${edge.label ?? ""}-${index}`} data-relation={edge.relation ?? "primary"} data-tone={edge.tone ?? "default"}>
-          <span>{labelFor(edge.from)}</span>
-          <i aria-hidden="true" />
-          <span>{labelFor(edge.to)}</span>
-          {edge.label ? <em>{edge.label}</em> : null}
-        </li>
-      ))}
-    </ul>
   );
 }
 
@@ -40,48 +39,45 @@ function GroupedDiagram({ nodes, groups = [], edges = [] }: { nodes: Architectur
   const grouped = groupNodes(nodes, groups);
   if (grouped.length === 0) {
     return (
-      <>
+      <div className="architecture-canvas">
         <div className="architecture-node-list">
           {nodes.map((node) => (
-            <NodeView key={node.id} node={node} />
+            <NodeView key={node.id} node={node} edges={edges} />
           ))}
         </div>
-        <EdgeList edges={edges} nodes={nodes} />
-      </>
+      </div>
     );
   }
 
   return (
-    <>
+    <div className="architecture-canvas">
       <div className="architecture-groups">
         {grouped.map((group) => (
           <section key={group.id} className="architecture-group" data-kind={group.kind ?? "lane"}>
             <h3>{group.label}</h3>
             <div className="architecture-node-list">
               {group.nodes.map((node) => (
-                <NodeView key={node.id} node={node} />
+                <NodeView key={node.id} node={node} edges={edges} />
               ))}
             </div>
           </section>
         ))}
       </div>
-      <EdgeList edges={edges} nodes={nodes} />
-    </>
+    </div>
   );
 }
 
 function LoopDiagram({ nodes, edges = [] }: { nodes: ArchitectureNode[]; edges?: ArchitectureEdge[] }) {
   return (
-    <>
+    <div className="architecture-canvas">
       <div className="architecture-loop" data-count={nodes.length} style={{ "--loop-count": nodes.length } as CSSProperties}>
         {nodes.map((node, index) => (
           <div key={node.id} className="architecture-loop-slot" style={{ "--slot": index } as CSSProperties}>
-            <NodeView node={node} />
+            <NodeView node={node} edges={edges} />
           </div>
         ))}
       </div>
-      <EdgeList edges={edges} nodes={nodes} />
-    </>
+    </div>
   );
 }
 
