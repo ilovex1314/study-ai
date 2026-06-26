@@ -1,9 +1,9 @@
 {
   "scripts": {
     "format:baoyu": "./scripts/baoyu-format-markdown.sh",
-    "lesson:dev": "pnpm --dir apps/interactive-lessons run dev",
-    "lesson:build": "pnpm --dir apps/interactive-lessons run build",
-    "lesson:dist": "pnpm --dir apps/interactive-lessons run build:dist",
-    "lesson:test": "pnpm --dir apps/interactive-lessons run test"
+    "lesson:dev": "npm --prefix apps/interactive-lessons run dev",
+    "lesson:build": "npm --prefix apps/interactive-lessons run build",
+    "lesson:dist": "npm --prefix apps/interactive-lessons run build:dist",
+    "lesson:test": "npm --prefix apps/interactive-lessons run test"
   }
 }
