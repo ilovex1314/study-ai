@@ -254,15 +254,16 @@ describe("App navigation", () => {
     }
   });
 
-  it("renders semantic edge relations inside the diagram nodes", () => {
+  it("renders semantic edge relations as diagram connectors", () => {
     const day20 = renderApp("/day20/decision");
     expect(document.querySelector('.architecture-diagram[data-type="flywheel"]')).toBeInTheDocument();
-    expect(document.querySelector('.architecture-node [data-relation="feedback"]')).toBeInTheDocument();
+    expect(document.querySelector('.architecture-connector[data-relation="feedback"]')).toBeInTheDocument();
     day20.unmount();
 
     renderApp("/day15/decision");
     expect(document.querySelector('.architecture-diagram[data-type="gate"]')).toBeInTheDocument();
-    expect(document.querySelector('.architecture-node [data-relation="branch"]')).toBeInTheDocument();
+    expect(document.querySelector('.architecture-connector[data-relation="branch"]')).toBeInTheDocument();
+    expect(document.querySelector(".architecture-relation-badge")).not.toBeInTheDocument();
     expect(document.querySelector(".architecture-edges")).not.toBeInTheDocument();
   });
 

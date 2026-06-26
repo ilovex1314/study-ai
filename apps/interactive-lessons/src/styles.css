@@ -100,16 +100,80 @@
 }
 
 .architecture-canvas {
+  position: relative;
   margin-top: 18px;
 }
 
+.architecture-connectors {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+  pointer-events: none;
+}
+
+.architecture-connector path {
+  fill: none;
+  stroke: #8fa1c7;
+  stroke-width: 2.2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.architecture-connector marker path {
+  fill: #8fa1c7;
+}
+
+.architecture-connector text {
+  paint-order: stroke;
+  stroke: #edf0f5;
+  stroke-width: 5px;
+  fill: var(--accent-primary);
+  font-size: 11px;
+  font-weight: 850;
+}
+
+.architecture-connector[data-relation="feedback"] path,
+.architecture-connector[data-relation="dependency"] path {
+  stroke: #6f8f77;
+  stroke-dasharray: 8 5;
+}
+
+.architecture-connector[data-relation="branch"] path,
+.architecture-connector[data-relation="guard"] path {
+  stroke: #b8843b;
+}
+
+.architecture-connector[data-relation="feedback"] marker path,
+.architecture-connector[data-relation="dependency"] marker path {
+  fill: #6f8f77;
+}
+
+.architecture-connector[data-relation="branch"] marker path,
+.architecture-connector[data-relation="guard"] marker path {
+  fill: #b8843b;
+}
+
+.architecture-connector[data-relation="feedback"] text,
+.architecture-connector[data-relation="dependency"] text {
+  fill: #356548;
+}
+
+.architecture-connector[data-relation="branch"] text,
+.architecture-connector[data-relation="guard"] text {
+  fill: #8a4b25;
+}
+
 .architecture-node {
+  position: relative;
+  z-index: 3;
   display: inline-flex;
-  flex-direction: column;
   align-items: center;
   justify-content: center;
   min-height: 38px;
-  gap: 6px;
+  gap: 10px;
   padding: 10px 12px;
   border: 1px solid #cbd4e5;
   border-radius: 9px;
@@ -122,49 +186,6 @@
 
 .architecture-node-label {
   display: block;
-}
-
-.architecture-relation-badges {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 4px;
-}
-
-.architecture-relation-badge {
-  display: inline-flex;
-  align-items: center;
-  gap: 4px;
-  border: 1px solid rgba(48, 77, 139, .25);
-  border-radius: 999px;
-  padding: 2px 7px;
-  background: rgba(48, 77, 139, .08);
-  color: var(--accent-primary);
-  font-size: 10px;
-  line-height: 1.4;
-  font-weight: 850;
-}
-
-.architecture-relation-badge::before {
-  content: "";
-  width: 14px;
-  height: 2px;
-  border-radius: 999px;
-  background: currentColor;
-}
-
-.architecture-relation-badge[data-relation="feedback"],
-.architecture-relation-badge[data-relation="branch"],
-.architecture-relation-badge[data-relation="guard"] {
-  border-color: rgba(199, 141, 61, .32);
-  background: rgba(248, 238, 224, .78);
-  color: #8a4b25;
-}
-
-.architecture-relation-badge[data-relation="dependency"] {
-  border-color: rgba(53, 101, 72, .28);
-  background: rgba(234, 242, 236, .82);
-  color: #356548;
 }
 
 .architecture-node i {
