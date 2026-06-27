@@ -33,10 +33,12 @@ function edgePath(edge: ArchitectureEdge, from: DOMRect, to: DOMRect, canvas: DO
     const startY = from.top - canvas.top + from.height / 2;
     const endX = to.right - canvas.left + 4;
     const endY = to.top - canvas.top + to.height / 2;
-    const railX = Math.min(canvas.width - 12, Math.max(startX, endX) + 26);
+    const outsideRailX = Math.max(startX, endX) + 40;
+    const insideRailX = canvas.width - 18;
+    const railX = insideRailX - Math.max(startX, endX) >= 24 ? insideRailX : outsideRailX;
 
     return {
-      labelX: Math.max(42, railX - 52),
+      labelX: railX - 10,
       labelY: (startY + endY) / 2,
       path: `M ${startX} ${startY} H ${railX} V ${endY} H ${endX}`
     };
@@ -80,9 +82,9 @@ function ConnectorLayer({ edges, nodes, paths, width, height }: { edges: Archite
     () =>
       edges.map((edge, index) => ({
         edge,
-        labelX: 0,
-        labelY: 0,
-        path: edge.relation === "feedback" || edge.relation === "dependency" ? `M 0 ${index * 10} H 20 V ${index * 10 + 10} H 4` : `M 0 ${index * 10} L 20 ${index * 10}`
+        labelX: edge.relation === "feedback" || edge.relation === "dependency" ? 82 : 10,
+        labelY: index * 10 + 9,
+        path: edge.relation === "feedback" || edge.relation === "dependency" ? `M 40 ${index * 10} H 92 V ${index * 10 + 18} H 40` : `M 0 ${index * 10} L 20 ${index * 10}`
       })),
     [edges]
   );
@@ -110,7 +112,7 @@ function ConnectorLayer({ edges, nodes, paths, width, height }: { edges: Archite
           aria-label={`${labelFor(edge.from)} 到 ${labelFor(edge.to)}${edge.label ? `：${edge.label}` : ""}`}
         >
           <path d={path} markerEnd={`url(#${markerSeed}-arrow)`} />
-          {edge.label && paths.length > 0 ? (
+          {edge.label ? (
             <text className="architecture-connector-label" x={labelX} y={Math.max(14, labelY)} textAnchor="middle">
               {edge.label}
             </text>
@@ -131,6 +133,11 @@ function ArchitectureCanvas({ children, edges = [], nodes }: { children: ReactNo
 
     const measure = () => {
       const canvasRect = canvas.getBoundingClientRect();
+      if (canvasRect.width <= 0 || canvasRect.height <= 0) {
+        setLayout({ height: 0, paths: [], width: 0 });
+        return;
+      }
+
       const paths = edges.flatMap((edge) => {
         const from = canvas.querySelector<HTMLElement>(`[data-node-id="${edge.from}"]`);
         const to = canvas.querySelector<HTMLElement>(`[data-node-id="${edge.to}"]`);

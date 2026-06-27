@@ -294,7 +294,8 @@ describe("App navigation", () => {
 
     const feedbackPath = document.querySelector('.architecture-connector[data-relation="feedback"] path');
 
-    expect(feedbackPath?.getAttribute("d")).toMatch(/[HV]/);
+    expect(feedbackPath?.getAttribute("d")).toMatch(/H .+ V .+ H/);
+    expect(feedbackPath?.getAttribute("d")).not.toMatch(/H [0-9](?:\s|$)/);
     expect(document.querySelector('.architecture-connector[data-relation="feedback"] .architecture-connector-label')).toBeInTheDocument();
   });
 

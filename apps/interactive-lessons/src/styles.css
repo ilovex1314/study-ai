@@ -161,6 +161,20 @@
   gap: 8px;
 }
 
+.architecture-diagram[data-type="layered"] .architecture-group {
+  padding-right: 56px;
+}
+
+.architecture-diagram[data-type="layered"] .architecture-node-list {
+  justify-items: stretch;
+}
+
+.architecture-diagram[data-type="layered"] .architecture-node {
+  width: min(760px, 72%);
+  max-width: min(760px, 72%);
+  justify-self: start;
+}
+
 .architecture-canvas {
   position: relative;
   margin-top: 18px;
