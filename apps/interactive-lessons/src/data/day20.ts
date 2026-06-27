@@ -25,10 +25,10 @@ export const day20Lesson = createP0Lesson({
     { id: "strategy", name: "策略", question: "下一步做什么？", choices: [{ name: "实验和缺口", description: "依据证据选择优先级。", example: "targeted roadmap" }, { name: "追逐热度", description: "不保证解决用户问题。", example: "latest model" }] }
   ],
   questions: [
-    { concept: "capability-evidence", prompt: "能力证据和学习活跃度有什么区别？", correct: "能力证据能被复核并证明真实任务迁移", distractors: ["二者完全相同", "活跃度一定更可靠"], explanation: "能力需要由产物和判断支撑。" },
-    { concept: "north-star-metric", prompt: "什么样的指标适合作为北极星指标？", correct: "能连接用户价值、产品增长和高质量行为的指标", distractors: ["只看页面访问", "越复杂越好"], explanation: "北极星指标要指导产品优先级。" },
-    { concept: "experiment-design", prompt: "实验设计为什么需要停止条件？", correct: "避免无效或有害改动持续消耗用户和资源", distractors: ["为了让实验不能失败", "为了隐藏结果"], explanation: "停止条件让实验可治理。" },
-    { concept: "roadmap-strategy", prompt: "如何选择下一项学习任务？", correct: "从证据识别一个具体能力缺口并设置可验证产出", distractors: ["随便选择热门主题", "同时补齐所有短板"], explanation: "聚焦缺口能让学习继续服务真实交付。" }
+    { concept: "capability-evidence", weight: 25, prompt: "能力证据和学习活跃度有什么区别？", correct: "能力证据能被复核并证明真实任务迁移", distractors: ["二者完全相同", "活跃度一定更可靠"], explanation: "能力需要由产物和判断支撑。" },
+    { concept: "north-star-metric", weight: 25, prompt: "什么样的指标适合作为北极星指标？", correct: "能连接用户价值、产品增长和高质量行为的指标", distractors: ["只看页面访问", "越复杂越好"], explanation: "北极星指标要指导产品优先级。" },
+    { concept: "experiment-design", weight: 25, prompt: "实验设计为什么需要停止条件？", correct: "避免无效或有害改动持续消耗用户和资源", distractors: ["为了让实验不能失败", "为了隐藏结果"], explanation: "停止条件让实验可治理。" },
+    { concept: "roadmap-strategy", weight: 25, prompt: "如何选择下一项学习任务？", correct: "从证据识别一个具体能力缺口并设置可验证产出", distractors: ["随便选择热门主题", "同时补齐所有短板"], explanation: "聚焦缺口能让学习继续服务真实交付。" }
   ],
   references: [
     { label: "Lenny's Newsletter North Star Metric", url: "https://www.lennysnewsletter.com/p/north-star-metric" },

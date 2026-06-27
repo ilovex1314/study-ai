@@ -111,6 +111,7 @@ export const day09Lesson: LessonPage = {
   questions: [
       {
         id: "d9-q1",
+        weight: 25,
         type: "single",
         concept: "document-ingestion",
         prompt: "文档入库是 RAG 上限最主要解决什么问题？",
@@ -120,6 +121,7 @@ export const day09Lesson: LessonPage = {
       },
       {
         id: "d9-q2",
+        weight: 25,
         type: "single",
         concept: "hybrid-search",
         prompt: "Hybrid search 兼顾语义和精确匹配最主要解决什么问题？",
@@ -129,6 +131,7 @@ export const day09Lesson: LessonPage = {
       },
       {
         id: "d9-q3",
+        weight: 25,
         type: "single",
         concept: "permission-filtering",
         prompt: "权限过滤必须进入检索层最主要解决什么问题？",
@@ -138,6 +141,7 @@ export const day09Lesson: LessonPage = {
       },
       {
         id: "d9-q4",
+        weight: 25,
         type: "single",
         concept: "rag-ops",
         prompt: "RAG 运维关注漂移和回归最主要解决什么问题？",

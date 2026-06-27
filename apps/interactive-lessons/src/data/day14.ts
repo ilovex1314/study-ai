@@ -25,10 +25,10 @@ export const day14Lesson = createP0Lesson({
     { id: "answer", name: "可复核回答", question: "答案如何证明来源？", choices: [{ name: "结构化引用", description: "引用连接版本、chunk 和权限状态。", example: "doc v3 / chunk 12" }, { name: "普通链接", description: "不能证明生成时证据。", example: "homepage URL" }] }
   ],
   questions: [
-    { concept: "data-contract", prompt: "数据契约最应该解决什么问题？", correct: "让知识进入系统后可追踪、可过滤、可删除", distractors: ["让文档标题更长", "让模型不用引用"], explanation: "数据契约是治理知识生命周期的基础。" },
-    { concept: "freshness", prompt: "为什么向量相似度不能代表事实仍有效？", correct: "因为相似度不反映版本、生效时间和业务状态", distractors: ["因为向量库不能存文本", "因为旧文档都应该最高权重"], explanation: "新鲜度要由 metadata 和业务规则参与控制。" },
-    { concept: "deletion-propagation", prompt: "删除事件为什么不能只删原文件？", correct: "chunk、embedding、缓存和引用等派生资产仍可能残留", distractors: ["删除原文件一定会删除数据库", "删除不需要审计"], explanation: "删除传播必须覆盖所有派生资产。" },
-    { concept: "citation-evidence", prompt: "引用只保存 URL 的风险是什么？", correct: "无法定位版本、chunk、权限和生成时证据", distractors: ["URL 不能显示中文", "URL 会自动防止越权"], explanation: "生产引用要能复核具体证据。" }
+    { concept: "data-contract", weight: 25, prompt: "数据契约最应该解决什么问题？", correct: "让知识进入系统后可追踪、可过滤、可删除", distractors: ["让文档标题更长", "让模型不用引用"], explanation: "数据契约是治理知识生命周期的基础。" },
+    { concept: "freshness", weight: 25, prompt: "为什么向量相似度不能代表事实仍有效？", correct: "因为相似度不反映版本、生效时间和业务状态", distractors: ["因为向量库不能存文本", "因为旧文档都应该最高权重"], explanation: "新鲜度要由 metadata 和业务规则参与控制。" },
+    { concept: "deletion-propagation", weight: 25, prompt: "删除事件为什么不能只删原文件？", correct: "chunk、embedding、缓存和引用等派生资产仍可能残留", distractors: ["删除原文件一定会删除数据库", "删除不需要审计"], explanation: "删除传播必须覆盖所有派生资产。" },
+    { concept: "citation-evidence", weight: 25, prompt: "引用只保存 URL 的风险是什么？", correct: "无法定位版本、chunk、权限和生成时证据", distractors: ["URL 不能显示中文", "URL 会自动防止越权"], explanation: "生产引用要能复核具体证据。" }
   ],
   references: [
     { label: "OpenAI Retrieval and file search concepts", url: "https://platform.openai.com/docs/guides/tools-file-search" },

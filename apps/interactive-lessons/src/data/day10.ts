@@ -111,6 +111,7 @@ export const day10Lesson: LessonPage = {
   questions: [
       {
         id: "d10-q1",
+        weight: 25,
         type: "single",
         concept: "eval-dataset",
         prompt: "Eval dataset 是 AI 功能的测试资产最主要解决什么问题？",
@@ -120,6 +121,7 @@ export const day10Lesson: LessonPage = {
       },
       {
         id: "d10-q2",
+        weight: 25,
         type: "single",
         concept: "online-feedback",
         prompt: "线上反馈把真实失败带回研发最主要解决什么问题？",
@@ -129,6 +131,7 @@ export const day10Lesson: LessonPage = {
       },
       {
         id: "d10-q3",
+        weight: 25,
         type: "single",
         concept: "red-team",
         prompt: "红队样本保护高风险边界最主要解决什么问题？",
@@ -138,6 +141,7 @@ export const day10Lesson: LessonPage = {
       },
       {
         id: "d10-q4",
+        weight: 25,
         type: "single",
         concept: "regression-testing",
         prompt: "回归测试防止 prompt 和模型退化最主要解决什么问题？",

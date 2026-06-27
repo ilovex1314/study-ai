@@ -55,11 +55,16 @@ describe("curriculum contract", () => {
     }
   });
 
+  it("allows lessons to use flexible question counts", () => {
+    expect(lessons.some((lesson) => lesson.questions.length !== 4)).toBe(true);
+  });
+
   it("ships complete learning material instead of placeholder lessons", () => {
     for (const lesson of lessons) {
       expect(lesson.modules.length).toBeGreaterThanOrEqual(4);
       expect(lesson.decisionLayers.length).toBeGreaterThanOrEqual(3);
-      expect(lesson.questions.length).toBeGreaterThanOrEqual(4);
+      expect(lesson.questions.length).toBeGreaterThan(0);
+      expect(lesson.questions.every((question) => typeof question.weight === "number")).toBe(true);
     }
   });
 

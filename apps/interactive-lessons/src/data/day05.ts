@@ -111,6 +111,7 @@ export const day05Lesson: LessonPage = {
   questions: [
       {
         id: "d5-q1",
+        weight: 30,
         type: "single",
         concept: "platform-selection",
         prompt: "平台选型要匹配阶段和控制深度最主要解决什么问题？",
@@ -120,6 +121,7 @@ export const day05Lesson: LessonPage = {
       },
       {
         id: "d5-q2",
+        weight: 25,
         type: "single",
         concept: "vendor-lock-in",
         prompt: "供应商锁定要提前设计出口最主要解决什么问题？",
@@ -129,6 +131,7 @@ export const day05Lesson: LessonPage = {
       },
       {
         id: "d5-q3",
+        weight: 25,
         type: "single",
         concept: "framework-fit",
         prompt: "框架适配看团队和任务形态最主要解决什么问题？",
@@ -138,6 +141,7 @@ export const day05Lesson: LessonPage = {
       },
       {
         id: "d5-q4",
+        weight: 20,
         type: "single",
         concept: "integration-strategy",
         prompt: "串联方式决定系统边界最主要解决什么问题？",

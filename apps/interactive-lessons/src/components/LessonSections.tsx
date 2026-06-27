@@ -261,7 +261,7 @@ export function QuizPanel({
         <h2>通过做题完成学习</h2>
       </div>
       <div className="question-meta">
-        <span>本题 {question.weight ?? 0} 分</span>
+        <span>本题 {question.weight} 分</span>
         <span>{conceptLabels[question.concept]}</span>
       </div>
       <div className="question-nav" aria-label="题目导航">
@@ -334,6 +334,7 @@ export function ReviewPanel({
   onExport: () => void;
 }) {
   const best = history.reduce((max, attempt) => Math.max(max, attempt.score), 0);
+  const quizTotal = review.total;
 
   return (
     <aside id="review" className="review-panel section-anchor">
@@ -370,7 +371,7 @@ export function ReviewPanel({
       <div className="history-head">
         <span>历史记录</span>
         <small>
-          最好 {best}/{lesson.questions.length}
+          最好 {best}/{quizTotal}
         </small>
       </div>
       <div className="history-list">

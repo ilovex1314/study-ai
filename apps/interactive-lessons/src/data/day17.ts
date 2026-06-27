@@ -25,10 +25,10 @@ export const day17Lesson = createP0Lesson({
     { id: "protect", name: "保护", question: "超限后怎么办？", choices: [{ name: "降级策略", description: "减检索、换模型、排队或稍后通知。", example: "async fallback" }, { name: "无限重试", description: "会制造重试风暴。", example: "retry loop" }] }
   ],
   questions: [
-    { concept: "unit-economics", prompt: "AI 单位经济性最应该按什么记录？", correct: "按任务记录 token、检索、工具、存储和人工审核成本", distractors: ["只看月度总账单", "只看页面访问量"], explanation: "按任务拆解才能指导模型选择和定价。" },
-    { concept: "model-routing", prompt: "模型路由的核心依据是什么？", correct: "任务风险、质量要求、上下文长度和预算", distractors: ["永远使用最贵模型", "只看模型名字"], explanation: "路由是质量、成本和风险的工程折中。" },
-    { concept: "cache-rate-limit", prompt: "缓存最需要避免什么？", correct: "跨租户或权限敏感内容被错误复用", distractors: ["缓存任何稳定结果", "设置 TTL"], explanation: "缓存必须尊重权限、新鲜度和失效策略。" },
-    { concept: "capacity-protection", prompt: "预算或容量超限时正确动作是什么？", correct: "触发明确降级、排队、限流或轻量模型路由", distractors: ["无限重试", "继续扩大上下文"], explanation: "容量保护要减少影响而不是放大负载。" }
+    { concept: "unit-economics", weight: 25, prompt: "AI 单位经济性最应该按什么记录？", correct: "按任务记录 token、检索、工具、存储和人工审核成本", distractors: ["只看月度总账单", "只看页面访问量"], explanation: "按任务拆解才能指导模型选择和定价。" },
+    { concept: "model-routing", weight: 25, prompt: "模型路由的核心依据是什么？", correct: "任务风险、质量要求、上下文长度和预算", distractors: ["永远使用最贵模型", "只看模型名字"], explanation: "路由是质量、成本和风险的工程折中。" },
+    { concept: "cache-rate-limit", weight: 25, prompt: "缓存最需要避免什么？", correct: "跨租户或权限敏感内容被错误复用", distractors: ["缓存任何稳定结果", "设置 TTL"], explanation: "缓存必须尊重权限、新鲜度和失效策略。" },
+    { concept: "capacity-protection", weight: 25, prompt: "预算或容量超限时正确动作是什么？", correct: "触发明确降级、排队、限流或轻量模型路由", distractors: ["无限重试", "继续扩大上下文"], explanation: "容量保护要减少影响而不是放大负载。" }
   ],
   references: [
     { label: "OpenAI latency optimization", url: "https://platform.openai.com/docs/guides/latency-optimization" },

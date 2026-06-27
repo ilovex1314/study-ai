@@ -111,6 +111,7 @@ export const day04Lesson: LessonPage = {
   questions: [
       {
         id: "d4-q1",
+        weight: 25,
         type: "single",
         concept: "product-delivery",
         prompt: "AI demo 到产品最常缺什么？",
@@ -120,6 +121,7 @@ export const day04Lesson: LessonPage = {
       },
       {
         id: "d4-q2",
+        weight: 25,
         type: "single",
         concept: "model-gateway",
         prompt: "模型网关的核心价值是什么？",
@@ -129,6 +131,7 @@ export const day04Lesson: LessonPage = {
       },
       {
         id: "d4-q3",
+        weight: 25,
         type: "single",
         concept: "streaming-ux",
         prompt: "好的 Streaming UX 除了逐字输出还要什么？",
@@ -138,6 +141,7 @@ export const day04Lesson: LessonPage = {
       },
       {
         id: "d4-q4",
+        weight: 25,
         type: "single",
         concept: "observability",
         prompt: "为什么 AI 产品必须记录 trace 和 eval？",

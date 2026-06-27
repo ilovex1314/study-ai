@@ -25,10 +25,10 @@ export const day15Lesson = createP0Lesson({
     { id: "audit", name: "可追责执行", question: "执行后如何复盘？", choices: [{ name: "审计 Trace", description: "记录身份、策略、审批和结果。", example: "trace id" }, { name: "聊天记录", description: "无法证明系统决策。", example: "final answer only" }] }
   ],
   questions: [
-    { concept: "untrusted-input", prompt: "为什么检索内容也必须视为不可信输入？", correct: "因为文档可能包含恶意指令或过期指令", distractors: ["因为检索内容一定为空", "因为模型不会读取文档"], explanation: "RAG 文档可能携带 prompt injection，不能当作系统指令。" },
-    { concept: "least-privilege-tool", prompt: "Tool schema 不能替代什么？", correct: "身份授权、风险策略和审批", distractors: ["参数结构", "参数说明"], explanation: "Schema 描述工具形状，策略决定能不能执行。" },
-    { concept: "policy-enforcement", prompt: "高风险工具执行前最关键的控制是什么？", correct: "策略检查、人工审批、幂等和审计", distractors: ["更礼貌的 prompt", "把按钮做大"], explanation: "副作用必须由系统控制。" },
-    { concept: "audit-trace", prompt: "审计事件至少应连接什么？", correct: "actor、resource、action、policy decision、tool result 和 trace id", distractors: ["只连接最终回答", "只连接页面颜色"], explanation: "审计要支持复盘和追责。" }
+    { concept: "untrusted-input", weight: 25, prompt: "为什么检索内容也必须视为不可信输入？", correct: "因为文档可能包含恶意指令或过期指令", distractors: ["因为检索内容一定为空", "因为模型不会读取文档"], explanation: "RAG 文档可能携带 prompt injection，不能当作系统指令。" },
+    { concept: "least-privilege-tool", weight: 25, prompt: "Tool schema 不能替代什么？", correct: "身份授权、风险策略和审批", distractors: ["参数结构", "参数说明"], explanation: "Schema 描述工具形状，策略决定能不能执行。" },
+    { concept: "policy-enforcement", weight: 25, prompt: "高风险工具执行前最关键的控制是什么？", correct: "策略检查、人工审批、幂等和审计", distractors: ["更礼貌的 prompt", "把按钮做大"], explanation: "副作用必须由系统控制。" },
+    { concept: "audit-trace", weight: 25, prompt: "审计事件至少应连接什么？", correct: "actor、resource、action、policy decision、tool result 和 trace id", distractors: ["只连接最终回答", "只连接页面颜色"], explanation: "审计要支持复盘和追责。" }
   ],
   references: [
     { label: "OWASP Top 10 for LLM Applications", url: "https://owasp.org/www-project-top-10-for-large-language-model-applications/" },

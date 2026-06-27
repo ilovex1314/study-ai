@@ -25,10 +25,10 @@ export const day19Lesson = createP0Lesson({
     { id: "owner", name: "责任", question: "谁能回滚？", choices: [{ name: "明确 owner", description: "资产 owner 对效果和事故响应负责。", example: "rollback owner" }, { name: "大家都可以", description: "真正事故时无人负责。", example: "shared vague" }] }
   ],
   questions: [
-    { concept: "versioned-assets", prompt: "为什么版本号必须连接 trace？", correct: "才能从线上问题追溯到具体 prompt、模型、数据集或索引", distractors: ["为了让 UI 更漂亮", "版本号只给文档看"], explanation: "trace 与版本连接是复现和回滚的基础。" },
-    { concept: "release-gate", prompt: "发布门禁应检查什么？", correct: "eval、红队、成本、延迟、权限和回滚路径", distractors: ["只检查标题", "只看一次演示"], explanation: "门禁要覆盖质量、成本和安全。" },
-    { concept: "dataset-drift", prompt: "什么会导致数据漂移？", correct: "样本分布、权限、业务规则或用户行为变化", distractors: ["按钮变圆", "日志文件变小"], explanation: "漂移会让旧评估不再代表线上现实。" },
-    { concept: "ownership-boundary", prompt: "谁应该拥有回滚权？", correct: "对资产效果和事故响应负责的 owner", distractors: ["任何路过的人", "只有模型自己"], explanation: "回滚权必须对应责任边界。" }
+    { concept: "versioned-assets", weight: 25, prompt: "为什么版本号必须连接 trace？", correct: "才能从线上问题追溯到具体 prompt、模型、数据集或索引", distractors: ["为了让 UI 更漂亮", "版本号只给文档看"], explanation: "trace 与版本连接是复现和回滚的基础。" },
+    { concept: "release-gate", weight: 25, prompt: "发布门禁应检查什么？", correct: "eval、红队、成本、延迟、权限和回滚路径", distractors: ["只检查标题", "只看一次演示"], explanation: "门禁要覆盖质量、成本和安全。" },
+    { concept: "dataset-drift", weight: 25, prompt: "什么会导致数据漂移？", correct: "样本分布、权限、业务规则或用户行为变化", distractors: ["按钮变圆", "日志文件变小"], explanation: "漂移会让旧评估不再代表线上现实。" },
+    { concept: "ownership-boundary", weight: 25, prompt: "谁应该拥有回滚权？", correct: "对资产效果和事故响应负责的 owner", distractors: ["任何路过的人", "只有模型自己"], explanation: "回滚权必须对应责任边界。" }
   ],
   references: [
     { label: "OpenAI Evals guide", url: "https://platform.openai.com/docs/guides/evals" },

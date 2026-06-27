@@ -3,7 +3,7 @@ import { curriculum } from "./curriculum";
 import type { ConceptId, ConceptModule, DecisionLayer, LessonPage } from "./types";
 
 type ModuleSeed = Pick<ConceptModule, "title" | "summary" | "visual" | "concept" | "whyItMatters" | "coreIdeas" | "engineerLens" | "pitfalls" | "practicePrompt" | "diagram">;
-type LessonSeed = { modules: ModuleSeed[]; layers: DecisionLayer[]; questions: Array<{ concept: ConceptId; prompt: string; correct: string; distractors: string[]; explanation: string }> };
+type LessonSeed = { modules: ModuleSeed[]; layers: DecisionLayer[]; questions: Array<{ concept: ConceptId; prompt: string; correct: string; distractors: string[]; explanation: string; weight: number }> };
 
 const seeds: LessonSeed[] = [
   {
@@ -16,7 +16,7 @@ const seeds: LessonSeed[] = [
     layers: [
       { id: "state", name: "状态", question: "什么必须跨进程保存？", choices: [{ name: "业务事实", description: "输入、审批和输出版本进入持久化状态。", example: "approval=approved" }, { name: "临时推理", description: "可丢弃草稿不应成为业务事实。", example: "model scratchpad" }] }, { id: "recovery", name: "恢复", question: "中断后从哪里继续？", choices: [{ name: "最近 checkpoint", description: "读取一致快照并验证版本。", example: "step-3 checkpoint" }, { name: "从头重跑", description: "仅适合无副作用的小任务。", example: "pure summary" }] }, { id: "safety", name: "副作用", question: "失败后谁负责？", choices: [{ name: "补偿与审批", description: "不可逆动作进入人工处理。", example: "refund escalation" }, { name: "模型重试", description: "模型不能替代业务回滚。", example: "not a rollback" }] }],
     questions: [
-      { concept: "durable-execution", prompt: "长任务要能在重启后恢复，第一步是什么？", correct: "定义可序列化的业务状态和恢复边界", distractors: ["只加大模型上下文", "把所有步骤放进一个 Promise"], explanation: "持久化状态让执行从运行时内存中解耦。" }, { concept: "checkpointing", prompt: "Checkpoint 最重要的收益是什么？", correct: "从最近一致点恢复并避免重复副作用", distractors: ["让模型更有创造力", "省略输入版本记录"], explanation: "它控制恢复成本和重复执行风险。" }, { concept: "human-interrupt", prompt: "外部扣费已成功但后续失败，应如何处理？", correct: "运行补偿或进入人工升级队列", distractors: ["无限自动重试", "假装整步没有发生"], explanation: "跨服务副作用需要明确的补偿和人工边界。" }, { concept: "state-graph", prompt: "为什么要用状态图？", correct: "让暂停、失败、补偿和终态可验证", distractors: ["只为了画图", "替代所有单元测试"], explanation: "状态图把可恢复执行变成可测试契约。" }
+      { concept: "durable-execution", prompt: "长任务要能在重启后恢复，第一步是什么？", correct: "定义可序列化的业务状态和恢复边界", distractors: ["只加大模型上下文", "把所有步骤放进一个 Promise"], explanation: "持久化状态让执行从运行时内存中解耦。", weight: 25 }, { concept: "checkpointing", prompt: "Checkpoint 最重要的收益是什么？", correct: "从最近一致点恢复并避免重复副作用", distractors: ["让模型更有创造力", "省略输入版本记录"], explanation: "它控制恢复成本和重复执行风险。", weight: 25 }, { concept: "human-interrupt", prompt: "外部扣费已成功但后续失败，应如何处理？", correct: "运行补偿或进入人工升级队列", distractors: ["无限自动重试", "假装整步没有发生"], explanation: "跨服务副作用需要明确的补偿和人工边界。", weight: 25 }, { concept: "state-graph", prompt: "为什么要用状态图？", correct: "让暂停、失败、补偿和终态可验证", distractors: ["只为了画图", "替代所有单元测试"], explanation: "状态图把可恢复执行变成可测试契约。", weight: 25 }
     ]
   },
   {
@@ -29,7 +29,7 @@ const seeds: LessonSeed[] = [
     layers: [
       { id: "classify", name: "分级", question: "变更风险如何决定？", choices: [{ name: "影响面", description: "数据、权限和不可逆副作用越多，门禁越严。", example: "tool permission" }, { name: "提交大小", description: "行数不能代表行为风险。", example: "small but risky" }] }, { id: "release", name: "放量", question: "何时扩大？", choices: [{ name: "满足阈值", description: "质量、成本和安全指标都稳定。", example: "5% to 25%" }, { name: "观察感觉", description: "没有对照的直觉不可审计。", example: "not evidence" }] }, { id: "rollback", name: "回退", question: "停止后恢复什么？", choices: [{ name: "完整版本包", description: "代码、配置、模型和数据一起回退。", example: "release manifest" }, { name: "只回代码", description: "行为依赖仍可能留在线上。", example: "partial rollback" }] }],
     questions: [
-      { concept: "guardrails", prompt: "高风险 AI 变更的发布包应包含什么？", correct: "代码、配置、评估证据和审批记录", distractors: ["只包含 UI 截图", "只包含模型名称"], explanation: "可审查发布需要复现行为和风险边界。" }, { concept: "online-feedback", prompt: "灰度扩大前最可靠的依据是什么？", correct: "预设 cohort 的质量、成本和安全阈值", distractors: ["团队觉得不错", "一次成功演示"], explanation: "灰度必须以可观测阈值而非印象驱动。" }, { concept: "regression-testing", prompt: "回滚 RAG 变更时容易遗漏什么？", correct: "索引、prompt 和模型路由版本", distractors: ["只回滚 CSS", "删除全部日志"], explanation: "线上行为由多类可配置资产共同决定。" }, { concept: "red-team", prompt: "发布评审为何需要反例？", correct: "验证失败模式和风险不会随变更扩大", distractors: ["让文档更长", "替代上线监控"], explanation: "反例提供对真实风险的直接证据。" }
+      { concept: "guardrails", prompt: "高风险 AI 变更的发布包应包含什么？", correct: "代码、配置、评估证据和审批记录", distractors: ["只包含 UI 截图", "只包含模型名称"], explanation: "可审查发布需要复现行为和风险边界。", weight: 25 }, { concept: "online-feedback", prompt: "灰度扩大前最可靠的依据是什么？", correct: "预设 cohort 的质量、成本和安全阈值", distractors: ["团队觉得不错", "一次成功演示"], explanation: "灰度必须以可观测阈值而非印象驱动。", weight: 25 }, { concept: "regression-testing", prompt: "回滚 RAG 变更时容易遗漏什么？", correct: "索引、prompt 和模型路由版本", distractors: ["只回滚 CSS", "删除全部日志"], explanation: "线上行为由多类可配置资产共同决定。", weight: 25 }, { concept: "red-team", prompt: "发布评审为何需要反例？", correct: "验证失败模式和风险不会随变更扩大", distractors: ["让文档更长", "替代上线监控"], explanation: "反例提供对真实风险的直接证据。", weight: 25 }
     ]
   },
   {
@@ -42,7 +42,7 @@ const seeds: LessonSeed[] = [
     layers: [
       { id: "signal", name: "信号", question: "先看哪个健康度？", choices: [{ name: "用户 SLI", description: "成功、延迟和安全结果映射用户任务。", example: "cited-answer success" }, { name: "单机指标", description: "它不能独立代表任务完成。", example: "CPU only" }] }, { id: "diagnose", name: "诊断", question: "如何定位一次失败？", choices: [{ name: "端到端 trace", description: "关联输入、版本、工具与输出。", example: "trace ID" }, { name: "平均日志", description: "聚合会抹掉失败链路。", example: "aggregate only" }] }, { id: "respond", name: "响应", question: "异常时先做什么？", choices: [{ name: "减少影响", description: "降级或关闭高风险动作后再调查。", example: "kill switch" }, { name: "继续放量", description: "会扩大错误预算消耗。", example: "ignore alert" }] }],
     questions: [
-      { concept: "observability", prompt: "AI SLO 应优先描述什么？", correct: "用户任务的成功、延迟和安全结果", distractors: ["单次 HTTP 200", "团队在线时长"], explanation: "可靠性目标必须映射到用户可感知结果。" }, { concept: "verification-loop", prompt: "定位一次错误引用最关键的数据是什么？", correct: "关联模型、检索和工具的端到端 trace", distractors: ["只看月度平均", "只看 CSS 版本"], explanation: "trace 保留了跨组件的因果链。" }, { concept: "postmortem", prompt: "事故响应的第一优先级是什么？", correct: "先降低用户影响并保留证据", distractors: ["马上追责", "等下周再处理"], explanation: "止血和证据让后续恢复、复盘可执行。" }, { concept: "platform-selection", prompt: "模型限流如何影响 SRE？", correct: "需要预算、队列和降级策略提前控制", distractors: ["只影响财务", "与用户体验无关"], explanation: "限流与成本会直接转化为延迟和失败。" }
+      { concept: "observability", prompt: "AI SLO 应优先描述什么？", correct: "用户任务的成功、延迟和安全结果", distractors: ["单次 HTTP 200", "团队在线时长"], explanation: "可靠性目标必须映射到用户可感知结果。", weight: 25 }, { concept: "verification-loop", prompt: "定位一次错误引用最关键的数据是什么？", correct: "关联模型、检索和工具的端到端 trace", distractors: ["只看月度平均", "只看 CSS 版本"], explanation: "trace 保留了跨组件的因果链。", weight: 25 }, { concept: "postmortem", prompt: "事故响应的第一优先级是什么？", correct: "先降低用户影响并保留证据", distractors: ["马上追责", "等下周再处理"], explanation: "止血和证据让后续恢复、复盘可执行。", weight: 25 }, { concept: "platform-selection", prompt: "模型限流如何影响 SRE？", correct: "需要预算、队列和降级策略提前控制", distractors: ["只影响财务", "与用户体验无关"], explanation: "限流与成本会直接转化为延迟和失败。", weight: 25 }
     ]
   },
   {
@@ -55,7 +55,7 @@ const seeds: LessonSeed[] = [
     layers: [
       { id: "problem", name: "问题", question: "项目从哪里开始？", choices: [{ name: "用户任务", description: "观察高频、昂贵且可改进的工作。", example: "support triage" }, { name: "模型能力", description: "能力本身不等于机会。", example: "use GPT" }] }, { id: "measure", name: "衡量", question: "如何证明价值？", choices: [{ name: "基线与护栏", description: "同时观察效率、质量和风险。", example: "time + citation accuracy" }, { name: "调用次数", description: "使用不等于完成任务。", example: "token count" }] }, { id: "scope", name: "范围", question: "首个验证多大？", choices: [{ name: "可控切片", description: "一个角色、任务和数据源。", example: "one team workflow" }, { name: "平台愿景", description: "大范围延迟学习。", example: "company copilot" }] }],
     questions: [
-      { concept: "business-validation", prompt: "项目发现阶段最先验证什么？", correct: "真实用户任务、替代方案和失败成本", distractors: ["最新模型排行榜", "首页配色"], explanation: "机会必须建立在可观察的用户问题上。" }, { concept: "eval-dataset", prompt: "成功指标为什么要有护栏？", correct: "避免效率提升伴随质量或风险恶化", distractors: ["让报表更复杂", "替代用户访谈"], explanation: "AI 产品通常需要多维度的成功约束。" }, { concept: "capstone-scope", prompt: "两周 MVP 的正确切法是什么？", correct: "限制在一个角色、任务和数据源", distractors: ["一次覆盖全部部门", "先造通用平台"], explanation: "窄切片带来更快、更可解释的反馈。" }, { concept: "prompt-assets", prompt: "好的项目假设应具备什么？", correct: "可被预定义证据证伪并指导下一步", distractors: ["越模糊越灵活", "只收正面反馈"], explanation: "假设是学习和决策的工具，而不是愿望。" }
+      { concept: "business-validation", prompt: "项目发现阶段最先验证什么？", correct: "真实用户任务、替代方案和失败成本", distractors: ["最新模型排行榜", "首页配色"], explanation: "机会必须建立在可观察的用户问题上。", weight: 25 }, { concept: "eval-dataset", prompt: "成功指标为什么要有护栏？", correct: "避免效率提升伴随质量或风险恶化", distractors: ["让报表更复杂", "替代用户访谈"], explanation: "AI 产品通常需要多维度的成功约束。", weight: 25 }, { concept: "capstone-scope", prompt: "两周 MVP 的正确切法是什么？", correct: "限制在一个角色、任务和数据源", distractors: ["一次覆盖全部部门", "先造通用平台"], explanation: "窄切片带来更快、更可解释的反馈。", weight: 25 }, { concept: "prompt-assets", prompt: "好的项目假设应具备什么？", correct: "可被预定义证据证伪并指导下一步", distractors: ["越模糊越灵活", "只收正面反馈"], explanation: "假设是学习和决策的工具，而不是愿望。", weight: 25 }
     ]
   },
   {
@@ -68,7 +68,7 @@ const seeds: LessonSeed[] = [
     layers: [
       { id: "ownership", name: "所有权", question: "谁做确定性决策？", choices: [{ name: "服务与策略层", description: "权限、状态和提交由系统负责。", example: "policy service" }, { name: "模型", description: "模型只给候选，不拥有权限。", example: "proposal" }] }, { id: "contract", name: "契约", question: "数据如何可靠传递？", choices: [{ name: "版本化 schema", description: "输入、来源与输出可验证。", example: "document v2" }, { name: "隐式文本", description: "难以迁移和审计。", example: "free form" }] }, { id: "risk", name: "风险", question: "发现风险后怎么办？", choices: [{ name: "绑定缓解与 owner", description: "让风险进入日常交付和验收。", example: "mitigation test" }, { name: "记录后忽略", description: "不会降低暴露。", example: "stale spreadsheet" }] }],
     questions: [
-      { concept: "server-boundary", prompt: "架构边界图最需要表达什么？", correct: "职责、信任边界和失败处理", distractors: ["框框颜色", "供应商 logo 数量"], explanation: "它们决定系统的安全性和可演进性。" }, { concept: "document-ingestion", prompt: "数据契约为何要有来源与版本？", correct: "让检索、评估和审计可复现", distractors: ["方便生成更长文本", "避免所有校验"], explanation: "来源和版本是可信数据链的基础。" }, { concept: "permission-filtering", prompt: "检索权限过滤应由谁提供？", correct: "身份和策略系统提供的确定性条件", distractors: ["模型临时判断", "前端隐藏按钮"], explanation: "授权不能交给概率性组件。" }, { concept: "guardrails", prompt: "风险清单的有效条目应包含什么？", correct: "影响、缓解方式、负责人和残余风险", distractors: ["一句“注意安全”", "只写风险名称"], explanation: "可管理风险必须能触发行动和验收。" }
+      { concept: "server-boundary", prompt: "架构边界图最需要表达什么？", correct: "职责、信任边界和失败处理", distractors: ["框框颜色", "供应商 logo 数量"], explanation: "它们决定系统的安全性和可演进性。", weight: 25 }, { concept: "document-ingestion", prompt: "数据契约为何要有来源与版本？", correct: "让检索、评估和审计可复现", distractors: ["方便生成更长文本", "避免所有校验"], explanation: "来源和版本是可信数据链的基础。", weight: 25 }, { concept: "permission-filtering", prompt: "检索权限过滤应由谁提供？", correct: "身份和策略系统提供的确定性条件", distractors: ["模型临时判断", "前端隐藏按钮"], explanation: "授权不能交给概率性组件。", weight: 25 }, { concept: "guardrails", prompt: "风险清单的有效条目应包含什么？", correct: "影响、缓解方式、负责人和残余风险", distractors: ["一句“注意安全”", "只写风险名称"], explanation: "可管理风险必须能触发行动和验收。", weight: 25 }
     ]
   },
   {
@@ -81,7 +81,7 @@ const seeds: LessonSeed[] = [
     layers: [
       { id: "build", name: "实现", question: "第一版应先做什么？", choices: [{ name: "真实垂直切片", description: "尽早验证端到端责任链。", example: "input to cited answer" }, { name: "通用框架", description: "会延迟真实反馈。", example: "platform first" }] }, { id: "evaluate", name: "评估", question: "什么样本必须被测？", choices: [{ name: "成功与失败", description: "正确、拒答、越权和边缘情况都需覆盖。", example: "golden set" }, { name: "演示问题", description: "happy path 不代表质量。", example: "demo only" }] }, { id: "release", name: "发布", question: "谁决定上线？", choices: [{ name: "可验证门禁", description: "评估、权限、预算和回滚共同决定。", example: "go/no-go" }, { name: "单一负责人感觉", description: "缺少可复查证据。", example: "gut feel" }] }],
     questions: [
-      { concept: "integration-strategy", prompt: "AI 项目首个实现应优先选择什么？", correct: "一个真实、可演示的端到端任务切片", distractors: ["先建通用平台", "先做所有角色"], explanation: "垂直切片最快暴露产品、集成和质量问题。" }, { concept: "eval-dataset", prompt: "Golden set 至少要包含哪类样本？", correct: "正确答案、无答案和危险/越权答案", distractors: ["只有最佳案例", "只有模型喜欢的问题"], explanation: "可靠评估必须测到系统该拒绝或升级的场景。" }, { concept: "deployment-plan", prompt: "上线检查为什么需要回滚演练？", correct: "证明异常时能恢复可信行为", distractors: ["让发布更慢", "替代监控"], explanation: "没有演练的回滚通常只是文档愿望。" }, { concept: "online-feedback", prompt: "坏回答的正确后续是什么？", correct: "脱敏分类后变成可验证的回归资产", distractors: ["直接忽略", "立即把原文喂给模型"], explanation: "反馈只有进入评估闭环才会持续改善产品。" }
+      { concept: "integration-strategy", prompt: "AI 项目首个实现应优先选择什么？", correct: "一个真实、可演示的端到端任务切片", distractors: ["先建通用平台", "先做所有角色"], explanation: "垂直切片最快暴露产品、集成和质量问题。", weight: 25 }, { concept: "eval-dataset", prompt: "Golden set 至少要包含哪类样本？", correct: "正确答案、无答案和危险/越权答案", distractors: ["只有最佳案例", "只有模型喜欢的问题"], explanation: "可靠评估必须测到系统该拒绝或升级的场景。", weight: 25 }, { concept: "deployment-plan", prompt: "上线检查为什么需要回滚演练？", correct: "证明异常时能恢复可信行为", distractors: ["让发布更慢", "替代监控"], explanation: "没有演练的回滚通常只是文档愿望。", weight: 25 }, { concept: "online-feedback", prompt: "坏回答的正确后续是什么？", correct: "脱敏分类后变成可验证的回归资产", distractors: ["直接忽略", "立即把原文喂给模型"], explanation: "反馈只有进入评估闭环才会持续改善产品。", weight: 25 }
     ]
   },
   {
@@ -94,15 +94,14 @@ const seeds: LessonSeed[] = [
     layers: [
       { id: "facts", name: "事实", question: "复盘依据是什么？", choices: [{ name: "运行与发布证据", description: "时间线和 trace 支撑因果判断。", example: "release + trace" }, { name: "记忆和印象", description: "高压后很容易失真。", example: "retrospective only" }] }, { id: "evidence", name: "能力", question: "如何证明已经掌握？", choices: [{ name: "可复核产物", description: "设计、评估和发布记录形成档案。", example: "project evidence" }, { name: "完成打卡", description: "无法展示工程判断。", example: "checkbox only" }] }, { id: "loop", name: "迭代", question: "下一步如何选择？", choices: [{ name: "指标和能力缺口", description: "从真实问题选择下一项练习。", example: "targeted practice" }, { name: "追逐热度", description: "不保证改善交付能力。", example: "latest trend" }] }],
     questions: [
-      { concept: "postmortem", prompt: "有效复盘的起点是什么？", correct: "基于时间线、版本和运行证据重建事实", distractors: ["先确定谁的错", "只记录最终结论"], explanation: "事实链让改进措施有可信因果基础。" }, { concept: "delivery-plan", prompt: "能力档案最应保留什么？", correct: "可复核的决策、架构、评估和发布证据", distractors: ["只保留漂亮截图", "只保留聊天记录"], explanation: "工程能力需要能被他人检查的产物。" }, { concept: "verification-loop", prompt: "产品飞轮为何需要把反馈转为评估集？", correct: "让真实失败在后续改动中可回归验证", distractors: ["为了增加数据量", "替代用户价值指标"], explanation: "反馈进入闭环才会稳定提高产品质量。" }, { concept: "capstone-scope", prompt: "如何选择下一项学习任务？", correct: "从证据识别一个具体能力缺口并设置可验证产出", distractors: ["随便选择热门主题", "同时补齐所有短板"], explanation: "聚焦缺口能让学习继续服务真实交付。" }
+      { concept: "postmortem", prompt: "有效复盘的起点是什么？", correct: "基于时间线、版本和运行证据重建事实", distractors: ["先确定谁的错", "只记录最终结论"], explanation: "事实链让改进措施有可信因果基础。", weight: 25 }, { concept: "delivery-plan", prompt: "能力档案最应保留什么？", correct: "可复核的决策、架构、评估和发布证据", distractors: ["只保留漂亮截图", "只保留聊天记录"], explanation: "工程能力需要能被他人检查的产物。", weight: 25 }, { concept: "verification-loop", prompt: "产品飞轮为何需要把反馈转为评估集？", correct: "让真实失败在后续改动中可回归验证", distractors: ["为了增加数据量", "替代用户价值指标"], explanation: "反馈进入闭环才会稳定提高产品质量。", weight: 25 }, { concept: "capstone-scope", prompt: "如何选择下一项学习任务？", correct: "从证据识别一个具体能力缺口并设置可验证产出", distractors: ["随便选择热门主题", "同时补齐所有短板"], explanation: "聚焦缺口能让学习继续服务真实交付。", weight: 25 }
     ]
   }
 ];
 
-const weights = [30, 25, 25, 20];
-
 export const supplementalLessons: LessonPage[] = seeds.map((seed, index) => {
   const day = curriculum[index + 13];
+
   return {
     ...day,
     status: "available",
@@ -117,7 +116,7 @@ export const supplementalLessons: LessonPage[] = seeds.map((seed, index) => {
       id: `${day.id}-q${questionIndex + 1}`,
       type: "single" as const,
       concept: question.concept,
-      weight: weights[questionIndex],
+      weight: question.weight,
       prompt: question.prompt,
       scenario: `请按“${day.title}”的真实工程约束判断。`,
       options: [option("a", question.correct, true), ...question.distractors.map((label, optionIndex) => option(String.fromCharCode(98 + optionIndex), label, false))],

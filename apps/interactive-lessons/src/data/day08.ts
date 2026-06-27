@@ -111,6 +111,7 @@ export const day08Lesson: LessonPage = {
   questions: [
       {
         id: "d8-q1",
+        weight: 25,
         type: "single",
         concept: "visual-workflow",
         prompt: "可视化工作流适合业务共创最主要解决什么问题？",
@@ -120,6 +121,7 @@ export const day08Lesson: LessonPage = {
       },
       {
         id: "d8-q2",
+        weight: 25,
         type: "single",
         concept: "low-code-automation",
         prompt: "低代码自动化适合外围串联最主要解决什么问题？",
@@ -129,6 +131,7 @@ export const day08Lesson: LessonPage = {
       },
       {
         id: "d8-q3",
+        weight: 25,
         type: "single",
         concept: "business-validation",
         prompt: "业务验证先证明价值再重构最主要解决什么问题？",
@@ -138,6 +141,7 @@ export const day08Lesson: LessonPage = {
       },
       {
         id: "d8-q4",
+        weight: 25,
         type: "single",
         concept: "api-bridging",
         prompt: "API bridging 让平台调用受控能力最主要解决什么问题？",

@@ -15,8 +15,12 @@ const layers: DecisionLayer[] = [
 ];
 
 export const day13Lesson: LessonPage = { id: "day13", path: "/day13", title: "UI/UX Pro Max 实战", phase: "Day13", status: "available", summary: "用数据、规则和验证闭环重做一个学习产品。", hero: "从设计检索到可验证界面的完整工作流", conceptIntro: "理解原理、跑通数据链路，并把建议落为可维护的 UI 系统。", decisionTitle: "UI/UX Pro Max：从需求到界面的数据链路", decisionIntro: "需求关键词 -> 五域结构化数据 -> 检索与规则排序 -> 设计系统 -> token 与组件 -> 可访问性/响应式验收 -> 下一轮需求输入。", decisionExample: "本项目将沉浸式学习的推荐转译成高对比、阅读友好的工作台，而不是机械套用 Cyberpunk 外观。", modules, decisionLayers: layers, questions: [
-  { id: "d13-q1", type: "single", concept: "design-data", prompt: "为什么 Skill 先把设计知识组织成数据域？", options: [option("a", "为了让每个页面随机换色", false), option("b", "让建议可查询、复现并能携带约束", true), option("c", "为了省略可访问性检查", false)], explanation: "结构化数据让产品、风格和 UX 规则可以被独立检索和复用。" },
-  { id: "d13-q2", type: "single", concept: "multi-domain-search", prompt: "生成设计系统的正确起点是什么？", options: [option("a", "先只搜一个最潮的风格", false), option("b", "用包含产品、行业与体验关键词的 --design-system 查询", true), option("c", "直接在组件中写 hex", false)], explanation: "先生成完整候选，再用专项 domain 查询补足细节。" },
-  { id: "d13-q3", type: "single", concept: "design-system", prompt: "设计系统输出落地时应优先形成什么？", options: [option("a", "一份不可修改的截图", false), option("b", "语义 token、组件状态和反模式约束", true), option("c", "每个组件各自决定颜色", false)], explanation: "token 和组件契约使视觉语言一致且可维护。" },
-  { id: "d13-q4", type: "single", concept: "ui-validation", prompt: "发布前最能证明界面可用的动作是什么？", options: [option("a", "只在桌面截图", false), option("b", "检查键盘焦点、响应式、导航遮挡与 reduced motion", true), option("c", "增加更多装饰动画", false)], explanation: "UX 规则必须在真实断点和交互状态下验证。" }
+  { id: "d13-q1",
+        weight: 25, type: "single", concept: "design-data", prompt: "为什么 Skill 先把设计知识组织成数据域？", options: [option("a", "为了让每个页面随机换色", false), option("b", "让建议可查询、复现并能携带约束", true), option("c", "为了省略可访问性检查", false)], explanation: "结构化数据让产品、风格和 UX 规则可以被独立检索和复用。" },
+  { id: "d13-q2",
+        weight: 25, type: "single", concept: "multi-domain-search", prompt: "生成设计系统的正确起点是什么？", options: [option("a", "先只搜一个最潮的风格", false), option("b", "用包含产品、行业与体验关键词的 --design-system 查询", true), option("c", "直接在组件中写 hex", false)], explanation: "先生成完整候选，再用专项 domain 查询补足细节。" },
+  { id: "d13-q3",
+        weight: 25, type: "single", concept: "design-system", prompt: "设计系统输出落地时应优先形成什么？", options: [option("a", "一份不可修改的截图", false), option("b", "语义 token、组件状态和反模式约束", true), option("c", "每个组件各自决定颜色", false)], explanation: "token 和组件契约使视觉语言一致且可维护。" },
+  { id: "d13-q4",
+        weight: 25, type: "single", concept: "ui-validation", prompt: "发布前最能证明界面可用的动作是什么？", options: [option("a", "只在桌面截图", false), option("b", "检查键盘焦点、响应式、导航遮挡与 reduced motion", true), option("c", "增加更多装饰动画", false)], explanation: "UX 规则必须在真实断点和交互状态下验证。" }
 ] };

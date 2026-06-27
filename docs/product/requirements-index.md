@@ -26,6 +26,7 @@ description: 该索引把已有需求按 feature、issue、refact 分类，作�
 
 | Topic | 状态 | 来源 | 摘要 |
 | --- | --- | --- | --- |
+| [灵活题量与权重评估](topics/refact/2026-06-27-flexible-quiz-question-count-and-weights.md) | ready | 用户原始意图 | 课程测验不再固定为 4 道题，每章可按内容设置题目数量和权重，但权重合计必须为 100。 |
 | [课程域与评估域拆分](topics/refact/2026-06-25-curriculum-assessment-domain-split.md) | ready | superpowers spec、plan | 抽出 curriculum、lesson-content、assessment、learner-state 边界。 |
 | [Markdown 课程源与应用数据对齐](topics/refact/2026-06-25-markdown-source-of-truth.md) | proposed | superpowers plan | 建立 Markdown lesson contract，减少课程文档与 typed data 漂移。 |
 

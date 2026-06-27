@@ -111,6 +111,7 @@ export const day03Lesson: LessonPage = {
   questions: [
       {
         id: "d3-q1",
+        weight: 25,
         type: "single",
         concept: "agent",
         prompt: "Agent 相比普通 Chat 的关键差异是什么？",
@@ -120,6 +121,7 @@ export const day03Lesson: LessonPage = {
       },
       {
         id: "d3-q2",
+        weight: 25,
         type: "single",
         concept: "workflow",
         prompt: "什么时候优先 workflow 而不是 Agent？",
@@ -129,6 +131,7 @@ export const day03Lesson: LessonPage = {
       },
       {
         id: "d3-q3",
+        weight: 25,
         type: "single",
         concept: "memory",
         prompt: "为什么 Agent run state 要持久化？",
@@ -138,6 +141,7 @@ export const day03Lesson: LessonPage = {
       },
       {
         id: "d3-q4",
+        weight: 25,
         type: "single",
         concept: "guardrails",
         prompt: "工具调用前最关键的系统职责是什么？",

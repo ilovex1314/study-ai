@@ -111,6 +111,7 @@ export const day12Lesson: LessonPage = {
   questions: [
       {
         id: "d12-q1",
+        weight: 25,
         type: "single",
         concept: "capstone-scope",
         prompt: "毕业项目范围要小但完整最主要解决什么问题？",
@@ -120,6 +121,7 @@ export const day12Lesson: LessonPage = {
       },
       {
         id: "d12-q2",
+        weight: 25,
         type: "single",
         concept: "delivery-plan",
         prompt: "交付计划把学习成果变成产品最主要解决什么问题？",
@@ -129,6 +131,7 @@ export const day12Lesson: LessonPage = {
       },
       {
         id: "d12-q3",
+        weight: 25,
         type: "single",
         concept: "deployment-plan",
         prompt: "部署方案证明产品能被使用最主要解决什么问题？",
@@ -138,6 +141,7 @@ export const day12Lesson: LessonPage = {
       },
       {
         id: "d12-q4",
+        weight: 25,
         type: "single",
         concept: "postmortem",
         prompt: "复盘让一次项目变成长期能力最主要解决什么问题？",

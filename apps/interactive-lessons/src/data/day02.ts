@@ -111,6 +111,7 @@ export const day02Lesson: LessonPage = {
   questions: [
       {
         id: "d2-q1",
+        weight: 25,
         type: "single",
         concept: "prompting",
         prompt: "生产 prompt 最像什么？",
@@ -120,6 +121,7 @@ export const day02Lesson: LessonPage = {
       },
       {
         id: "d2-q2",
+        weight: 25,
         type: "single",
         concept: "rag",
         prompt: "什么时候更应该考虑 RAG？",
@@ -129,6 +131,7 @@ export const day02Lesson: LessonPage = {
       },
       {
         id: "d2-q3",
+        weight: 25,
         type: "single",
         concept: "retrieval-evaluation",
         prompt: "检索 golden set 至少要包含什么？",
@@ -138,6 +141,7 @@ export const day02Lesson: LessonPage = {
       },
       {
         id: "d2-q4",
+        weight: 25,
         type: "single",
         concept: "source-grounding",
         prompt: "证据不足时最安全的回答策略是什么？",

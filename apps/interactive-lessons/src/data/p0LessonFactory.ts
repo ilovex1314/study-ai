@@ -2,7 +2,7 @@ import { option } from "./helpers";
 import type { ConceptId, ConceptModule, DecisionLayer, LessonArchitecture, LessonPage, LessonReference } from "./types";
 
 type P0Module = Omit<ConceptModule, "id" | "eyebrow" | "visual"> & { visual?: ConceptModule["visual"] };
-type P0Question = { concept: ConceptId; prompt: string; correct: string; distractors: string[]; explanation: string };
+type P0Question = { concept: ConceptId; prompt: string; correct: string; distractors: string[]; explanation: string; weight: number };
 
 export type P0LessonInput = {
   id: string;
@@ -22,8 +22,6 @@ export type P0LessonInput = {
   questions: P0Question[];
   references: LessonReference[];
 };
-
-const weights = [30, 25, 25, 20];
 
 export function createP0Lesson(input: P0LessonInput): LessonPage {
   return {
@@ -52,7 +50,7 @@ export function createP0Lesson(input: P0LessonInput): LessonPage {
       id: `${input.id}-q${index + 1}`,
       type: "single",
       concept: question.concept,
-      weight: weights[index] ?? 0,
+      weight: question.weight,
       prompt: question.prompt,
       scenario: `请按“${input.title}”的真实工程约束判断。`,
       options: [option("a", question.correct, true), ...question.distractors.map((label, offset) => option(String.fromCharCode(98 + offset), label, false))],

@@ -111,6 +111,7 @@ export const day07Lesson: LessonPage = {
   questions: [
       {
         id: "d7-q1",
+        weight: 30,
         type: "single",
         concept: "durable-execution",
         prompt: "Durable execution 让长任务可恢复最主要解决什么问题？",
@@ -120,6 +121,7 @@ export const day07Lesson: LessonPage = {
       },
       {
         id: "d7-q2",
+        weight: 25,
         type: "single",
         concept: "checkpointing",
         prompt: "Checkpoint 是恢复和审计基础最主要解决什么问题？",
@@ -129,6 +131,7 @@ export const day07Lesson: LessonPage = {
       },
       {
         id: "d7-q3",
+        weight: 25,
         type: "single",
         concept: "human-interrupt",
         prompt: "Human interrupt 把人接入关键节点最主要解决什么问题？",
@@ -138,6 +141,7 @@ export const day07Lesson: LessonPage = {
       },
       {
         id: "d7-q4",
+        weight: 20,
         type: "single",
         concept: "state-graph",
         prompt: "状态图让复杂编排可解释最主要解决什么问题？",
