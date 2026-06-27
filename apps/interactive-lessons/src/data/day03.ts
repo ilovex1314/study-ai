@@ -121,7 +121,7 @@ export const day03Lesson: LessonPage = {
       },
       {
         id: "d3-q2",
-        weight: 25,
+        weight: 20,
         type: "single",
         concept: "workflow",
         prompt: "什么时候优先 workflow 而不是 Agent？",
@@ -131,7 +131,7 @@ export const day03Lesson: LessonPage = {
       },
       {
         id: "d3-q3",
-        weight: 25,
+        weight: 20,
         type: "single",
         concept: "memory",
         prompt: "为什么 Agent run state 要持久化？",
@@ -141,13 +141,23 @@ export const day03Lesson: LessonPage = {
       },
       {
         id: "d3-q4",
-        weight: 25,
+        weight: 20,
         type: "single",
         concept: "guardrails",
         prompt: "工具调用前最关键的系统职责是什么？",
         scenario: "把这个问题放到真实产品或团队工程流程里判断。",
         options: [option("a", "相信模型不会乱调", false), option("b", "鉴权、校验、副作用控制和确认", true), option("c", "把工具名写得更长", false)],
         explanation: "鉴权、参数校验、副作用评估和必要的人工确认。"
+      },
+      {
+        id: "d3-q5",
+        weight: 15,
+        type: "single",
+        concept: "memory",
+        prompt: "Agent 暂停等待人工确认时，最需要保存什么？",
+        scenario: "PRD 评审 Agent 准备创建任务，但工具调用前需要负责人确认。",
+        options: [option("a", "当前目标、工具意图、已观察结果和恢复位置", true), option("b", "只保存最终回答文本", false), option("c", "只保存页面滚动位置", false)],
+        explanation: "可恢复的 run state 要能支撑暂停、确认和继续执行。"
       }
   ]
 };

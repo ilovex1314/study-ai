@@ -121,7 +121,7 @@ export const day04Lesson: LessonPage = {
       },
       {
         id: "d4-q2",
-        weight: 25,
+        weight: 20,
         type: "single",
         concept: "model-gateway",
         prompt: "模型网关的核心价值是什么？",
@@ -131,7 +131,7 @@ export const day04Lesson: LessonPage = {
       },
       {
         id: "d4-q3",
-        weight: 25,
+        weight: 20,
         type: "single",
         concept: "streaming-ux",
         prompt: "好的 Streaming UX 除了逐字输出还要什么？",
@@ -141,13 +141,23 @@ export const day04Lesson: LessonPage = {
       },
       {
         id: "d4-q4",
-        weight: 25,
+        weight: 20,
         type: "single",
         concept: "observability",
         prompt: "为什么 AI 产品必须记录 trace 和 eval？",
         scenario: "把这个问题放到真实产品或团队工程流程里判断。",
         options: [option("a", "为了让日志文件更大", false), option("b", "为了可排错、可回归、可优化", true), option("c", "为了替代用户反馈", false)],
         explanation: "为了定位失败、回归版本、度量质量和控制成本。"
+      },
+      {
+        id: "d4-q5",
+        weight: 15,
+        type: "single",
+        concept: "observability",
+        prompt: "一次 AI run 的 trace 最不应该遗漏什么？",
+        scenario: "需求评审助手输出质量下降，需要定位是模型、prompt、工具还是检索导致。",
+        options: [option("a", "prompt version、model、token、latency、tool events 和用户反馈", true), option("b", "只记录按钮点击颜色", false), option("c", "只保存最终文本不保存版本", false)],
+        explanation: "生产排障需要把版本、成本、工具事件和反馈串成同一条 trace。"
       }
   ]
 };

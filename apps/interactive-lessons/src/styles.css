@@ -116,22 +116,23 @@
 
 .architecture-connector path {
   fill: none;
-  stroke: #8fa1c7;
-  stroke-width: 2.2;
+  stroke: #4968a5;
+  stroke-width: 3;
   stroke-linecap: round;
   stroke-linejoin: round;
 }
 
 .architecture-connector marker path {
-  fill: #8fa1c7;
+  fill: #4968a5;
+  stroke: none;
 }
 
-.architecture-connector text {
+.architecture-connector-label {
   paint-order: stroke;
   stroke: #edf0f5;
-  stroke-width: 5px;
+  stroke-width: 6px;
   fill: var(--accent-primary);
-  font-size: 11px;
+  font-size: 12px;
   font-weight: 850;
 }
 

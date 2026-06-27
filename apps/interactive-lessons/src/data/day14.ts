@@ -26,9 +26,10 @@ export const day14Lesson = createP0Lesson({
   ],
   questions: [
     { concept: "data-contract", weight: 25, prompt: "数据契约最应该解决什么问题？", correct: "让知识进入系统后可追踪、可过滤、可删除", distractors: ["让文档标题更长", "让模型不用引用"], explanation: "数据契约是治理知识生命周期的基础。" },
-    { concept: "freshness", weight: 25, prompt: "为什么向量相似度不能代表事实仍有效？", correct: "因为相似度不反映版本、生效时间和业务状态", distractors: ["因为向量库不能存文本", "因为旧文档都应该最高权重"], explanation: "新鲜度要由 metadata 和业务规则参与控制。" },
-    { concept: "deletion-propagation", weight: 25, prompt: "删除事件为什么不能只删原文件？", correct: "chunk、embedding、缓存和引用等派生资产仍可能残留", distractors: ["删除原文件一定会删除数据库", "删除不需要审计"], explanation: "删除传播必须覆盖所有派生资产。" },
-    { concept: "citation-evidence", weight: 25, prompt: "引用只保存 URL 的风险是什么？", correct: "无法定位版本、chunk、权限和生成时证据", distractors: ["URL 不能显示中文", "URL 会自动防止越权"], explanation: "生产引用要能复核具体证据。" }
+    { concept: "freshness", weight: 20, prompt: "为什么向量相似度不能代表事实仍有效？", correct: "因为相似度不反映版本、生效时间和业务状态", distractors: ["因为向量库不能存文本", "因为旧文档都应该最高权重"], explanation: "新鲜度要由 metadata 和业务规则参与控制。" },
+    { concept: "deletion-propagation", weight: 20, prompt: "删除事件为什么不能只删原文件？", correct: "chunk、embedding、缓存和引用等派生资产仍可能残留", distractors: ["删除原文件一定会删除数据库", "删除不需要审计"], explanation: "删除传播必须覆盖所有派生资产。" },
+    { concept: "citation-evidence", weight: 20, prompt: "引用只保存 URL 的风险是什么？", correct: "无法定位版本、chunk、权限和生成时证据", distractors: ["URL 不能显示中文", "URL 会自动防止越权"], explanation: "生产引用要能复核具体证据。" },
+    { concept: "data-contract", weight: 15, prompt: "权限变更为什么也要进入知识生命周期？", correct: "因为旧 chunk、索引和缓存可能继续暴露不该可见的内容", distractors: ["因为权限只影响按钮颜色", "因为模型会自动忘记旧内容"], explanation: "权限是 metadata contract 的一部分，必须沿派生资产传播。" }
   ],
   references: [
     { label: "OpenAI Retrieval and file search concepts", url: "https://platform.openai.com/docs/guides/tools-file-search" },

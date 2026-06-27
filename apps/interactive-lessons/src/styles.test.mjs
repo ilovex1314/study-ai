@@ -37,3 +37,11 @@ describe("desktop reading width", () => {
     expect(contract).toContain(".app-shell { width: min(1440px, calc(100% - 36px)) !important; min-width: 960px !important; padding: 48px 0 112px !important; }");
   });
 });
+
+describe("architecture connector arrows", () => {
+  it("makes arrowheads and relationship labels visually legible", () => {
+    expect(stylesheet).toContain(".architecture-connector-label");
+    expect(stylesheet).toContain("stroke-width: 3");
+    expect(stylesheet).toContain(".architecture-connector marker path");
+  });
+});

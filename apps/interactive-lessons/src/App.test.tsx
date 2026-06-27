@@ -280,6 +280,15 @@ describe("App navigation", () => {
     expect(document.querySelector(".architecture-edges")).not.toBeInTheDocument();
   });
 
+  it("renders architecture connectors with visible directional arrowheads", () => {
+    renderApp("/day14/decision");
+
+    const arrowPath = document.querySelector(".architecture-connector path");
+
+    expect(arrowPath).toHaveAttribute("marker-end", expect.stringContaining("-arrow"));
+    expect(document.querySelector(".architecture-connector-label")).toBeInTheDocument();
+  });
+
   it("does not render a generic visual placeholder for a module without a diagram", () => {
     renderApp("/day14/concepts");
 

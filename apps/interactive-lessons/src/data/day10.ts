@@ -121,7 +121,7 @@ export const day10Lesson: LessonPage = {
       },
       {
         id: "d10-q2",
-        weight: 25,
+        weight: 20,
         type: "single",
         concept: "online-feedback",
         prompt: "线上反馈把真实失败带回研发最主要解决什么问题？",
@@ -131,7 +131,7 @@ export const day10Lesson: LessonPage = {
       },
       {
         id: "d10-q3",
-        weight: 25,
+        weight: 20,
         type: "single",
         concept: "red-team",
         prompt: "红队样本保护高风险边界最主要解决什么问题？",
@@ -141,13 +141,23 @@ export const day10Lesson: LessonPage = {
       },
       {
         id: "d10-q4",
-        weight: 25,
+        weight: 20,
         type: "single",
         concept: "regression-testing",
         prompt: "回归测试防止 prompt 和模型退化最主要解决什么问题？",
         scenario: "把这个问题放到真实产品或团队工程流程里判断。",
         options: [option("a", "让页面更花哨", false), option("b", "每次改 prompt、模型、检索配置，都要跑稳定样本。", true), option("c", "完全取消系统控制", false)],
         explanation: "每次改 prompt、模型、检索配置，都要跑稳定样本。 工程上要落到边界、数据流和验收。"
+      },
+      {
+        id: "d10-q5",
+        weight: 15,
+        type: "single",
+        concept: "regression-testing",
+        prompt: "发布门禁最应该依据什么阻止上线？",
+        scenario: "新模型在 demo 中表现更流畅，但红队样本和回归样本出现退化。",
+        options: [option("a", "预设质量、安全和成本阈值未达标", true), option("b", "团队觉得 demo 还不够炫", false), option("c", "按钮样式还没统一", false)],
+        explanation: "回归测试要成为 go/no-go 门禁，而不是上线后的参考材料。"
       }
   ]
 };
