@@ -13,7 +13,7 @@ export function assertQuestionWeights<TQuestion extends WeightedQuestion>(questi
     throw new Error(`${lessonId} question weights must be explicit: ${missing.join(", ")}`);
   }
 
-  const total = questions.reduce((sum, question) => sum + (question.weight ?? 0), 0);
+  const total = questions.reduce((sum, question) => sum + question.weight!, 0);
   if (total !== 100) {
     throw new Error(`${lessonId} question weights must sum to 100, received ${total}`);
   }
