@@ -1,0 +1,16 @@
+{
+  "name": "study-ai | happyboy 的 AI 学习项目",
+  "short_name": "study-ai",
+  "description": "happyboy 的学习项目，AI 学习项目",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "64x64",
+      "type": "image/svg+xml"
+    }
+  ],
+  "theme_color": "#234a92",
+  "background_color": "#f5f2ec",
+  "display": "standalone",
+  "lang": "zh-CN"
+}

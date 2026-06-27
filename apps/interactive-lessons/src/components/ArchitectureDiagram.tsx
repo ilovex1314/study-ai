@@ -28,6 +28,23 @@ function NodeView({ node }: { node: ArchitectureNode }) {
 }
 
 function edgePath(edge: ArchitectureEdge, from: DOMRect, to: DOMRect, canvas: DOMRect) {
+  if (edge.relation === "feedback" || edge.relation === "dependency") {
+    const startX = from.right - canvas.left + 4;
+    const startY = from.top - canvas.top + from.height / 2;
+    const endX = to.right - canvas.left + 4;
+    const endY = to.top - canvas.top + to.height / 2;
+    const maxAnchorX = Math.max(startX, endX);
+    const insideRailX = Math.max(24, canvas.width - 18);
+    const preferredRailX = maxAnchorX + 40;
+    const railX = Math.min(insideRailX, Math.max(maxAnchorX + 18, preferredRailX));
+
+    return {
+      labelX: railX - 10,
+      labelY: (startY + endY) / 2,
+      path: `M ${startX} ${startY} H ${railX} V ${endY} H ${endX}`
+    };
+  }
+
   const fromCenterX = from.left - canvas.left + from.width / 2;
   const fromCenterY = from.top - canvas.top + from.height / 2;
   const toCenterX = to.left - canvas.left + to.width / 2;
@@ -42,15 +59,6 @@ function edgePath(edge: ArchitectureEdge, from: DOMRect, to: DOMRect, canvas: DO
   const endY = toCenterY - deltaY * toScale;
   const midX = (startX + endX) / 2;
   const midY = (startY + endY) / 2;
-
-  if (edge.relation === "feedback" || edge.relation === "dependency") {
-    const lift = Math.max(34, Math.abs(startX - endX) * 0.16);
-    return {
-      labelX: midX,
-      labelY: Math.min(startY, endY) - lift - 6,
-      path: `M ${startX} ${startY} C ${startX} ${startY - lift}, ${endX} ${endY - lift}, ${endX} ${endY}`
-    };
-  }
 
   if (edge.relation === "branch" || edge.relation === "guard") {
     const offset = Math.max(18, Math.abs(startY - endY) * 0.18);
@@ -75,9 +83,9 @@ function ConnectorLayer({ edges, nodes, paths, width, height }: { edges: Archite
     () =>
       edges.map((edge, index) => ({
         edge,
-        labelX: 0,
-        labelY: 0,
-        path: `M 0 ${index * 10} L 20 ${index * 10}`
+        labelX: edge.relation === "feedback" || edge.relation === "dependency" ? 82 : 10,
+        labelY: index * 10 + 9,
+        path: edge.relation === "feedback" || edge.relation === "dependency" ? `M 40 ${index * 10} H 92 V ${index * 10 + 18} H 40` : `M 0 ${index * 10} L 20 ${index * 10}`
       })),
     [edges]
   );
@@ -105,7 +113,7 @@ function ConnectorLayer({ edges, nodes, paths, width, height }: { edges: Archite
           aria-label={`${labelFor(edge.from)} 到 ${labelFor(edge.to)}${edge.label ? `：${edge.label}` : ""}`}
         >
           <path d={path} markerEnd={`url(#${markerSeed}-arrow)`} />
-          {edge.label && paths.length > 0 ? (
+          {edge.label ? (
             <text className="architecture-connector-label" x={labelX} y={Math.max(14, labelY)} textAnchor="middle">
               {edge.label}
             </text>
@@ -126,6 +134,11 @@ function ArchitectureCanvas({ children, edges = [], nodes }: { children: ReactNo
 
     const measure = () => {
       const canvasRect = canvas.getBoundingClientRect();
+      if (canvasRect.width <= 0 || canvasRect.height <= 0) {
+        setLayout({ height: 0, paths: [], width: 0 });
+        return;
+      }
+
       const paths = edges.flatMap((edge) => {
         const from = canvas.querySelector<HTMLElement>(`[data-node-id="${edge.from}"]`);
         const to = canvas.querySelector<HTMLElement>(`[data-node-id="${edge.to}"]`);

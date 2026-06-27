@@ -161,6 +161,20 @@
   gap: 8px;
 }
 
+.architecture-diagram[data-type="layered"] .architecture-group {
+  padding-right: 56px;
+}
+
+.architecture-diagram[data-type="layered"] .architecture-node-list {
+  justify-items: stretch;
+}
+
+.architecture-diagram[data-type="layered"] .architecture-node {
+  width: min(760px, 72%);
+  max-width: min(760px, 72%);
+  justify-self: start;
+}
+
 .architecture-canvas {
   position: relative;
   margin-top: 18px;
@@ -196,6 +210,7 @@
   fill: #49639a;
   font-size: 11px;
   font-weight: 850;
+  dominant-baseline: middle;
 }
 
 .architecture-connector[data-relation="feedback"] path,
@@ -222,6 +237,11 @@
 .architecture-connector[data-relation="feedback"] text,
 .architecture-connector[data-relation="dependency"] text {
   fill: #356548;
+}
+
+.architecture-connector[data-relation="feedback"] .architecture-connector-label,
+.architecture-connector[data-relation="dependency"] .architecture-connector-label {
+  text-anchor: end;
 }
 
 .architecture-connector[data-relation="branch"] text,

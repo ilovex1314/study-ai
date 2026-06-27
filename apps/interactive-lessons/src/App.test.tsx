@@ -289,6 +289,44 @@ describe("App navigation", () => {
     expect(document.querySelector(".architecture-connector-label")).toBeInTheDocument();
   });
 
+  it("keeps feedback connectors off the primary vertical flow in layered diagrams", () => {
+    renderApp("/day12/decision");
+
+    const feedbackPath = document.querySelector('.architecture-connector[data-relation="feedback"] path');
+
+    expect(feedbackPath?.getAttribute("d")).toMatch(/H .+ V .+ H/);
+    expect(feedbackPath?.getAttribute("d")).not.toMatch(/H [0-9](?:\s|$)/);
+    expect(document.querySelector('.architecture-connector[data-relation="feedback"] .architecture-connector-label')).toBeInTheDocument();
+  });
+
+  it("keeps folded feedback connectors inside the architecture canvas", () => {
+    vi.spyOn(HTMLElement.prototype, "getBoundingClientRect").mockImplementation(function getRect(this: HTMLElement) {
+      if (this.classList.contains("architecture-canvas")) {
+        return { bottom: 500, height: 500, left: 0, right: 640, top: 0, width: 640, x: 0, y: 0, toJSON: () => ({}) };
+      }
+
+      if (this.dataset.nodeId === "n6") {
+        return { bottom: 470, height: 42, left: 456, right: 620, top: 428, width: 164, x: 456, y: 428, toJSON: () => ({}) };
+      }
+
+      if (this.dataset.nodeId === "n1") {
+        return { bottom: 74, height: 42, left: 56, right: 620, top: 32, width: 564, x: 56, y: 32, toJSON: () => ({}) };
+      }
+
+      return { bottom: 40, height: 40, left: 56, right: 420, top: 0, width: 364, x: 56, y: 0, toJSON: () => ({}) };
+    });
+
+    renderApp("/day12/decision");
+
+    const feedbackPath = document.querySelector('.architecture-connector[data-relation="feedback"] path');
+    const xCoordinates = feedbackPath
+      ?.getAttribute("d")
+      ?.match(/[MH]\s+(-?\d+(?:\.\d+)?)/g)
+      ?.map((command) => Number(command.replace(/[MH]\s+/, "")));
+
+    expect(Math.max(...(xCoordinates ?? []))).toBeLessThanOrEqual(640);
+  });
+
   it("does not render a generic visual placeholder for a module without a diagram", () => {
     renderApp("/day14/concepts");
 
