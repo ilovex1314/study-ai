@@ -45,4 +45,16 @@ describe("architecture connector arrows", () => {
     expect(stylesheet).toContain("stroke: #6e82ad");
     expect(stylesheet).toContain(".architecture-connector marker path");
   });
+
+  it("renders loop diagrams as readable vertical flows on narrow screens", () => {
+    const contract = stylesheet.slice(stylesheet.indexOf("/* FINAL: mobile architecture diagrams */"));
+
+    expect(contract).toContain("@media (max-width: 1024px)");
+    expect(contract).toContain('.architecture-diagram[data-type="feedback"] .architecture-connectors');
+    expect(contract).toContain('.architecture-diagram[data-type="flywheel"] .architecture-connectors');
+    expect(contract).toContain(".architecture-loop {");
+    expect(contract).toContain("display: grid !important;");
+    expect(contract).toContain("grid-template-columns: minmax(0, 1fr) !important;");
+    expect(contract).toContain(".architecture-loop-slot + .architecture-loop-slot::before");
+  });
 });
