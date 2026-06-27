@@ -289,6 +289,15 @@ describe("App navigation", () => {
     expect(document.querySelector(".architecture-connector-label")).toBeInTheDocument();
   });
 
+  it("keeps feedback connectors off the primary vertical flow in layered diagrams", () => {
+    renderApp("/day12/decision");
+
+    const feedbackPath = document.querySelector('.architecture-connector[data-relation="feedback"] path');
+
+    expect(feedbackPath?.getAttribute("d")).toMatch(/[HV]/);
+    expect(document.querySelector('.architecture-connector[data-relation="feedback"] .architecture-connector-label')).toBeInTheDocument();
+  });
+
   it("does not render a generic visual placeholder for a module without a diagram", () => {
     renderApp("/day14/concepts");
 

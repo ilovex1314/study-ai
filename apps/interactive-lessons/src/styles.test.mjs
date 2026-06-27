@@ -57,4 +57,9 @@ describe("architecture connector arrows", () => {
     expect(contract).toContain("grid-template-columns: minmax(0, 1fr) !important;");
     expect(contract).toContain(".architecture-loop-slot + .architecture-loop-slot::before");
   });
+
+  it("routes feedback and dependency connectors away from the main node axis", () => {
+    expect(stylesheet).toContain('.architecture-connector[data-relation="feedback"] .architecture-connector-label');
+    expect(stylesheet).toContain("dominant-baseline: middle");
+  });
 });
