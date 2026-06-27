@@ -33,9 +33,10 @@ function edgePath(edge: ArchitectureEdge, from: DOMRect, to: DOMRect, canvas: DO
     const startY = from.top - canvas.top + from.height / 2;
     const endX = to.right - canvas.left + 4;
     const endY = to.top - canvas.top + to.height / 2;
-    const outsideRailX = Math.max(startX, endX) + 40;
-    const insideRailX = canvas.width - 18;
-    const railX = insideRailX - Math.max(startX, endX) >= 24 ? insideRailX : outsideRailX;
+    const maxAnchorX = Math.max(startX, endX);
+    const insideRailX = Math.max(24, canvas.width - 18);
+    const preferredRailX = maxAnchorX + 40;
+    const railX = Math.min(insideRailX, Math.max(maxAnchorX + 18, preferredRailX));
 
     return {
       labelX: railX - 10,
