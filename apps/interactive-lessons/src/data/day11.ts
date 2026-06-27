@@ -111,6 +111,7 @@ export const day11Lesson: LessonPage = {
   questions: [
       {
         id: "d11-q1",
+        weight: 30,
         type: "single",
         concept: "context-engineering",
         prompt: "上下文工程决定 AI 协作质量最主要解决什么问题？",
@@ -120,6 +121,7 @@ export const day11Lesson: LessonPage = {
       },
       {
         id: "d11-q2",
+        weight: 25,
         type: "single",
         concept: "task-decomposition",
         prompt: "任务拆解降低返工和幻觉最主要解决什么问题？",
@@ -129,6 +131,7 @@ export const day11Lesson: LessonPage = {
       },
       {
         id: "d11-q3",
+        weight: 20,
         type: "single",
         concept: "prompt-assets",
         prompt: "Prompt 资产要版本化和复用最主要解决什么问题？",
@@ -138,6 +141,7 @@ export const day11Lesson: LessonPage = {
       },
       {
         id: "d11-q4",
+        weight: 25,
         type: "single",
         concept: "verification-loop",
         prompt: "验证闭环替代“感觉能用”最主要解决什么问题？",

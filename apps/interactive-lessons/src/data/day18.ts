@@ -25,10 +25,10 @@ export const day18Lesson = createP0Lesson({
     { id: "recover", name: "恢复", question: "异常时先做什么？", choices: [{ name: "降级回滚", description: "减少影响并保留证据。", example: "kill switch" }, { name: "继续放量", description: "会扩大错误预算消耗。", example: "ignore alert" }] }
   ],
   questions: [
-    { concept: "slo", prompt: "AI SLO 应优先描述什么？", correct: "用户任务的成功、延迟和安全结果", distractors: ["单次 HTTP 200", "团队在线时长"], explanation: "可靠性目标必须映射到用户可感知结果。" },
-    { concept: "trace-observability", prompt: "定位一次错误引用最关键的数据是什么？", correct: "关联模型、检索和工具的端到端 trace", distractors: ["只看月度平均", "只看 CSS 版本"], explanation: "trace 保留跨组件因果链。" },
-    { concept: "rollback-degradation", prompt: "事故响应的第一优先级是什么？", correct: "先降低用户影响并保留证据", distractors: ["马上追责", "等下周再处理"], explanation: "止血和证据让恢复、复盘可执行。" },
-    { concept: "incident-postmortem", prompt: "有效事故复盘必须产出什么？", correct: "事实时间线、根因、行动项、owner 和回归样本", distractors: ["一句下次注意", "只写最终道歉"], explanation: "复盘要让系统变强，而不是只总结情绪。" }
+    { concept: "slo", weight: 25, prompt: "AI SLO 应优先描述什么？", correct: "用户任务的成功、延迟和安全结果", distractors: ["单次 HTTP 200", "团队在线时长"], explanation: "可靠性目标必须映射到用户可感知结果。" },
+    { concept: "trace-observability", weight: 25, prompt: "定位一次错误引用最关键的数据是什么？", correct: "关联模型、检索和工具的端到端 trace", distractors: ["只看月度平均", "只看 CSS 版本"], explanation: "trace 保留跨组件因果链。" },
+    { concept: "rollback-degradation", weight: 25, prompt: "事故响应的第一优先级是什么？", correct: "先降低用户影响并保留证据", distractors: ["马上追责", "等下周再处理"], explanation: "止血和证据让恢复、复盘可执行。" },
+    { concept: "incident-postmortem", weight: 25, prompt: "有效事故复盘必须产出什么？", correct: "事实时间线、根因、行动项、owner 和回归样本", distractors: ["一句下次注意", "只写最终道歉"], explanation: "复盘要让系统变强，而不是只总结情绪。" }
   ],
   references: [
     { label: "Google SRE SLO", url: "https://sre.google/sre-book/service-level-objectives/" },

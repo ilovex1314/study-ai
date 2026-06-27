@@ -20,12 +20,12 @@ import { day18Lesson } from "./day18";
 import { day19Lesson } from "./day19";
 import { day20Lesson } from "./day20";
 import { architectures } from "./architectures.generated";
+import { assertQuestionWeights } from "./quizWeights";
 
 export { conceptLabels, reviewAdvice } from "./types";
 export type { ArchitectureEdge, ArchitectureGroup, ArchitectureNode, Attempt, ConceptId, ConceptModule, CurrentAttempt, DecisionLayer, LessonPage, LessonQuestion, LessonStatus, LessonSummary } from "./types";
 
 const baseLessons = [day01Lesson, day02Lesson, day03Lesson, day04Lesson, day05Lesson, day06Lesson, day07Lesson, day08Lesson, day09Lesson, day10Lesson, day11Lesson, day12Lesson, day13Lesson, day14Lesson, day15Lesson, day16Lesson, day17Lesson, day18Lesson, day19Lesson, day20Lesson];
-const defaultWeights = [30, 25, 25, 20];
 const defaultReferences = [
   { label: "OpenAI production best practices", url: "https://platform.openai.com/docs/guides/production-best-practices" },
   { label: "NIST AI Risk Management Framework", url: "https://www.nist.gov/itl/ai-risk-management-framework" }
@@ -40,7 +40,7 @@ export const lessons = baseLessons.map((lesson) => {
     diagramType: lesson.diagramType ?? architecture?.type ?? "boundary",
     references: lesson.references ?? defaultReferences,
     architecture,
-    questions: lesson.questions.map((question, index) => ({ ...question, weight: question.weight ?? defaultWeights[index] ?? 0 }))
+    questions: assertQuestionWeights(lesson.questions, lesson.id)
   };
 });
 

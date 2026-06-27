@@ -42,6 +42,19 @@ describe("App navigation", () => {
     expect(screen.getByText("本题 30 分")).toBeInTheDocument();
   });
 
+  it("shows quiz history best score against the weighted total instead of question count", () => {
+    renderApp("/day01/review");
+
+    for (const [index, question] of lessons[0].questions.entries()) {
+      fireEvent.click(screen.getByRole("button", { name: `第 ${index + 1} 题` }));
+      fireEvent.click(screen.getByRole("button", { name: question.options.find((option) => option.correct)?.label }));
+    }
+    fireEvent.click(screen.getByRole("button", { name: "完成本轮" }));
+
+    expect(screen.getByText("最好 100/100")).toBeInTheDocument();
+    expect(screen.queryByText(`最好 100/${lessons[0].questions.length}`)).not.toBeInTheDocument();
+  });
+
   it("updates active module navigation and routes to the current page section", async () => {
     renderApp("/day01/concepts");
 
@@ -226,7 +239,7 @@ describe("App navigation", () => {
   it("keeps every quiz concept covered by its lesson modules", () => {
     for (const lesson of lessons) {
       const concepts = new Set(lesson.modules.map((module) => module.concept));
-      expect(lesson.questions.length).toBeGreaterThanOrEqual(4);
+      expect(lesson.questions.length).toBeGreaterThan(0);
       for (const question of lesson.questions) {
         expect(concepts.has(question.concept)).toBe(true);
       }
@@ -265,6 +278,15 @@ describe("App navigation", () => {
     expect(document.querySelector('.architecture-connector[data-relation="branch"]')).toBeInTheDocument();
     expect(document.querySelector(".architecture-relation-badge")).not.toBeInTheDocument();
     expect(document.querySelector(".architecture-edges")).not.toBeInTheDocument();
+  });
+
+  it("renders architecture connectors with visible directional arrowheads", () => {
+    renderApp("/day14/decision");
+
+    const arrowPath = document.querySelector(".architecture-connector path");
+
+    expect(arrowPath).toHaveAttribute("marker-end", expect.stringContaining("-arrow"));
+    expect(document.querySelector(".architecture-connector-label")).toBeInTheDocument();
   });
 
   it("does not render a generic visual placeholder for a module without a diagram", () => {

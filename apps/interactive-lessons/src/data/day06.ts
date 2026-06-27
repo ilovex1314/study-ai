@@ -111,6 +111,7 @@ export const day06Lesson: LessonPage = {
   questions: [
       {
         id: "d6-q1",
+        weight: 25,
         type: "single",
         concept: "typescript-ai-stack",
         prompt: "TypeScript AI 栈适合快速产品化最主要解决什么问题？",
@@ -120,6 +121,7 @@ export const day06Lesson: LessonPage = {
       },
       {
         id: "d6-q2",
+        weight: 25,
         type: "single",
         concept: "provider-adapter",
         prompt: "Provider adapter 隔离模型差异最主要解决什么问题？",
@@ -129,6 +131,7 @@ export const day06Lesson: LessonPage = {
       },
       {
         id: "d6-q3",
+        weight: 25,
         type: "single",
         concept: "chat-ui-state",
         prompt: "Chat UI 是状态机最主要解决什么问题？",
@@ -138,6 +141,7 @@ export const day06Lesson: LessonPage = {
       },
       {
         id: "d6-q4",
+        weight: 25,
         type: "single",
         concept: "server-boundary",
         prompt: "服务端边界保护密钥、权限和状态最主要解决什么问题？",

@@ -111,6 +111,7 @@ export const day09Lesson: LessonPage = {
   questions: [
       {
         id: "d9-q1",
+        weight: 25,
         type: "single",
         concept: "document-ingestion",
         prompt: "文档入库是 RAG 上限最主要解决什么问题？",
@@ -120,6 +121,7 @@ export const day09Lesson: LessonPage = {
       },
       {
         id: "d9-q2",
+        weight: 20,
         type: "single",
         concept: "hybrid-search",
         prompt: "Hybrid search 兼顾语义和精确匹配最主要解决什么问题？",
@@ -129,6 +131,7 @@ export const day09Lesson: LessonPage = {
       },
       {
         id: "d9-q3",
+        weight: 20,
         type: "single",
         concept: "permission-filtering",
         prompt: "权限过滤必须进入检索层最主要解决什么问题？",
@@ -138,12 +141,23 @@ export const day09Lesson: LessonPage = {
       },
       {
         id: "d9-q4",
+        weight: 20,
         type: "single",
         concept: "rag-ops",
         prompt: "RAG 运维关注漂移和回归最主要解决什么问题？",
         scenario: "把这个问题放到真实产品或团队工程流程里判断。",
         options: [option("a", "让页面更花哨", false), option("b", "文档更新、索引重建、检索参数和 prompt 版本都会影响答案。", true), option("c", "完全取消系统控制", false)],
         explanation: "文档更新、索引重建、检索参数和 prompt 版本都会影响答案。 工程上要落到边界、数据流和验收。"
+      },
+      {
+        id: "d9-q5",
+        weight: 15,
+        type: "single",
+        concept: "hybrid-search",
+        prompt: "为什么召回后通常还要 rerank？",
+        scenario: "企业知识库同时召回了错误码、产品名和相似概念文档。",
+        options: [option("a", "从候选证据中压缩出最相关、最可用的上下文", true), option("b", "让权限过滤可以省略", false), option("c", "让过期文档自动变新", false)],
+        explanation: "Hybrid search 负责召回多类候选，rerank 负责按当前问题重排和压缩上下文。"
       }
   ]
 };

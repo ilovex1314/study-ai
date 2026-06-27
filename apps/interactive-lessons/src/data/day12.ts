@@ -111,6 +111,7 @@ export const day12Lesson: LessonPage = {
   questions: [
       {
         id: "d12-q1",
+        weight: 25,
         type: "single",
         concept: "capstone-scope",
         prompt: "毕业项目范围要小但完整最主要解决什么问题？",
@@ -120,6 +121,7 @@ export const day12Lesson: LessonPage = {
       },
       {
         id: "d12-q2",
+        weight: 20,
         type: "single",
         concept: "delivery-plan",
         prompt: "交付计划把学习成果变成产品最主要解决什么问题？",
@@ -129,6 +131,7 @@ export const day12Lesson: LessonPage = {
       },
       {
         id: "d12-q3",
+        weight: 20,
         type: "single",
         concept: "deployment-plan",
         prompt: "部署方案证明产品能被使用最主要解决什么问题？",
@@ -138,12 +141,23 @@ export const day12Lesson: LessonPage = {
       },
       {
         id: "d12-q4",
+        weight: 20,
         type: "single",
         concept: "postmortem",
         prompt: "复盘让一次项目变成长期能力最主要解决什么问题？",
         scenario: "把这个问题放到真实产品或团队工程流程里判断。",
         options: [option("a", "让页面更花哨", false), option("b", "记录目标、架构、取舍、失败、成本、eval 结果和下一步。", true), option("c", "完全取消系统控制", false)],
         explanation: "记录目标、架构、取舍、失败、成本、eval 结果和下一步。 工程上要落到边界、数据流和验收。"
+      },
+      {
+        id: "d12-q5",
+        weight: 15,
+        type: "single",
+        concept: "delivery-plan",
+        prompt: "毕业项目为什么必须保留可复核证据？",
+        scenario: "你要向团队证明这个 AI 产品不只是能演示，而是具备可继续迭代的工程基础。",
+        options: [option("a", "让架构、评估、发布和复盘都能被检查", true), option("b", "让文档页数越多越好", false), option("c", "替代真实用户反馈", false)],
+        explanation: "可复核证据把一次学习产物变成能被评审和延续的交付资产。"
       }
   ]
 };

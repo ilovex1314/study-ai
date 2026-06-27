@@ -25,10 +25,10 @@ export const day16Lesson = createP0Lesson({
     { id: "fallback", name: "降级", question: "实时失败后怎么办？", choices: [{ name: "异步与通知", description: "保留任务，稍后返回结果。", example: "notify when done" }, { name: "直接失败", description: "用户无法完成任务。", example: "drop session" }] }
   ],
   questions: [
-    { concept: "modality-orchestration", prompt: "为什么多模态任务通常需要统一 contract？", correct: "不同模态需要一致的 task、asset、metadata 和输出结构", distractors: ["为了隐藏所有输入", "为了让每种模态都写死流程"], explanation: "统一 contract 是编排、隐私和复核的基础。" },
-    { concept: "progressive-feedback", prompt: "为什么多模态任务通常需要异步队列？", correct: "不同处理步骤延迟差异大且可能超时", distractors: ["因为队列能自动保证答案正确", "因为前端不能展示状态"], explanation: "队列让长任务有可恢复状态和进度反馈。" },
-    { concept: "evidence-anchor", prompt: "什么是可复核的多模态引用？", correct: "能定位到图片区域、音频时间段、文本片段或文件版本", distractors: ["只显示一个总结标题", "只展示模型自信度"], explanation: "证据锚点让用户可以回看原始依据。" },
-    { concept: "experience-fallback", prompt: "什么时候应该采用体验降级？", correct: "实时链路超时、成本过高或证据尚未准备好时", distractors: ["任何成功结果都要降级", "用户点击提交前"], explanation: "降级保护任务完成率和用户预期。" }
+    { concept: "modality-orchestration", weight: 25, prompt: "为什么多模态任务通常需要统一 contract？", correct: "不同模态需要一致的 task、asset、metadata 和输出结构", distractors: ["为了隐藏所有输入", "为了让每种模态都写死流程"], explanation: "统一 contract 是编排、隐私和复核的基础。" },
+    { concept: "progressive-feedback", weight: 25, prompt: "为什么多模态任务通常需要异步队列？", correct: "不同处理步骤延迟差异大且可能超时", distractors: ["因为队列能自动保证答案正确", "因为前端不能展示状态"], explanation: "队列让长任务有可恢复状态和进度反馈。" },
+    { concept: "evidence-anchor", weight: 25, prompt: "什么是可复核的多模态引用？", correct: "能定位到图片区域、音频时间段、文本片段或文件版本", distractors: ["只显示一个总结标题", "只展示模型自信度"], explanation: "证据锚点让用户可以回看原始依据。" },
+    { concept: "experience-fallback", weight: 25, prompt: "什么时候应该采用体验降级？", correct: "实时链路超时、成本过高或证据尚未准备好时", distractors: ["任何成功结果都要降级", "用户点击提交前"], explanation: "降级保护任务完成率和用户预期。" }
   ],
   references: [
     { label: "OpenAI Images guide", url: "https://platform.openai.com/docs/guides/images" },

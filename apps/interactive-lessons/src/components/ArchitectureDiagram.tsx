@@ -28,10 +28,18 @@ function NodeView({ node }: { node: ArchitectureNode }) {
 }
 
 function edgePath(edge: ArchitectureEdge, from: DOMRect, to: DOMRect, canvas: DOMRect) {
-  const startX = from.left - canvas.left + from.width / 2;
-  const startY = from.top - canvas.top + from.height / 2;
-  const endX = to.left - canvas.left + to.width / 2;
-  const endY = to.top - canvas.top + to.height / 2;
+  const fromCenterX = from.left - canvas.left + from.width / 2;
+  const fromCenterY = from.top - canvas.top + from.height / 2;
+  const toCenterX = to.left - canvas.left + to.width / 2;
+  const toCenterY = to.top - canvas.top + to.height / 2;
+  const deltaX = toCenterX - fromCenterX || 1;
+  const deltaY = toCenterY - fromCenterY || 1;
+  const fromScale = Math.min((from.width / 2) / Math.abs(deltaX), (from.height / 2) / Math.abs(deltaY));
+  const toScale = Math.min((to.width / 2) / Math.abs(deltaX), (to.height / 2) / Math.abs(deltaY));
+  const startX = fromCenterX + deltaX * fromScale;
+  const startY = fromCenterY + deltaY * fromScale;
+  const endX = toCenterX - deltaX * toScale;
+  const endY = toCenterY - deltaY * toScale;
   const midX = (startX + endX) / 2;
   const midY = (startY + endY) / 2;
 
@@ -82,8 +90,8 @@ function ConnectorLayer({ edges, nodes, paths, width, height }: { edges: Archite
   return (
     <svg className="architecture-connectors" viewBox={`0 0 ${viewWidth} ${viewHeight}`} preserveAspectRatio="none" aria-hidden="true">
       <defs>
-        <marker id={`${markerSeed}-arrow`} markerWidth="9" markerHeight="9" refX="8" refY="4.5" orient="auto" markerUnits="strokeWidth">
-          <path d="M 0 0 L 9 4.5 L 0 9 z" />
+        <marker id={`${markerSeed}-arrow`} markerWidth="9" markerHeight="9" refX="8" refY="4.5" orient="auto" markerUnits="userSpaceOnUse">
+          <path d="M 1.5 1.2 L 8 4.5 L 1.5 7.8 z" />
         </marker>
       </defs>
       {visiblePaths.map(({ edge, labelX, labelY, path }, index) => (
@@ -98,7 +106,7 @@ function ConnectorLayer({ edges, nodes, paths, width, height }: { edges: Archite
         >
           <path d={path} markerEnd={`url(#${markerSeed}-arrow)`} />
           {edge.label && paths.length > 0 ? (
-            <text x={labelX} y={Math.max(14, labelY)} textAnchor="middle">
+            <text className="architecture-connector-label" x={labelX} y={Math.max(14, labelY)} textAnchor="middle">
               {edge.label}
             </text>
           ) : null}

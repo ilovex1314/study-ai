@@ -55,11 +55,29 @@ describe("curriculum contract", () => {
     }
   });
 
+  it("allows lessons to use flexible question counts", () => {
+    expect(lessons.some((lesson) => lesson.questions.length !== 4)).toBe(true);
+  });
+
+  it("keeps quiz counts driven by lesson content instead of a fixed template", () => {
+    const questionCounts = Object.fromEntries(lessons.map((lesson) => [lesson.id, lesson.questions.length]));
+
+    expect(questionCounts.day01).toBe(5);
+    for (const compactLesson of ["day05", "day06", "day07", "day08", "day11", "day13"]) {
+      expect(questionCounts[compactLesson]).toBe(4);
+    }
+    for (const denseLesson of ["day02", "day03", "day04", "day09", "day10", "day12", "day14", "day15"]) {
+      expect(questionCounts[denseLesson]).toBeGreaterThan(4);
+    }
+    expect(new Set(Object.values(questionCounts)).size).toBeGreaterThan(1);
+  });
+
   it("ships complete learning material instead of placeholder lessons", () => {
     for (const lesson of lessons) {
       expect(lesson.modules.length).toBeGreaterThanOrEqual(4);
       expect(lesson.decisionLayers.length).toBeGreaterThanOrEqual(3);
-      expect(lesson.questions.length).toBeGreaterThanOrEqual(4);
+      expect(lesson.questions.length).toBeGreaterThan(0);
+      expect(lesson.questions.every((question) => typeof question.weight === "number")).toBe(true);
     }
   });
 

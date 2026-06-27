@@ -111,6 +111,7 @@ export const day02Lesson: LessonPage = {
   questions: [
       {
         id: "d2-q1",
+        weight: 25,
         type: "single",
         concept: "prompting",
         prompt: "生产 prompt 最像什么？",
@@ -120,6 +121,7 @@ export const day02Lesson: LessonPage = {
       },
       {
         id: "d2-q2",
+        weight: 20,
         type: "single",
         concept: "rag",
         prompt: "什么时候更应该考虑 RAG？",
@@ -129,6 +131,7 @@ export const day02Lesson: LessonPage = {
       },
       {
         id: "d2-q3",
+        weight: 20,
         type: "single",
         concept: "retrieval-evaluation",
         prompt: "检索 golden set 至少要包含什么？",
@@ -138,12 +141,23 @@ export const day02Lesson: LessonPage = {
       },
       {
         id: "d2-q4",
+        weight: 20,
         type: "single",
         concept: "source-grounding",
         prompt: "证据不足时最安全的回答策略是什么？",
         scenario: "把这个问题放到真实产品或团队工程流程里判断。",
         options: [option("a", "编一个合理答案", false), option("b", "拒答或标注不确定", true), option("c", "降低 temperature 后继续强答", false)],
         explanation: "拒答或说明不确定，并请求更多证据。"
+      },
+      {
+        id: "d2-q5",
+        weight: 15,
+        type: "single",
+        concept: "source-grounding",
+        prompt: "引用校验器最应该拦截哪类回答？",
+        scenario: "内部政策助手已经检索到证据，模型生成答案后进入 validator。",
+        options: [option("a", "答案结论没有被引用证据支持", true), option("b", "答案里包含分段标题", false), option("c", "答案语气不够热情", false)],
+        explanation: "Grounding 的重点是拦截 unsupported claim，而不是修饰语气。"
       }
   ]
 };

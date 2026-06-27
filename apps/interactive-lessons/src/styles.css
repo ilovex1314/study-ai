@@ -54,6 +54,68 @@
 .score-card, .feedback.correct { background: #eaf2ec; border-color: #a8c7ae; color: var(--surface-ink); }
 .feedback.wrong { background: #f8e7e3; border-color: #db9c93; color: var(--surface-ink); }
 
+/* FINAL: mobile architecture diagrams */
+@media (max-width: 1024px) {
+  .architecture-diagram[data-type="feedback"] .architecture-connectors,
+  .architecture-diagram[data-type="flywheel"] .architecture-connectors {
+    display: none !important;
+  }
+
+  .architecture-diagram[data-type="feedback"] .architecture-canvas,
+  .architecture-diagram[data-type="flywheel"] .architecture-canvas {
+    margin-top: 16px !important;
+  }
+
+  .architecture-diagram[data-type="feedback"] .architecture-loop,
+  .architecture-diagram[data-type="flywheel"] .architecture-loop {
+    width: 100% !important;
+    min-height: 0 !important;
+    margin: 16px 0 8px !important;
+    padding: 14px !important;
+    border: 1px dashed #9fafd0 !important;
+    border-radius: 16px !important;
+    display: grid !important;
+    grid-template-columns: minmax(0, 1fr) !important;
+    grid-template-rows: none !important;
+    gap: 8px !important;
+  }
+
+  .architecture-diagram[data-type="feedback"] .architecture-loop::after,
+  .architecture-diagram[data-type="flywheel"] .architecture-loop::after {
+    content: none !important;
+    display: none !important;
+  }
+
+  .architecture-diagram[data-type="feedback"] .architecture-loop-slot,
+  .architecture-diagram[data-type="flywheel"] .architecture-loop-slot {
+    grid-column: auto !important;
+    grid-row: auto !important;
+    position: relative !important;
+    width: 100% !important;
+    margin: 0 !important;
+    transform: none !important;
+  }
+
+  .architecture-diagram[data-type="feedback"] .architecture-loop-slot + .architecture-loop-slot::before,
+  .architecture-diagram[data-type="flywheel"] .architecture-loop-slot + .architecture-loop-slot::before {
+    content: "↓" !important;
+    display: block !important;
+    width: 24px !important;
+    margin: -2px auto 4px !important;
+    color: #6e82ad !important;
+    font-size: 15px !important;
+    line-height: 1 !important;
+    text-align: center !important;
+    font-weight: 900 !important;
+  }
+
+  .architecture-diagram[data-type="feedback"] .architecture-node,
+  .architecture-diagram[data-type="flywheel"] .architecture-node {
+    width: 100% !important;
+    justify-content: center !important;
+  }
+}
+
 /* FINAL: semantic architecture grammar renderer. */
 .architecture-groups {
   display: grid;
@@ -116,44 +178,45 @@
 
 .architecture-connector path {
   fill: none;
-  stroke: #8fa1c7;
-  stroke-width: 2.2;
+  stroke: #6e82ad;
+  stroke-width: 2.1;
   stroke-linecap: round;
   stroke-linejoin: round;
 }
 
 .architecture-connector marker path {
-  fill: #8fa1c7;
+  fill: #6e82ad;
+  stroke: none;
 }
 
-.architecture-connector text {
+.architecture-connector-label {
   paint-order: stroke;
   stroke: #edf0f5;
   stroke-width: 5px;
-  fill: var(--accent-primary);
+  fill: #49639a;
   font-size: 11px;
   font-weight: 850;
 }
 
 .architecture-connector[data-relation="feedback"] path,
 .architecture-connector[data-relation="dependency"] path {
-  stroke: #6f8f77;
-  stroke-dasharray: 8 5;
+  stroke: #6e947d;
+  stroke-dasharray: 7 5;
 }
 
 .architecture-connector[data-relation="branch"] path,
 .architecture-connector[data-relation="guard"] path {
-  stroke: #b8843b;
+  stroke: #a97843;
 }
 
 .architecture-connector[data-relation="feedback"] marker path,
 .architecture-connector[data-relation="dependency"] marker path {
-  fill: #6f8f77;
+  fill: #6e947d;
 }
 
 .architecture-connector[data-relation="branch"] marker path,
 .architecture-connector[data-relation="guard"] marker path {
-  fill: #b8843b;
+  fill: #a97843;
 }
 
 .architecture-connector[data-relation="feedback"] text,

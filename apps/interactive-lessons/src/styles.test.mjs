@@ -37,3 +37,24 @@ describe("desktop reading width", () => {
     expect(contract).toContain(".app-shell { width: min(1440px, calc(100% - 36px)) !important; min-width: 960px !important; padding: 48px 0 112px !important; }");
   });
 });
+
+describe("architecture connector arrows", () => {
+  it("keeps arrowheads directional without overpowering the diagram", () => {
+    expect(stylesheet).toContain(".architecture-connector-label");
+    expect(stylesheet).toContain("stroke-width: 2.1");
+    expect(stylesheet).toContain("stroke: #6e82ad");
+    expect(stylesheet).toContain(".architecture-connector marker path");
+  });
+
+  it("renders loop diagrams as readable vertical flows on narrow screens", () => {
+    const contract = stylesheet.slice(stylesheet.indexOf("/* FINAL: mobile architecture diagrams */"));
+
+    expect(contract).toContain("@media (max-width: 1024px)");
+    expect(contract).toContain('.architecture-diagram[data-type="feedback"] .architecture-connectors');
+    expect(contract).toContain('.architecture-diagram[data-type="flywheel"] .architecture-connectors');
+    expect(contract).toContain(".architecture-loop {");
+    expect(contract).toContain("display: grid !important;");
+    expect(contract).toContain("grid-template-columns: minmax(0, 1fr) !important;");
+    expect(contract).toContain(".architecture-loop-slot + .architecture-loop-slot::before");
+  });
+});
