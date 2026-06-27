@@ -116,45 +116,45 @@
 
 .architecture-connector path {
   fill: none;
-  stroke: #4968a5;
-  stroke-width: 3;
+  stroke: #6e82ad;
+  stroke-width: 2.1;
   stroke-linecap: round;
   stroke-linejoin: round;
 }
 
 .architecture-connector marker path {
-  fill: #4968a5;
+  fill: #6e82ad;
   stroke: none;
 }
 
 .architecture-connector-label {
   paint-order: stroke;
   stroke: #edf0f5;
-  stroke-width: 6px;
-  fill: var(--accent-primary);
-  font-size: 12px;
+  stroke-width: 5px;
+  fill: #49639a;
+  font-size: 11px;
   font-weight: 850;
 }
 
 .architecture-connector[data-relation="feedback"] path,
 .architecture-connector[data-relation="dependency"] path {
-  stroke: #6f8f77;
-  stroke-dasharray: 8 5;
+  stroke: #6e947d;
+  stroke-dasharray: 7 5;
 }
 
 .architecture-connector[data-relation="branch"] path,
 .architecture-connector[data-relation="guard"] path {
-  stroke: #b8843b;
+  stroke: #a97843;
 }
 
 .architecture-connector[data-relation="feedback"] marker path,
 .architecture-connector[data-relation="dependency"] marker path {
-  fill: #6f8f77;
+  fill: #6e947d;
 }
 
 .architecture-connector[data-relation="branch"] marker path,
 .architecture-connector[data-relation="guard"] marker path {
-  fill: #b8843b;
+  fill: #a97843;
 }
 
 .architecture-connector[data-relation="feedback"] text,

@@ -39,9 +39,10 @@ describe("desktop reading width", () => {
 });
 
 describe("architecture connector arrows", () => {
-  it("makes arrowheads and relationship labels visually legible", () => {
+  it("keeps arrowheads directional without overpowering the diagram", () => {
     expect(stylesheet).toContain(".architecture-connector-label");
-    expect(stylesheet).toContain("stroke-width: 3");
+    expect(stylesheet).toContain("stroke-width: 2.1");
+    expect(stylesheet).toContain("stroke: #6e82ad");
     expect(stylesheet).toContain(".architecture-connector marker path");
   });
 });

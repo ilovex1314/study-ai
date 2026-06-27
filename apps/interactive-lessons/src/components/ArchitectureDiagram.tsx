@@ -90,8 +90,8 @@ function ConnectorLayer({ edges, nodes, paths, width, height }: { edges: Archite
   return (
     <svg className="architecture-connectors" viewBox={`0 0 ${viewWidth} ${viewHeight}`} preserveAspectRatio="none" aria-hidden="true">
       <defs>
-        <marker id={`${markerSeed}-arrow`} markerWidth="13" markerHeight="13" refX="11" refY="6.5" orient="auto" markerUnits="strokeWidth">
-          <path d="M 1 1 L 12 6.5 L 1 12 z" />
+        <marker id={`${markerSeed}-arrow`} markerWidth="9" markerHeight="9" refX="8" refY="4.5" orient="auto" markerUnits="userSpaceOnUse">
+          <path d="M 1.5 1.2 L 8 4.5 L 1.5 7.8 z" />
         </marker>
       </defs>
       {visiblePaths.map(({ edge, labelX, labelY, path }, index) => (
